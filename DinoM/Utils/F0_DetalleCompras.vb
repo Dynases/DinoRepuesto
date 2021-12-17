@@ -76,7 +76,7 @@ Public Class F0_DetalleCompras
 
         With grProductoSeleccionado.RootTable.Columns("cbnumi")
             .Width = 100
-            .Caption = "CODIGO"
+            .Caption = "Código"
             .Visible = False
         End With
 
@@ -86,11 +86,12 @@ Public Class F0_DetalleCompras
         End With
         With grProductoSeleccionado.RootTable.Columns("cbty5prod")
             .Width = 90
-            .Visible = False
+            .Caption = "Item"
+            .Visible = True
         End With
 
         With grProductoSeleccionado.RootTable.Columns("producto")
-            .Caption = "Descripcion"
+            .Caption = "Descripción"
             .Width = 400
             .Visible = True
             .WordWrap = True
@@ -160,7 +161,7 @@ Public Class F0_DetalleCompras
         With grProductoSeleccionado.RootTable.Columns("unidad")
             .Width = 80
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = True
+            .Visible = False
             .Caption = "Unidad".ToUpper
         End With
         With grProductoSeleccionado.RootTable.Columns("cbpcost")
@@ -343,7 +344,7 @@ Public Class F0_DetalleCompras
         Dim Bin As New MemoryStream
         Dim img As New Bitmap(My.Resources.delete, 28, 28)
         img.Save(Bin, Imaging.ImageFormat.Png)
-        CType(grProductoSeleccionado.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, "", "", "", "", "", 0, "", 0, 0, 0, "",
+        CType(grProductoSeleccionado.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, "", "", "", "", "", "", 0, 0, 0, "",
                                                         0, "20500101", CDate("2050/01/01"), 0, 0, 0, "", Now.Date, "", "", 0, Bin.GetBuffer, 0, 0)
     End Sub
     Public Function _fnSiguienteNumi()

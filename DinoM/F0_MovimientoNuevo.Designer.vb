@@ -98,7 +98,7 @@ Partial Class F0_MovimientoNuevo
         '
         'PanelSuperior
         '
-        Me.PanelSuperior.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelSuperior.Margin = New System.Windows.Forms.Padding(4)
         Me.PanelSuperior.Size = New System.Drawing.Size(1394, 72)
         Me.PanelSuperior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelSuperior.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
@@ -117,7 +117,7 @@ Partial Class F0_MovimientoNuevo
         'PanelInferior
         '
         Me.PanelInferior.Location = New System.Drawing.Point(0, 570)
-        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(4)
         Me.PanelInferior.Size = New System.Drawing.Size(1394, 39)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Transparent
@@ -153,7 +153,7 @@ Partial Class F0_MovimientoNuevo
         '
         'TxtNombreUsu
         '
-        Me.TxtNombreUsu.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TxtNombreUsu.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtNombreUsu.ReadOnly = True
         Me.TxtNombreUsu.Size = New System.Drawing.Size(135, 32)
         Me.TxtNombreUsu.Text = "DEFAULT"
@@ -176,11 +176,11 @@ Partial Class F0_MovimientoNuevo
         'PanelToolBar2
         '
         Me.PanelToolBar2.Location = New System.Drawing.Point(1314, 0)
-        Me.PanelToolBar2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelToolBar2.Margin = New System.Windows.Forms.Padding(4)
         '
         'PanelPrincipal
         '
-        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(4)
         Me.PanelPrincipal.Size = New System.Drawing.Size(1394, 609)
         Me.PanelPrincipal.Controls.SetChildIndex(Me.PanelInferior, 0)
         Me.PanelPrincipal.Controls.SetChildIndex(Me.PanelUsuario, 0)
@@ -192,7 +192,7 @@ Partial Class F0_MovimientoNuevo
         '
         'btnUltimo
         '
-        Me.btnUltimo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnUltimo.Margin = New System.Windows.Forms.Padding(2)
         '
         'btnSiguiente
         '
@@ -206,7 +206,7 @@ Partial Class F0_MovimientoNuevo
         'MPanelUserAct
         '
         Me.MPanelUserAct.Location = New System.Drawing.Point(1194, 0)
-        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(4)
         '
         'MRlAccion
         '
@@ -214,24 +214,24 @@ Partial Class F0_MovimientoNuevo
         '
         '
         Me.MRlAccion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.MRlAccion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MRlAccion.Margin = New System.Windows.Forms.Padding(4)
         Me.MRlAccion.Size = New System.Drawing.Size(938, 72)
         '
         'PanelContent
         '
         Me.PanelContent.Controls.Add(Me.GroupPanel3)
         Me.PanelContent.Controls.Add(Me.GroupPanel1)
-        Me.PanelContent.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelContent.Margin = New System.Windows.Forms.Padding(4)
         Me.PanelContent.Size = New System.Drawing.Size(1361, 498)
         '
         'Panel1
         '
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Size = New System.Drawing.Size(1394, 498)
         '
         'MSuperTabControlPanel1
         '
-        Me.MSuperTabControlPanel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MSuperTabControlPanel1.Margin = New System.Windows.Forms.Padding(4)
         Me.MSuperTabControlPanel1.Size = New System.Drawing.Size(1361, 498)
         '
         'MSuperTabControl
@@ -250,7 +250,7 @@ Partial Class F0_MovimientoNuevo
         Me.MSuperTabControl.ControlBox.Name = ""
         Me.MSuperTabControl.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.MSuperTabControl.ControlBox.MenuBox, Me.MSuperTabControl.ControlBox.CloseBox})
         Me.MSuperTabControl.Controls.Add(Me.SuperTabControlPanel2)
-        Me.MSuperTabControl.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MSuperTabControl.Margin = New System.Windows.Forms.Padding(4)
         Me.MSuperTabControl.Size = New System.Drawing.Size(1394, 498)
         Me.MSuperTabControl.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItem2})
         Me.MSuperTabControl.Controls.SetChildIndex(Me.SuperTabControlPanel2, 0)
@@ -259,7 +259,7 @@ Partial Class F0_MovimientoNuevo
         'PictureBox1
         '
         Me.PictureBox1.Location = New System.Drawing.Point(1121, 0)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4)
         '
         'GroupPanel3
         '
@@ -548,7 +548,7 @@ Partial Class F0_MovimientoNuevo
         Me.btnAgregar.Image = Global.DinoM.My.Resources.Resources.clase_practica
         Me.btnAgregar.ImageFixedSize = New System.Drawing.Size(30, 30)
         Me.btnAgregar.Location = New System.Drawing.Point(380, 0)
-        Me.btnAgregar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnAgregar.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAgregar.Name = "btnAgregar"
         Me.btnAgregar.Size = New System.Drawing.Size(100, 55)
         Me.btnAgregar.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
@@ -900,7 +900,7 @@ Partial Class F0_MovimientoNuevo
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1394, 609)
         Me.Location = New System.Drawing.Point(0, 0)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "F0_MovimientoNuevo"
         Me.Text = "F0_MovimientoNuevo"
         Me.Controls.SetChildIndex(Me.PanelPrincipal, 0)

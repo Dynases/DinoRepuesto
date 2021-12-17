@@ -410,6 +410,7 @@
     <Content Include="Resources\addimg.png" />
     <Content Include="Resources\almacen.png" />
     <Content Include="Resources\cancel.png" />
+    <None Include="Resources\cancel1.png" />
     <Content Include="Resources\checked.png" />
     <Content Include="Resources\clase_practica.png" />
     <Content Include="Resources\cliente.png" />

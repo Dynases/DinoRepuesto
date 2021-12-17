@@ -430,52 +430,52 @@ Public Class F0_MovimientoNuevo
 
 
     Public Function validarStock(ByRef Mensaje As String) As Boolean
-
-
-        Dim dt As DataTable = CType(grdetalle.DataSource, DataTable).DefaultView.ToTable(False, "ProductoId", "producto", "Cantidad", "AlmOrigenId", "estado", "stock")
-        Dim detalle As DataTable = dt.Copy
-        detalle.Rows.Clear()
-        'Armo los productos para consultar su inventario
-        For i As Integer = 0 To dt.Rows.Count - 1 Step 1
-
-            If (dt.Rows(i).Item("estado") >= 0) Then
-
-                detalle.ImportRow(dt.Rows(i))
-
-            End If
-        Next
-        ''''''''''
-        Dim dtInventario As DataTable = L_fnObtenerStockAlmacen(detalle)
-
         Dim bandera As Boolean = True
+        If cbConcepto.Value = 1 Then
+            Return bandera
+        Else
+            Dim dt As DataTable = CType(grdetalle.DataSource, DataTable).DefaultView.ToTable(False, "ProductoId", "producto", "Cantidad", "AlmOrigenId", "estado", "stock")
+            Dim detalle As DataTable = dt.Copy
+            detalle.Rows.Clear()
+            'Armo los productos para consultar su inventario
+            For i As Integer = 0 To dt.Rows.Count - 1 Step 1
 
-        Dim Cadena As String = "Los siguientes productos ya no tienen Stock=  "
+                If (dt.Rows(i).Item("estado") >= 0) Then
 
-        For i As Integer = 0 To detalle.Rows.Count - 1 Step 1
-            Dim ProductoId As Integer = detalle.Rows(i).Item("ProductoId")
-            Dim AlmacenId As Integer = detalle.Rows(i).Item("AlmOrigenId")
-            Dim result As Object
-            result = detalle.Compute("SUM(Cantidad)", "ProductoId = " + Str(ProductoId) + " and AlmOrigenId=" + Str(AlmacenId))
-            Dim CantidadTotal As Integer = Integer.Parse(result.ToString)
+                    detalle.ImportRow(dt.Rows(i))
 
-
-            Dim resultInventario As Object
-            resultInventario = dtInventario.Compute("SUM(Cantidad)", "ProductoId = " + Str(ProductoId) + " and AlmacenId=" + Str(AlmacenId))
-
-            Dim CantidadInventario As Double = Double.Parse(resultInventario.ToString)
-
-            If (CantidadTotal > CantidadInventario) Then
-                bandera = False
-                Cadena += "" + detalle.Rows(i).Item("producto") + "  ,"
-            End If
-
-        Next
-
-        Mensaje = Cadena
-        Return bandera
+                End If
+            Next
+            ''''''''''
+            Dim dtInventario As DataTable = L_fnObtenerStockAlmacen(detalle)
 
 
 
+            Dim Cadena As String = "Los siguientes productos ya no tienen Stock=  "
+
+            For i As Integer = 0 To detalle.Rows.Count - 1 Step 1
+                Dim ProductoId As Integer = detalle.Rows(i).Item("ProductoId")
+                Dim AlmacenId As Integer = detalle.Rows(i).Item("AlmOrigenId")
+                Dim result As Object
+                result = detalle.Compute("SUM(Cantidad)", "ProductoId = " + Str(ProductoId) + " and AlmOrigenId=" + Str(AlmacenId))
+                Dim CantidadTotal As Integer = Integer.Parse(result.ToString)
+
+
+                Dim resultInventario As Object
+                resultInventario = dtInventario.Compute("SUM(Cantidad)", "ProductoId = " + Str(ProductoId) + " and AlmacenId=" + Str(AlmacenId))
+
+                Dim CantidadInventario As Double = Double.Parse(resultInventario.ToString)
+
+                If (CantidadTotal > CantidadInventario) Then
+                    bandera = False
+                    Cadena += "" + detalle.Rows(i).Item("producto") + "  ,"
+                End If
+
+            Next
+
+            Mensaje = Cadena
+            Return bandera
+        End If
 
     End Function
 

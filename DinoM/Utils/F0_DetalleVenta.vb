@@ -70,12 +70,17 @@ Public Class F0_DetalleVenta
 
         End With
         With grProductoSeleccionado.RootTable.Columns("Item")
-            .Width = 50
+            .Width = 70
             .Caption = "Item"
+            .Visible = True
+
+        End With
+        With grProductoSeleccionado.RootTable.Columns("yfcbarra")
+            .Width = 50
+            .Caption = "Cod. Barra"
             .Visible = False
 
         End With
-
         With grProductoSeleccionado.RootTable.Columns("Cantidad")
             .Width = 120
             .Caption = "Cantidad"
@@ -279,12 +284,17 @@ Public Class F0_DetalleVenta
 
         End With
         With grProductos.RootTable.Columns("Item")
-            .Width = 100
+            .Width = 70
             .Caption = "Item"
+            .Visible = True
+
+        End With
+        With grProductos.RootTable.Columns("yfcbarra")
+            .Width = 100
+            .Caption = "Cod.Barra"
             .Visible = False
 
         End With
-
         With grProductos.RootTable.Columns("Cantidad")
             .Width = 120
             .Caption = "Cantidad"

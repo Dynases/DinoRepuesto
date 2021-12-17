@@ -39,11 +39,10 @@ Partial Class ModeloAyuda
         Me.grJBuscador.HeaderFormatStyle.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grJBuscador.HeaderFormatStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(49, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.grJBuscador.Location = New System.Drawing.Point(0, 0)
-        Me.grJBuscador.Margin = New System.Windows.Forms.Padding(4)
         Me.grJBuscador.Name = "grJBuscador"
         Me.grJBuscador.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.grJBuscador.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.grJBuscador.Size = New System.Drawing.Size(1020, 397)
+        Me.grJBuscador.Size = New System.Drawing.Size(764, 321)
         Me.grJBuscador.TabIndex = 0
         Me.grJBuscador.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -55,10 +54,9 @@ Partial Class ModeloAyuda
         Me.GPPanelP.DisabledBackColor = System.Drawing.Color.Empty
         Me.GPPanelP.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GPPanelP.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GPPanelP.Location = New System.Drawing.Point(0, 80)
-        Me.GPPanelP.Margin = New System.Windows.Forms.Padding(4)
+        Me.GPPanelP.Location = New System.Drawing.Point(0, 65)
         Me.GPPanelP.Name = "GPPanelP"
-        Me.GPPanelP.Size = New System.Drawing.Size(1026, 430)
+        Me.GPPanelP.Size = New System.Drawing.Size(770, 349)
         '
         '
         '
@@ -97,8 +95,9 @@ Partial Class ModeloAyuda
         Me.Panel1.Controls.Add(Me.ButtonX1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1026, 80)
+        Me.Panel1.Size = New System.Drawing.Size(770, 65)
         Me.Panel1.TabIndex = 2
         '
         'ButtonX1
@@ -106,27 +105,27 @@ Partial Class ModeloAyuda
         Me.ButtonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
         Me.ButtonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
         Me.ButtonX1.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonX1.Image = Global.Modelo.My.Resources.Resources._error
-        Me.ButtonX1.ImageFixedSize = New System.Drawing.Size(35, 35)
-        Me.ButtonX1.Location = New System.Drawing.Point(12, 21)
+        Me.ButtonX1.Image = Global.Modelo.My.Resources.Resources.cancel
+        Me.ButtonX1.ImageFixedSize = New System.Drawing.Size(32, 32)
+        Me.ButtonX1.Location = New System.Drawing.Point(9, 17)
+        Me.ButtonX1.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonX1.Name = "ButtonX1"
-        Me.ButtonX1.Size = New System.Drawing.Size(311, 52)
+        Me.ButtonX1.Size = New System.Drawing.Size(233, 42)
         Me.ButtonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
         Me.ButtonX1.TabIndex = 375
         Me.ButtonX1.Text = "Salir"
         '
         'ModeloAyuda
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(49, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1026, 510)
+        Me.ClientSize = New System.Drawing.Size(770, 414)
         Me.Controls.Add(Me.GPPanelP)
         Me.Controls.Add(Me.Panel1)
         Me.DoubleBuffered = True
         Me.ForeColor = System.Drawing.Color.Black
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.Name = "ModeloAyuda"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

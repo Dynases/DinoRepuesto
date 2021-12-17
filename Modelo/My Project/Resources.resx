@@ -124,9 +124,6 @@
   <data name="eliminar2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eliminar2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="nuevo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\nuevo2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="pie_chart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pie-chart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -141,6 +138,12 @@
   </data>
   <data name="ultimo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ultimo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="derechaDoble" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\derechaDoble.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WARNING_AMARILLO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WARNING_AMARILLO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cancelar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cancelar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,14 +172,11 @@
   <data name="imprimir" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imprimir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="derechaDoble" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\derechaDoble.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Ideteca" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ideteca.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_error" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Ideteca" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ideteca.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="next2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\next2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -186,6 +186,9 @@
   </data>
   <data name="NUEVO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NUEVO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="izquierda2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\izquierda2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BUSCAR" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BUSCAR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,9 +214,6 @@
   <data name="SALIR" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SALIR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="dinases" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dinases.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="derechaLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\derechaLine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -232,8 +232,8 @@
   <data name="EDITAR3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EDITAR3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="izquierda2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\izquierda2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="dinases" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dinases.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="registro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\registro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -256,6 +256,9 @@
   <data name="editar2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\editar2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Ideteca1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ideteca1.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="SALIR2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SALIR2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -268,10 +271,10 @@
   <data name="logo economarket facturas1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo economarket facturas1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WARNING_AMARILLO" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WARNING_AMARILLO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="nuevo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nuevo2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Ideteca1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ideteca1.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cancel1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

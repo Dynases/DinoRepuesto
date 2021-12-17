@@ -493,10 +493,14 @@ Public Class F0_Ventas
             .Width = 50
             .Visible = False
         End With
-
+        With grdetalle.RootTable.Columns("yfcbarra")
+            .Caption = "C.Barra"
+            .Width = 50
+            .Visible = True
+        End With
         With grdetalle.RootTable.Columns("CodigoFabrica")
             .Caption = "Cod.Fabrica"
-            .Width = 100
+            .Width = 120
             .MaxLines = 100
             .CellStyle.LineAlignment = TextAlignment.Near
             .WordWrap = True
@@ -505,7 +509,7 @@ Public Class F0_Ventas
         End With
         With grdetalle.RootTable.Columns("CodigoMarca")
             .Caption = "Cod.Marca"
-            .Width = 100
+            .Width = 120
             .MaxLines = 100
             .CellStyle.LineAlignment = TextAlignment.Near
             .WordWrap = True
@@ -524,7 +528,7 @@ Public Class F0_Ventas
 
         With grdetalle.RootTable.Columns("CategoriaProducto")
             .Caption = "Cat.Producto"
-            .Width = 140
+            .Width = 100
             .MaxLines = 100
             .CellStyle.LineAlignment = TextAlignment.Near
             .WordWrap = True
@@ -534,7 +538,7 @@ Public Class F0_Ventas
         End With
         With grdetalle.RootTable.Columns("Marca")
             .Caption = "Marca"
-            .Width = 140
+            .Width = 100
             .MaxLines = 100
             .CellStyle.LineAlignment = TextAlignment.Near
             .WordWrap = True
@@ -544,17 +548,16 @@ Public Class F0_Ventas
         End With
         With grdetalle.RootTable.Columns("Procedencia")
             .Caption = "Procedencia"
-            .Width = 140
+            .Width = 100
             .MaxLines = 100
             .CellStyle.LineAlignment = TextAlignment.Near
             .WordWrap = True
             .Visible = True
             .AllowSort = False
-
         End With
         With grdetalle.RootTable.Columns("producto")
             .Caption = "Descripción"
-            .Width = 310
+            .Width = 320
             .MaxLines = 200
             .CellStyle.LineAlignment = TextAlignment.Near
             .WordWrap = True
@@ -731,6 +734,7 @@ Public Class F0_Ventas
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
             .RecordNavigator = True
+
         End With
     End Sub
 
@@ -909,7 +913,7 @@ Public Class F0_Ventas
 
 
         If (G_Lote = True) Then
-                dtProductoGoblal = L_fnListarProductos(cbSucursal.Value, cbPrecio.Value, idCategoria)  ''1=Almacen
+            dtProductoGoblal = L_fnListarProductos(cbSucursal.Value, cbPrecio.Value, idCategoria)  ''1=Almacen
             Table_Producto = dt.Copy
 
         Else
@@ -934,7 +938,7 @@ Public Class F0_Ventas
 
         End If
 
-            dt = dtProductoGoblal
+        dt = dtProductoGoblal
 
         Dim dtVenta As DataTable = dtProductoGoblal.Copy
         dtVenta.Rows.Clear()
@@ -972,6 +976,44 @@ Public Class F0_Ventas
         Next
 
         dtVenta.Clear()
+    End Sub
+
+    Private Sub _prCargarProductosCodBarras(_cliente As String, idCategoria As Integer)
+        If (cbSucursal.SelectedIndex < 0) Then
+            Return
+        End If
+        If (cbPrecio.SelectedIndex < 0) Then
+            Return
+        End If
+        Dim dtname As DataTable = L_fnNameLabel()
+        Dim dt As New DataTable
+
+
+        If (G_Lote = True) Then
+            dtProductoGoblal = L_fnListarProductos(cbSucursal.Value, cbPrecio.Value, idCategoria)  ''1=Almacen
+            Table_Producto = dt.Copy
+
+        Else
+            If (IsNothing(dtProductoGoblal)) Then
+                dtProductoGoblal = L_fnListarProductosSinLote(cbSucursal.Value, cbPrecio.Value, idCategoria)  ''1=Almacen
+                Table_Producto = dtProductoGoblal.Copy
+
+                SucursalSeleccionada = cbSucursal.Value
+                CategoriaPrecioSeleccionada = cbPrecio.Value
+
+
+            Else
+                If (cbSucursal.Value <> SucursalSeleccionada Or cbPrecio.Value <> CategoriaPrecioSeleccionada) Then
+                    dtProductoGoblal = L_fnListarProductosSinLote(cbSucursal.Value, cbPrecio.Value, idCategoria)  ''1=Almacen
+                    Table_Producto = dtProductoGoblal.Copy
+
+                    SucursalSeleccionada = cbSucursal.Value
+                    CategoriaPrecioSeleccionada = cbPrecio.Value
+                End If
+            End If
+
+
+        End If
     End Sub
     Public Sub _prAplicarCondiccionJanusSinLote()
         Dim fc As GridEXFormatCondition
@@ -1098,7 +1140,7 @@ Public Class F0_Ventas
         Dim img02 As New Bitmap(My.Resources.add, 28, 28)
         img.Save(Bin, Imaging.ImageFormat.Png)
         img02.Save(Bin02, Imaging.ImageFormat.Png)
-        CType(grdetalle.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, 0, "", "", "", "", "", "", "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, "", 0, "20500101", CDate("2050/01/01"), 0, Now.Date, "", "", 0, Bin.GetBuffer, Bin02.GetBuffer, 0)
+        CType(grdetalle.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, 0, "", "", "", "", "", "", "", "", 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, "", 0, "20500101", CDate("2050/01/01"), 0, Now.Date, "", "", 0, Bin.GetBuffer, Bin02.GetBuffer, 0)
     End Sub
 
     Public Function _fnSiguienteNumi()
@@ -1529,6 +1571,7 @@ Public Class F0_Ventas
         If ((pos >= 0) And (Not existe)) Then
             CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbty5prod") = dt.Rows(fila).Item("Item")
             CType(grdetalle.DataSource, DataTable).Rows(pos).Item("Item") = dt.Rows(fila).Item("Item")
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("yfcbarra") = dt.Rows(fila).Item("yfcbarra")
             CType(grdetalle.DataSource, DataTable).Rows(pos).Item("CodigoFabrica") = dt.Rows(fila).Item("CodigoFabrica")
             CType(grdetalle.DataSource, DataTable).Rows(pos).Item("CodigoMarca") = dt.Rows(fila).Item("Marca")
             CType(grdetalle.DataSource, DataTable).Rows(pos).Item("Medida") = dt.Rows(fila).Item("Medida")
@@ -2260,7 +2303,8 @@ Public Class F0_Ventas
             Else
                 If (e.Column.Index = grdetalle.RootTable.Columns("tbcmin").Index Or
               e.Column.Index = grdetalle.RootTable.Columns("tbporc").Index Or
-              e.Column.Index = grdetalle.RootTable.Columns("tbdesc").Index) Then
+              e.Column.Index = grdetalle.RootTable.Columns("tbdesc").Index Or
+              e.Column.Index = grdetalle.RootTable.Columns("yfcbarra").Index) Then
                     e.Cancel = False
                 Else
                     e.Cancel = True
@@ -2374,8 +2418,39 @@ Public Class F0_Ventas
             '    End If
 
             'End If
+
+            If (grdetalle.Col = grdetalle.RootTable.Columns("yfcbarra").Index) Then
+                _prCargarProductosCodBarras(Str(_CodCliente), 0)
+                Dim codigoBarras = grdetalle.GetValue("yfcbarra").ToString
+                If (existeProducto(grdetalle.GetValue("yfcbarra").ToString)) Then
+                    If (Not verificarExistenciaUnica(grdetalle.GetValue("yfcbarra").ToString)) Then
+                        Dim resultado As Boolean = False
+                        ponerProducto(grdetalle.GetValue("yfcbarra").ToString)
+                        _prAddDetalleVenta()
+
+                    Else
+                        'If (grdetalle.GetValue("producto").ToString <> String.Empty) Then
+                        sumarCantidad(grdetalle.GetValue("yfcbarra").ToString)
+                        'Else
+                        '    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                        '    ToastNotification.Show(Me, "El Producto: NO CUENTA CON STOCK DISPONIBLE", img, 5000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                        '    FilaSelectLote = Nothing
+                        'End If
+                    End If
+                Else
+                    grdetalle.DataChanged = False
+                    ToastNotification.Show(Me, "El código de barra del producto no existe", My.Resources.WARNING, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
+                End If
+
+
+
+            End If
+
+
+
 salirIf:
         End If
+
 
         If (e.KeyData = Keys.Control + Keys.Enter And grdetalle.Row >= 0 And
             grdetalle.Col = grdetalle.RootTable.Columns("producto").Index) Then
@@ -2418,25 +2493,48 @@ salirIf:
             Dim pos As Integer = -1
             _fnObtenerFilaDetalle(pos, grdetalle.GetValue("tbnumi"))
             CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbty5prod") = fila(0).ItemArray(0)
-            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("codigo") = fila(0).ItemArray(1)
-            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("yfcbarra") = fila(0).ItemArray(2)
-            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("producto") = fila(0).ItemArray(3)
-            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbumin") = fila(0).ItemArray(13)
-            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("unidad") = fila(0).ItemArray(14)
-            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbpbas") = fila(0).ItemArray(15)
-            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbptot") = fila(0).ItemArray(15)
-            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbtotdesc") = fila(0).ItemArray(15)
-            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbcmin") = 1
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("Item") = fila(0).ItemArray(0)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("yfcbarra") = fila(0).ItemArray(1)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("CodigoFabrica") = fila(0).ItemArray(2)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("CodigoMarca") = fila(0).ItemArray(3)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("Medida") = fila(0).ItemArray(4)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("Marca") = fila(0).ItemArray(8)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("Procedencia") = fila(0).ItemArray(10)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("CategoriaProducto") = fila(0).ItemArray(5)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("producto") = fila(0).ItemArray(6)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbumin") = fila(0).ItemArray(15)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("unidad") = fila(0).ItemArray(16)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbpbas") = fila(0).ItemArray(17)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbPrecioReferencia") = fila(0).ItemArray(20)
+
+
+            Dim PrecioReferencia As Double = fila(0).ItemArray(20)
+            Dim monto As Double = fila(0).ItemArray(17)
+            Dim Porcentaje As Double
+            If (PrecioReferencia = 0) Then
+                Porcentaje = 0
+            Else
+                Porcentaje = 100 - ((monto * 100) / PrecioReferencia)
+            End If
+
+
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbPorcentajeReferencia") = Porcentaje
+
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbptot") = fila(0).ItemArray(17) * fila(0).ItemArray(21)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbtotdesc") = fila(0).ItemArray(17) * fila(0).ItemArray(21)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbcmin") = fila(0).ItemArray(21)
+
+
+
             If (gb_FacturaIncluirICE) Then
-                CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbpcos") = fila(0).ItemArray(17)
+                CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbpcos") = fila(0).ItemArray(18)
             Else
                 CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbpcos") = 0
             End If
-            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbptot2") = fila(0).ItemArray(17)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbpcos") = fila(0).ItemArray(18)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbptot2") = fila(0).ItemArray(18) * fila(0).ItemArray(21)
+            CType(grdetalle.DataSource, DataTable).Rows(pos).Item("stock") = fila(0).ItemArray(19)
 
-            'CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tblote") = grProductos.GetValue("iclot")
-            'CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbfechaVenc") = grProductos.GetValue("icfven")
-            'CType(grdetalle.DataSource, DataTable).Rows(pos).Item("stock") = grProductos.GetValue("iccven")
             _prCalcularPrecioTotal()
         End If
     End Sub
@@ -3465,6 +3563,10 @@ salirIf:
     Private Sub btnActualizar_Click(sender As Object, e As EventArgs) Handles btnActualizar.Click
         _IniciarTodo()
     End Sub
+
+
+
+
 
 #End Region
 End Class

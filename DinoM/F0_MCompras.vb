@@ -23,6 +23,7 @@ Public Class F0_MCompras
     Dim _estadoPor As Integer ''En esta variable me dira si sera visible o no las columnas de porcentaje de utilidad y precio de venta
     Dim Lote As Boolean = False
     Public _detalleCompras As DataTable 'Almacena el detalle para insertar a la tabla TPA001 del BDDiconDinoEco
+    Dim dtProductoGoblal As DataTable = Nothing
 #End Region
 
 #Region "Metodos Privados"
@@ -407,7 +408,8 @@ Public Class F0_MCompras
         End With
         With grdetalle.RootTable.Columns("cbty5prod")
             .Width = 90
-            .Visible = False
+            .Caption = "Item"
+            .Visible = True
         End With
         With grdetalle.RootTable.Columns("CodigoFabrica")
             .Caption = "Cod.Fabrica"
@@ -482,7 +484,7 @@ Public Class F0_MCompras
         With grdetalle.RootTable.Columns("unidad")
             .Width = 80
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = True
+            .Visible = False
             .Caption = "Unidad".ToUpper
         End With
         With grdetalle.RootTable.Columns("cbpcost")
@@ -750,12 +752,16 @@ Public Class F0_MCompras
     Private Sub _prCargarProductos(_cliente As String)
 
         Dim dtname As DataTable = L_fnNameLabel()
-        Dim dtProductoGoblal As New DataTable
+
         If (cbSucursal.SelectedIndex < 0) Then
             Return
         End If
 
-        dtProductoGoblal = L_fnListarProductosCompra(cbSucursal.Value, 73)
+
+        If (IsNothing(dtProductoGoblal)) Then
+            dtProductoGoblal = L_fnListarProductosCompra(cbSucursal.Value, 73)
+        End If
+
 
         Dim frm As F0_DetalleCompras
         frm = New F0_DetalleCompras(dtProductoGoblal, CType(grdetalle.DataSource, DataTable), dtname)
@@ -863,7 +869,7 @@ Public Class F0_MCompras
         Dim Bin As New MemoryStream
         Dim img As New Bitmap(My.Resources.delete, 28, 28)
         img.Save(Bin, Imaging.ImageFormat.Png)
-        CType(grdetalle.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, "", "", "", "", "", 0, "", 0, 0, 0, "",
+        CType(grdetalle.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, "", "", "", "", "", "", 0, 0, 0, "",
                                                         0, "20500101", CDate("2050/01/01"), 0, 0, 0, "", Now.Date, "", "", 0, Bin.GetBuffer, 0, 0)
     End Sub
 

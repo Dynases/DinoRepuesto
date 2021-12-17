@@ -156,7 +156,7 @@ Partial Class F0_MCompras
         '
         'PanelInferior
         '
-        Me.PanelInferior.Location = New System.Drawing.Point(0, 570)
+        Me.PanelInferior.Location = New System.Drawing.Point(0, 642)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Transparent
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.Transparent
@@ -191,7 +191,7 @@ Partial Class F0_MCompras
         '
         'TxtNombreUsu
         '
-        Me.TxtNombreUsu.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TxtNombreUsu.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtNombreUsu.ReadOnly = True
         Me.TxtNombreUsu.Size = New System.Drawing.Size(135, 32)
         Me.TxtNombreUsu.Text = "DEFAULT"
@@ -218,7 +218,7 @@ Partial Class F0_MCompras
         '
         'PanelPrincipal
         '
-        Me.PanelPrincipal.Size = New System.Drawing.Size(1350, 609)
+        Me.PanelPrincipal.Size = New System.Drawing.Size(1350, 681)
         Me.PanelPrincipal.Controls.SetChildIndex(Me.PanelInferior, 0)
         Me.PanelPrincipal.Controls.SetChildIndex(Me.PanelUsuario, 0)
         Me.PanelPrincipal.Controls.SetChildIndex(Me.PanelSuperior, 0)
@@ -229,7 +229,7 @@ Partial Class F0_MCompras
         '
         'btnUltimo
         '
-        Me.btnUltimo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnUltimo.Margin = New System.Windows.Forms.Padding(2)
         '
         'btnSiguiente
         '
@@ -252,17 +252,17 @@ Partial Class F0_MCompras
         Me.PanelContent.Controls.Add(Me.PanelDetalle)
         Me.PanelContent.Controls.Add(Me.PanelTotal)
         Me.PanelContent.Controls.Add(Me.PanelContentSup)
-        Me.PanelContent.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.PanelContent.Size = New System.Drawing.Size(1317, 498)
+        Me.PanelContent.Margin = New System.Windows.Forms.Padding(2)
+        Me.PanelContent.Size = New System.Drawing.Size(1317, 570)
         '
         'Panel1
         '
-        Me.Panel1.Size = New System.Drawing.Size(1350, 498)
+        Me.Panel1.Size = New System.Drawing.Size(1350, 570)
         '
         'MSuperTabControlPanel1
         '
-        Me.MSuperTabControlPanel1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.MSuperTabControlPanel1.Size = New System.Drawing.Size(1317, 498)
+        Me.MSuperTabControlPanel1.Margin = New System.Windows.Forms.Padding(2)
+        Me.MSuperTabControlPanel1.Size = New System.Drawing.Size(1317, 570)
         '
         'MSuperTabControl
         '
@@ -281,7 +281,7 @@ Partial Class F0_MCompras
         Me.MSuperTabControl.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.MSuperTabControl.ControlBox.MenuBox, Me.MSuperTabControl.ControlBox.CloseBox})
         Me.MSuperTabControl.Controls.Add(Me.SuperTabControlPanel2)
         Me.MSuperTabControl.SelectedTabIndex = 1
-        Me.MSuperTabControl.Size = New System.Drawing.Size(1350, 498)
+        Me.MSuperTabControl.Size = New System.Drawing.Size(1350, 570)
         Me.MSuperTabControl.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.BUSCADOR})
         Me.MSuperTabControl.Controls.SetChildIndex(Me.MSuperTabControlPanel1, 0)
         Me.MSuperTabControl.Controls.SetChildIndex(Me.SuperTabControlPanel2, 0)
@@ -294,7 +294,7 @@ Partial Class F0_MCompras
         Me.PanelDetalle.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelDetalle.Location = New System.Drawing.Point(0, 230)
         Me.PanelDetalle.Name = "PanelDetalle"
-        Me.PanelDetalle.Size = New System.Drawing.Size(1317, 177)
+        Me.PanelDetalle.Size = New System.Drawing.Size(1317, 249)
         Me.PanelDetalle.TabIndex = 3
         '
         'GroupPanel4
@@ -307,7 +307,7 @@ Partial Class F0_MCompras
         Me.GroupPanel4.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupPanel4.Location = New System.Drawing.Point(0, 0)
         Me.GroupPanel4.Name = "GroupPanel4"
-        Me.GroupPanel4.Size = New System.Drawing.Size(1317, 0)
+        Me.GroupPanel4.Size = New System.Drawing.Size(1317, 42)
         '
         '
         '
@@ -347,7 +347,7 @@ Partial Class F0_MCompras
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel5.Location = New System.Drawing.Point(0, 0)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(1311, 8)
+        Me.Panel5.Size = New System.Drawing.Size(1311, 19)
         Me.Panel5.TabIndex = 0
         '
         'grdetalle
@@ -361,7 +361,7 @@ Partial Class F0_MCompras
         Me.grdetalle.Name = "grdetalle"
         Me.grdetalle.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.grdetalle.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.grdetalle.Size = New System.Drawing.Size(1311, 8)
+        Me.grdetalle.Size = New System.Drawing.Size(1311, 19)
         Me.grdetalle.TabIndex = 3
         Me.grdetalle.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -373,7 +373,7 @@ Partial Class F0_MCompras
         Me.GPanelProductos.DisabledBackColor = System.Drawing.Color.Empty
         Me.GPanelProductos.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GPanelProductos.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GPanelProductos.Location = New System.Drawing.Point(0, -30)
+        Me.GPanelProductos.Location = New System.Drawing.Point(0, 42)
         Me.GPanelProductos.Name = "GPanelProductos"
         Me.GPanelProductos.Size = New System.Drawing.Size(1317, 207)
         '
@@ -441,7 +441,7 @@ Partial Class F0_MCompras
         Me.PanelTotal.BackgroundImage = Global.DinoM.My.Resources.Resources.fondo1
         Me.PanelTotal.Controls.Add(Me.Panel4)
         Me.PanelTotal.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelTotal.Location = New System.Drawing.Point(0, 407)
+        Me.PanelTotal.Location = New System.Drawing.Point(0, 479)
         Me.PanelTotal.Name = "PanelTotal"
         Me.PanelTotal.Size = New System.Drawing.Size(1317, 91)
         Me.PanelTotal.TabIndex = 3
@@ -699,7 +699,7 @@ Partial Class F0_MCompras
         Me.btnAgregar.Image = Global.DinoM.My.Resources.Resources.add
         Me.btnAgregar.ImageFixedSize = New System.Drawing.Size(30, 30)
         Me.btnAgregar.Location = New System.Drawing.Point(299, 99)
-        Me.btnAgregar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnAgregar.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAgregar.Name = "btnAgregar"
         Me.btnAgregar.Size = New System.Drawing.Size(98, 39)
         Me.btnAgregar.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
@@ -1567,9 +1567,9 @@ Partial Class F0_MCompras
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1350, 609)
+        Me.ClientSize = New System.Drawing.Size(1350, 681)
         Me.Location = New System.Drawing.Point(0, 0)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "F0_MCompras"
         Me.Text = "F0_MCompras"
         Me.Controls.SetChildIndex(Me.PanelPrincipal, 0)
