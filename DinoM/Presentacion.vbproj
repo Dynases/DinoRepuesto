@@ -277,6 +277,12 @@
     <Compile Include="F0_MovimientoNuevo.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="F0_PagosCreditoNuevo.Designer.vb">
+      <DependentUpon>F0_PagosCreditoNuevo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F0_PagosCreditoNuevo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="F0_PagosInicial.Designer.vb">
       <DependentUpon>F0_PagosInicial.vb</DependentUpon>
     </Compile>
@@ -359,6 +365,12 @@
       <DependentUpon>F1_Almacen.vb</DependentUpon>
     </Compile>
     <Compile Include="F1_Almacen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F1_IngresosEgresos.designer.vb">
+      <DependentUpon>F1_IngresosEgresos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F1_IngresosEgresos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="F1_Proveedor.Designer.vb">
@@ -974,6 +986,9 @@
     <EmbeddedResource Include="F0_MovimientoNuevo.resx">
       <DependentUpon>F0_MovimientoNuevo.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="F0_PagosCreditoNuevo.resx">
+      <DependentUpon>F0_PagosCreditoNuevo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F0_PagosInicial.resx">
       <DependentUpon>F0_PagosInicial.vb</DependentUpon>
     </EmbeddedResource>
@@ -1015,6 +1030,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="F1_Almacen.resx">
       <DependentUpon>F1_Almacen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F1_IngresosEgresos.resx">
+      <DependentUpon>F1_IngresosEgresos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="F1_Proveedor.resx">
       <DependentUpon>F1_Proveedor.vb</DependentUpon>

@@ -60,15 +60,24 @@ Public Class F0_CierreCaja
             TbCodigo.Clear()
             tbFecha.Value = Now.Date
             tbFecha.Focus()
-            tbTCredito.Value = 0
-            tbTTarjeta.Value = 0
-            tbTDeposito.Value = 0
+            lbNroCaja.Text = ""
+
+
             tbTContado.Value = 0
-            tbTotalGral.Value = 0
-            tbTEfectivo.Value = 0
-            tbTDiferencia.Value = 0
-            Tb_TipoCambio.Value = 0
             tbTPagos.Value = 0
+            tbTotalGral.Value = 0
+            tbTIngresos.Value = 0
+            tbTEgresos.Value = 0
+            tbTotalGral.Value = 0
+
+            tbTEfectivo.Value = 0
+            tbTDeposito.Value = 0
+            tbTTarjeta.Value = 0
+            tbTDiferencia.Value = 0
+            tbTCredito.Value = 0
+
+            Tb_TipoCambio.Value = 0
+
 
             cbTurno.SelectedIndex = 0
             tbMontoInicial.Value = 0
@@ -77,9 +86,11 @@ Public Class F0_CierreCaja
             tbObservacion.Clear()
 
 
-            CargarDetalleVentasPagos("01-01-1900")
+            CargarDetalleVentasPagos("01-01-1900", 0, 0)
 
             _LimpiarGrillas()
+
+
 
         Catch ex As Exception
             MostrarMensajeError(ex.Message)
@@ -283,11 +294,11 @@ Public Class F0_CierreCaja
     End Sub
 
 
-    Public Sub CargarDetalleVentasPagos(Fecha As Date)
+    Public Sub CargarDetalleVentasPagos(Fecha As Date, Nrocaja As Integer, Sucursal As Integer)
         Try
             Dim dt As New DataTable
 
-            dt = L_fnDetalleVentasPagos(Fecha.ToString("yyyy/MM/dd"))
+            dt = L_fnDetalleVentasPagos(Fecha.ToString("yyyy/MM/dd"), Nrocaja, Sucursal)
             Dgv_VentasPagos.DataSource = dt
             Dgv_VentasPagos.RetrieveStructure()
             Dgv_VentasPagos.AlternatingColors = True
@@ -379,6 +390,7 @@ Public Class F0_CierreCaja
         End Try
 
     End Sub
+
     Public Sub CargarDetalleVentasPagosPorIdCaja(Fecha As Date, idCaja As String)
         Try
             Dim dt As New DataTable
@@ -589,9 +601,14 @@ Public Class F0_CierreCaja
         '    ToastNotification.Show(Me, "Por Favor presione el boton de Calcular Ventas y/o Pagos del día".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
         '    Return False
         'End If
-        If (tbMontoInicial.Text <= 0) Then
+        If (tbMontoInicial.Text < 0) Then
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
             ToastNotification.Show(Me, "Por Favor introduzca monto inicial".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            Return False
+        End If
+        If tbTotalGral.Value > 0 And tbTEfectivo.Value = 0 Then
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "Por Favor llene la tabla de Cortes".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
             Return False
         End If
         Return True
@@ -601,7 +618,7 @@ Public Class F0_CierreCaja
             Dim numi As String = ""
             Dim res As Boolean = L_fnGrabarCaja(numi, tbFecha.Value.ToString("yyyy/MM/dd"), tbTotalGral.Value, tbTCredito.Value,
                                                 tbTTarjeta.Value, tbTContado.Value, tbTDeposito.Value, tbTEfectivo.Value,
-                                                tbTDiferencia.Value, tbTPagos.Value, cbTurno.Text, tbMontoInicial.Text, IIf(swEstado.Value = True, 1, 0), Tb_TipoCambio.Value, tbObservacion.Text, CType(Dgv_Cortes.DataSource, DataTable), CType(Dgv_Depositos.DataSource, DataTable))
+                                                tbTDiferencia.Value, tbTPagos.Value, cbTurno.Text, tbMontoInicial.Value, tbTIngresos.Value, tbTEgresos.Value, IIf(swEstado.Value = True, 1, 0), Tb_TipoCambio.Value, tbObservacion.Text, CType(Dgv_Cortes.DataSource, DataTable), CType(Dgv_Depositos.DataSource, DataTable), gs_NroCaja, cbSucursal.Value)
             If res Then
 
                 Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
@@ -613,8 +630,9 @@ Public Class F0_CierreCaja
 
                 _prCargarCierreCaja()
                 '_Limpiar()
-                _prSalir()
+
                 _UltimoRegistro()
+                _prSalir()
 
             Else
                 Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
@@ -639,7 +657,7 @@ Public Class F0_CierreCaja
                 Dim TContado As Double = tbTContado.Value - tbTTarjeta.Value
                 Dim res As Boolean = L_fnModificarCaja(TbCodigo.Text, tbFecha.Value.ToString("yyyy/MM/dd"), tbTotalGral.Value, tbTCredito.Value,
                                                     tbTTarjeta.Value, TContado, tbTDeposito.Value, tbTEfectivo.Value,
-                                                    tbTDiferencia.Value, tbTPagos.Value, cbTurno.Text, tbMontoInicial.Text, Tb_TipoCambio.Value, tbObservacion.Text, CType(Dgv_Cortes.DataSource, DataTable), CType(Dgv_Depositos.DataSource, DataTable), dtventas)
+                                                    tbTDiferencia.Value, tbTPagos.Value, cbTurno.Text, tbMontoInicial.Value, tbTIngresos.Value, tbTEgresos.Value, Tb_TipoCambio.Value, tbObservacion.Text, CType(Dgv_Cortes.DataSource, DataTable), CType(Dgv_Depositos.DataSource, DataTable), dtventas, gs_NroCaja)
                 If res Then
 
                     Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
@@ -650,8 +668,9 @@ Public Class F0_CierreCaja
                                               )
 
                     _prCargarCierreCaja()
-                    _prSalir()
+
                     _UltimoRegistro()
+                    _prSalir()
 
                 Else
                     Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
@@ -679,7 +698,7 @@ Public Class F0_CierreCaja
                 .Visible = True
             End With
             With Dgv_Buscador.RootTable.Columns("ccFecha")
-                .Width = 170
+                .Width = 120
                 .Visible = True
                 .Caption = "FECHA CIERRE"
                 .FormatString = "dd/MM/yyyy"
@@ -727,20 +746,33 @@ Public Class F0_CierreCaja
                 .FormatString = "0.00"
             End With
             With Dgv_Buscador.RootTable.Columns("ccTipoCambio")
-                .Width = 130
+                .Width = 100
                 .Visible = True
                 .Caption = "TIPO CAMBIO"
                 .FormatString = "0.00"
                 .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             End With
             With Dgv_Buscador.RootTable.Columns("ccTurno")
-                .Width = 130
-                .Visible = False
+                .Width = 110
+                .Caption = "TURNO"
+                .Visible = True
             End With
             With Dgv_Buscador.RootTable.Columns("ccMInicial")
                 .Width = 130
                 .Visible = False
                 .Caption = "MONTO INICIAL"
+                .FormatString = "0.00"
+            End With
+            With Dgv_Buscador.RootTable.Columns("ccIngreso")
+                .Width = 130
+                .Visible = False
+                .Caption = "INGRESOS"
+                .FormatString = "0.00"
+            End With
+            With Dgv_Buscador.RootTable.Columns("ccEgreso")
+                .Width = 130
+                .Visible = False
+                .Caption = "EGRESOS"
                 .FormatString = "0.00"
             End With
             With Dgv_Buscador.RootTable.Columns("ccObs")
@@ -751,24 +783,37 @@ Public Class F0_CierreCaja
                 .Width = 130
                 .Visible = False
             End With
+            With Dgv_Buscador.RootTable.Columns("caja")
+                .Width = 100
+                .Caption = "CAJA"
+                .Visible = True
+            End With
+            With Dgv_Buscador.RootTable.Columns("ccNrocaja")
+                .Width = 100
+                .Caption = "NRO. CAJA"
+                .Visible = True
+            End With
+            With Dgv_Buscador.RootTable.Columns("ccSucursal")
+                .Visible = False
+            End With
             With Dgv_Buscador.RootTable.Columns("ccfact")
                 .Width = 150
                 .Caption = "FECHA REGISTRO"
                 .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-                .Visible = True
+                .Visible = False
             End With
+
             With Dgv_Buscador.RootTable.Columns("cchact")
                 .Width = 120
                 .Caption = "HORA"
                 .Visible = True
-                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             End With
             With Dgv_Buscador.RootTable.Columns("ccuact")
-                .Width = 170
+                .Width = 150
                 .Caption = "USUARIO"
-                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
                 .Visible = True
             End With
+
 
             With Dgv_Buscador
                 .DefaultFilterRowComparison = FilterConditionOperator.Contains
@@ -809,8 +854,12 @@ Public Class F0_CierreCaja
                 cbTurno.Text = .GetValue("ccTurno")
                 tbMontoInicial.Value = .GetValue("ccMInicial")
                 tbMontoI.Value = .GetValue("ccMInicial")
+                tbTIngresos.Value = .GetValue("ccIngreso")
+                tbTEgresos.Value = .GetValue("ccEgreso")
                 swEstado.Value = .GetValue("ccEstado")
                 tbObservacion.Text = .GetValue("ccObs")
+                lbNroCaja.Text = .GetValue("ccNrocaja")
+                cbSucursal.Value = .GetValue("ccSucursal")
 
                 'Montos del Detalle de Ventas y/o pagos
                 tbTCredito.Value = .GetValue("ccCredito")
@@ -906,11 +955,14 @@ Public Class F0_CierreCaja
             objrep.SetParameterValue("turno", cbTurno.Text)
             objrep.SetParameterValue("tipocambio", Tb_TipoCambio.Text)
             objrep.SetParameterValue("usuario", L_Usuario)
+            objrep.SetParameterValue("Sucursal", cbSucursal.Text)
 
             'Totales
             objrep.SetParameterValue("MInicial", tbMontoI.Text)
             objrep.SetParameterValue("TContadoTarjeta", tbTContado.Text)
             objrep.SetParameterValue("TPagos", tbTPagos.Text)
+            objrep.SetParameterValue("TIngresos", tbTIngresos.Text)
+            objrep.SetParameterValue("TEgresos", tbTEgresos.Text)
             objrep.SetParameterValue("TotalCaja", tbTotalGral.Text)
             objrep.SetParameterValue("TotalCortes", tbTEfectivo.Text)
             objrep.SetParameterValue("TotalDepositos", tbTDeposito.Text)
@@ -955,6 +1007,7 @@ Public Class F0_CierreCaja
         Dim ico As Icon = Icon.FromHandle(blah.GetHicon())
         Me.Icon = ico
         _prCargarComboBanco(cbbanco)
+        _prCargarComboLibreriaSucursal(cbSucursal)
         _prCargarComboLibreria(cbTurno, 8, 1)
         _prInhabiliitar()
         _prCargarCierreCaja()
@@ -967,6 +1020,18 @@ Public Class F0_CierreCaja
             _Limpiar()
             _prhabilitar()
 
+            'Recupera y asigna la Sucursal a la que pertenece el usuario
+            If (gi_userSuc > 0) Then
+                Dim dt As DataTable = CType(cbSucursal.DataSource, DataTable)
+                For i As Integer = 0 To dt.Rows.Count - 1 Step 1
+
+                    If (dt.Rows(i).Item("aanumi") = gi_userSuc) Then
+                        cbSucursal.SelectedIndex = i
+                    End If
+
+                Next
+            End If
+
             btnNuevo.Enabled = False
             btnModificar.Enabled = False
             btnEliminar.Enabled = False
@@ -975,6 +1040,21 @@ Public Class F0_CierreCaja
         Catch ex As Exception
             MostrarMensajeError(ex.Message)
         End Try
+    End Sub
+    Private Sub _prCargarComboLibreriaSucursal(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
+        Dim dt As New DataTable
+        dt = L_fnListarSucursales()
+        With mCombo
+            .DropDownList.Columns.Clear()
+            .DropDownList.Columns.Add("aanumi").Width = 60
+            .DropDownList.Columns("aanumi").Caption = "COD"
+            .DropDownList.Columns.Add("aabdes").Width = 500
+            .DropDownList.Columns("aabdes").Caption = "SUCURSAL"
+            .ValueMember = "aanumi"
+            .DisplayMember = "aabdes"
+            .DataSource = dt
+            .Refresh()
+        End With
     End Sub
     Private Sub Dgv_Cortes_EditingCell(sender As Object, e As EditingCellEventArgs) Handles Dgv_Cortes.EditingCell
         If btnGrabar.Enabled = True Then
@@ -994,29 +1074,40 @@ Public Class F0_CierreCaja
 
     Private Sub btnCalcular_Click(sender As Object, e As EventArgs) Handles btnCalcular.Click
         Try
-            Dim DtVerificar As DataTable = L_fnVerificarSiExisteCierreCaja(tbFecha.Value, TbCodigo.Text)
-            If DtVerificar.Rows(0).Item("ccEstado") = 0 Then
-                Throw New Exception("Ya existe Cierre de Caja de esta fecha: " + tbFecha.Value)
-            Else
-                CargarDetalleVentasPagos(tbFecha.Value)
+            Dim dtIngEgre As DataTable
+            Dim DtVerificar As DataTable = L_fnVerificarSiExisteCierreCaja(tbFecha.Value, TbCodigo.Text, gs_NroCaja, gi_userSuc)
 
-                If Dgv_VentasPagos.RowCount > 0 Then
-                    Tb_TipoCambio.Text = (CType(Dgv_VentasPagos.DataSource, DataTable).Rows(0).Item("tipocambio"))
-                    tbTCredito.Text = Dgv_VentasPagos.GetTotal(Dgv_VentasPagos.RootTable.Columns("credito"), AggregateFunction.Sum)
-                    tbTTarjeta.Text = Dgv_VentasPagos.GetTotal(Dgv_VentasPagos.RootTable.Columns("tarjeta"), AggregateFunction.Sum)
-                    tbTContado.Text = Dgv_VentasPagos.GetTotal(Dgv_VentasPagos.RootTable.Columns("totalbs"), AggregateFunction.Sum) - tbTCredito.Text
-                    tbTPagos.Text = Dgv_VentasPagos.GetTotal(Dgv_VentasPagos.RootTable.Columns("pagos"), AggregateFunction.Sum)
-
-                    tbTotalGral.Text = tbMontoInicial.Value + tbTContado.Value + tbTPagos.Value
-
-
-                    tbTDeposito.Text = 0
-                    tbTEfectivo.Text = 0
-                    tbTDiferencia.Text = 0
-                    '_LimpiarGrillas()
+            If DtVerificar.Rows.Count > 0 Then
+                If DtVerificar.Rows(0).Item("ccEstado") = 0 Then
+                    Throw New Exception("Ya existe Cierre de Caja de esta fecha: " + tbFecha.Value)
                 Else
-                    Throw New Exception("No existen ventas y/o pagos de esta fecha o Ya existe Cierre de Caja de esta fecha, Verifique")
+                    CargarDetalleVentasPagos(tbFecha.Value, gs_NroCaja, cbSucursal.Value)
+                    dtIngEgre = L_prIngresoEgresoPorFecha(tbFecha.Value.ToString("yyyy/MM/dd"), gs_NroCaja, cbSucursal.Value)
+
+                    If Dgv_VentasPagos.RowCount > 0 Then
+                        Tb_TipoCambio.Text = (CType(Dgv_VentasPagos.DataSource, DataTable).Rows(0).Item("tipocambio"))
+                        tbTCredito.Text = Dgv_VentasPagos.GetTotal(Dgv_VentasPagos.RootTable.Columns("credito"), AggregateFunction.Sum)
+                        tbTTarjeta.Text = Dgv_VentasPagos.GetTotal(Dgv_VentasPagos.RootTable.Columns("tarjeta"), AggregateFunction.Sum)
+                        tbTContado.Text = Dgv_VentasPagos.GetTotal(Dgv_VentasPagos.RootTable.Columns("totalbs"), AggregateFunction.Sum) - tbTCredito.Text
+                        tbTPagos.Text = Dgv_VentasPagos.GetTotal(Dgv_VentasPagos.RootTable.Columns("pagos"), AggregateFunction.Sum)
+
+                        tbTIngresos.Text = IIf(IsDBNull(dtIngEgre.Compute("Sum(ieMonto)", "ieTipo=1 and ieIdCaja=0")), 0, dtIngEgre.Compute("Sum(ieMonto)", "ieTipo=1 and ieIdCaja=0"))
+                        tbTEgresos.Text = IIf(IsDBNull(dtIngEgre.Compute("Sum(ieMonto)", "ieTipo=0 and ieIdCaja=0")), 0, dtIngEgre.Compute("Sum(ieMonto)", "ieTipo=0 and ieIdCaja=0"))
+
+                        tbTotalGral.Text = (tbMontoInicial.Value + tbTContado.Value + tbTPagos.Value + tbTIngresos.Value) - tbTEgresos.Value
+
+
+                        tbTDeposito.Text = 0
+                        tbTEfectivo.Text = 0
+                        tbTDiferencia.Text = 0
+                        '_LimpiarGrillas()
+                    Else
+                        Throw New Exception("No existen ventas y/o pagos de esta fecha o Ya existe Cierre de Caja de esta fecha, Verifique")
+                    End If
                 End If
+            Else
+                Throw New Exception("No puede calcular ventas y/o pagos  y cerrar caja que abrió con otra Sucursal, Verifique")
+
             End If
 
         Catch ex As Exception
@@ -1118,6 +1209,13 @@ Public Class F0_CierreCaja
             Exit Sub
         End If
         If (TbCodigo.Text = String.Empty) Then
+            Dim DtVerificar As DataTable = L_fnVerificarCajaAbierta(gs_NroCaja, cbSucursal.Value)
+            If DtVerificar.Rows.Count > 0 Then
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Existe Cierre de Caja abierta, termine de cerrar para abrir una nueva".ToUpper, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
+
+                Exit Sub
+            End If
             _GrabarNuevo()
         Else
             If (TbCodigo.Text <> String.Empty) Then
@@ -1141,7 +1239,7 @@ Public Class F0_CierreCaja
                 bandera = ef.band
                 If (bandera = True) Then
                     Dim mensajeError As String = ""
-                    Dim res As Boolean = L_fnEliminarCaja(TbCodigo.Text)
+                    Dim res As Boolean = L_fnEliminarCaja(TbCodigo.Text, tbFecha.Value)
                     If res Then
                         Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
                         ToastNotification.Show(Me, "Código de Caja ".ToUpper + TbCodigo.Text + " eliminado con Exito.".ToUpper,
@@ -1201,7 +1299,7 @@ Public Class F0_CierreCaja
                 btnGrabar.Enabled = True
 
                 btnCalcular.Enabled = True
-                PanelNavegacion.Enabled = False
+                'PanelNavegacion.Enabled = False
             Else
                 Throw New Exception("Este cierre de caja no puede modificarse porque ya se encuentra 'Cerrada'")
             End If
@@ -1283,6 +1381,8 @@ Public Class F0_CierreCaja
             Timer1.Enabled = False
         End If
     End Sub
+
+
 
 
 #End Region

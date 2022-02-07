@@ -766,7 +766,7 @@ Public Class P_Principal
     Private Sub MetroTileItem11_Click(sender As Object, e As EventArgs) Handles btnCredPago.Click
         'SideNav1.IsMenuExpanded = False
         'Ventana.Select()
-        Dim frm As New F0_PagosCredito
+        Dim frm As New F0_PagosCreditoNuevo
         frm._nameButton = btInvMovimiento.Name
         frm._modulo = FP_CREDITOS
         'Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
@@ -1165,6 +1165,12 @@ Public Class P_Principal
         frm._nameButton = btComPagosPrestamos.Name
         frm._modulo = FP_COMPRAS
 
+        frm.Show()
+    End Sub
+
+    Private Sub btIngresoEgreso_Click(sender As Object, e As EventArgs) Handles btIngresoEgreso.Click
+        Dim frm As New F1_IngresosEgresos
+        frm._nameButton = btIngresoEgreso.Name
         frm.Show()
     End Sub
 

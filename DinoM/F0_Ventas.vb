@@ -49,6 +49,8 @@ Public Class F0_Ventas
 
         _prValidarLote()
         _prCargarComboLibreriaSucursal(cbSucursal)
+        _prCargarComboLibreria(cbCambioDolar, 7, 1)
+        cbCambioDolar.Value = 1
         _prCargarComboPrecio(cbPrecio)
         lbTipoMoneda.Visible = True
         swMoneda.Visible = True
@@ -83,6 +85,21 @@ Public Class F0_Ventas
         '    GroupPanelFactura.Visible = True
         'End If
 
+    End Sub
+    Private Sub _prCargarComboLibreria(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo, cod1 As String, cod2 As String)
+        Dim dt As New DataTable
+        dt = L_prLibreriaClienteLGeneral(cod1, cod2)
+        With mCombo
+            .DropDownList.Columns.Clear()
+            .DropDownList.Columns.Add("yccod3").Width = 70
+            .DropDownList.Columns("yccod3").Caption = "COD"
+            .DropDownList.Columns.Add("ycdes3").Width = 200
+            .DropDownList.Columns("ycdes3").Caption = "DESCRIPCION"
+            .ValueMember = "yccod3"
+            .DisplayMember = "ycdes3"
+            .DataSource = dt
+            .Refresh()
+        End With
     End Sub
     Public Sub _prValidarLote()
         Dim dt As DataTable = L_fnPorcUtilidad()
@@ -224,6 +241,10 @@ Public Class F0_Ventas
         tbIce.IsInputReadOnly = True
         tbtotal.IsInputReadOnly = True
 
+        tbMontoBs.IsInputReadOnly = True
+        tbMontoDolar.IsInputReadOnly = True
+        tbMontoTarej.IsInputReadOnly = True
+
         grVentas.Enabled = True
         PanelNavegacion.Enabled = True
         grdetalle.RootTable.Columns("img").Visible = False
@@ -265,6 +286,10 @@ Public Class F0_Ventas
         tbNroFactura.ReadOnly = False
         tbCodigoControl.ReadOnly = False
         dtiFechaFactura.IsInputReadOnly = False
+
+        tbMontoBs.IsInputReadOnly = False
+        tbMontoDolar.IsInputReadOnly = False
+        tbMontoTarej.IsInputReadOnly = False
 
         If (tbCodigo.Text.Length > 0) Then
             cbSucursal.ReadOnly = True
@@ -318,6 +343,15 @@ Public Class F0_Ventas
         tbMdesc.Value = 0
         tbIce.Value = 0
         tbtotal.Value = 0
+
+        tbMontoBs.Value = 0
+        tbMontoDolar.Value = 0
+        tbMontoTarej.Value = 0
+        txtCambio1.Text = "0.00"
+        txtMontoPagado1.Text = "0.00"
+        chbTarjeta.Checked = False
+        cbCambioDolar.Value = 1
+
         With grdetalle.RootTable.Columns("img")
             .Width = 40
             .Caption = "Eliminar"
@@ -375,8 +409,6 @@ Public Class F0_Ventas
                 End If
 
             Next
-
-
         End If
     End Sub
     Public Sub _prMostrarRegistro(_N As Integer)
@@ -444,6 +476,32 @@ Public Class F0_Ventas
         tbMdesc.Value = grVentas.GetValue("tadesc")
         tbIce.Value = grVentas.GetValue("taice")
         _prCalcularPrecioTotal()
+
+        'Calcular montos
+        Dim tMonto As DataTable = L_fnMostrarMontos(tbCodigo.Text)
+        If tMonto.Rows.Count > 0 Then
+
+            tbMontoTarej.Value = tMonto.Rows(0).Item("tgMontTare").ToString
+            cbCambioDolar.Text = tMonto.Rows(0).Item("tgCambioDol").ToString
+            tbMontoBs.Value = tMonto.Rows(0).Item("tgMontBs").ToString
+            tbMontoDolar.Value = tMonto.Rows(0).Item("tgMontDol").ToString
+
+            txtMontoPagado1.Text = tbMontoBs.Value + (tbMontoDolar.Value * IIf(cbCambioDolar.Text = "", 0, Convert.ToDecimal(cbCambioDolar.Text))) + tbMontoTarej.Value
+
+            If Convert.ToDecimal(tbtotal.Text) <> 0 And Convert.ToDecimal(txtMontoPagado1.Text) >= Convert.ToDecimal(tbtotal.Text) Then
+                txtCambio1.Text = Convert.ToDecimal(txtMontoPagado1.Text) - Convert.ToDecimal(tbtotal.Text)
+            Else
+                txtCambio1.Text = "0.00"
+            End If
+        Else
+            tbMontoTarej.Value = 0
+            cbCambioDolar.Text = "0.00"
+            tbMontoBs.Value = 0
+            tbMontoDolar.Value = 0
+            txtMontoPagado1.Text = "0.00"
+            txtCambio1.Text = "0.00"
+        End If
+
         LblPaginacion.Text = Str(grVentas.Row + 1) + "/" + grVentas.RowCount.ToString
 
     End Sub
@@ -1354,8 +1412,16 @@ Public Class F0_Ventas
                 ToastNotification.Show(Me, "Por Favor Seleccione  un detalle de producto".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
                 Return False
             End If
-
         End If
+
+        If swTipoVenta.Value = True Then
+            If tbMontoBs.Value = 0 And tbMontoDolar.Value = 0 And tbMontoTarej.Value = 0 Then
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Debe llenar la forma de pago".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                Return False
+            End If
+        End If
+
         Return True
     End Function
 
@@ -1399,12 +1465,13 @@ Public Class F0_Ventas
             ToastNotification.Show(Me, mensaje, img, 9000, eToastGlowColor.Red, eToastPosition.TopCenter)
 
             Return
-
         End If
 
         Dim numi As String = ""
-        Dim res As Boolean = L_fnGrabarVenta(numi, "", tbFechaVenta.Value.ToString("yyyy/MM/dd"), _CodEmpleado, IIf(swTipoVenta.Value = True, 1, 0), IIf(swTipoVenta.Value = True, Now.Date.ToString("yyyy/MM/dd"), tbFechaVenc.Value.ToString("yyyy/MM/dd")), _CodCliente, IIf(swMoneda.Value = True, 1, 0), tbObservacion.Text, tbMdesc.Value, tbIce.Value, tbtotal.Value, CType(grdetalle.DataSource, DataTable), cbSucursal.Value, IIf(SwProforma.Value = True, tbProforma.Text, 0), cbPrecio.Value)
+        Dim tabla As DataTable = L_fnMostrarMontos(0)
+        _prInsertarMontoNuevo(tabla)
 
+        Dim res As Boolean = L_fnGrabarVenta(numi, "", tbFechaVenta.Value.ToString("yyyy/MM/dd"), _CodEmpleado, IIf(swTipoVenta.Value = True, 1, 0), IIf(swTipoVenta.Value = True, Now.Date.ToString("yyyy/MM/dd"), tbFechaVenc.Value.ToString("yyyy/MM/dd")), _CodCliente, IIf(swMoneda.Value = True, 1, 0), tbObservacion.Text, tbMdesc.Value, tbIce.Value, tbtotal.Value, CType(grdetalle.DataSource, DataTable), cbSucursal.Value, IIf(SwProforma.Value = True, tbProforma.Text, 0), cbPrecio.Value, tabla)
 
         If res Then
             'res = P_fnGrabarFacturarTFV001(numi)
@@ -1436,6 +1503,9 @@ Public Class F0_Ventas
 
         End If
 
+    End Sub
+    Private Sub _prInsertarMontoNuevo(ByRef tabla As DataTable)
+        tabla.Rows.Add(0, tbMontoBs.Value, tbMontoDolar.Value, tbMontoTarej.Value, cbCambioDolar.Text, 0)
     End Sub
     Public Sub _prImiprimirNotaVenta(numi As String)
         Dim ef = New Efecto
@@ -1957,7 +2027,7 @@ Public Class F0_Ventas
             objrep.SetParameterValue("Sucursal", cbSucursal.Text)
             objrep.SetParameterValue("Observacion", tbObservacion.Text)
             P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
-            P_Global.Visualizador.Show() 'Comentar
+            P_Global.Visualizador.ShowDialog() 'Comentar
             P_Global.Visualizador.BringToFront() 'Comentar
         Else
             Dim objrep As New R_NotaDeVenta
@@ -1977,7 +2047,7 @@ Public Class F0_Ventas
             objrep.SetParameterValue("usuario", gs_user)
             objrep.SetParameterValue("estado", 1)
             P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
-            P_Global.Visualizador.Show() 'Comentar
+            P_Global.Visualizador.ShowDialog() 'Comentar
             P_Global.Visualizador.BringToFront() 'Comentar
         End If
 
@@ -3564,6 +3634,75 @@ salirIf:
         _IniciarTodo()
     End Sub
 
+    Private Sub tbMontoBs_ValueChanged(sender As Object, e As EventArgs) Handles tbMontoBs.ValueChanged
+        tbMontoDolar.Value = 0
+        tbMontoTarej.Value = 0
+
+        If tbMontoBs.Value <> 0 And tbMontoBs.Text <> String.Empty Then
+            txtMontoPagado1.Text = tbMontoBs.Value + (tbMontoDolar.Value * IIf(cbCambioDolar.Text = "", 0, Convert.ToDecimal(cbCambioDolar.Text))) + tbMontoTarej.Value
+            If Convert.ToDecimal(tbtotal.Text) <> 0 And Convert.ToDecimal(txtMontoPagado1.Text) >= Convert.ToDecimal(tbtotal.Text) Then
+                txtCambio1.Text = Convert.ToDecimal(txtMontoPagado1.Text) - Convert.ToDecimal(tbtotal.Text)
+            Else
+                txtCambio1.Text = "0.00"
+                txtMontoPagado1.Text = "0.00"
+            End If
+        End If
+    End Sub
+
+    Private Sub cbCambioDolar_ValueChanged(sender As Object, e As EventArgs) Handles cbCambioDolar.ValueChanged
+        If cbCambioDolar.SelectedIndex < 0 And cbCambioDolar.Text <> String.Empty Then
+            btAgregarTCambio.Visible = True
+        Else
+            btAgregarTCambio.Visible = False
+        End If
+    End Sub
+
+    Private Sub btAgregarTCambio_Click(sender As Object, e As EventArgs) Handles btAgregarTCambio.Click
+        Dim numi As String = ""
+
+        If L_prLibreriaGrabar(numi, "7", "1", cbCambioDolar.Text, "") Then
+            _prCargarComboLibreria(cbCambioDolar, "7", "1")
+            cbCambioDolar.SelectedIndex = CType(cbCambioDolar.DataSource, DataTable).Rows.Count - 1
+        End If
+    End Sub
+
+    Private Sub chbTarjeta_CheckedChanged(sender As Object, e As EventArgs) Handles chbTarjeta.CheckedChanged
+        If chbTarjeta.Checked Then
+            tbMontoBs.Value = 0
+            tbMontoDolar.Value = 0
+            tbMontoTarej.Enabled = True
+            tbMontoTarej.Value = Convert.ToDecimal(tbtotal.Text)
+            If tbMontoTarej.Value <> 0 And tbMontoTarej.Text <> String.Empty Then
+                txtMontoPagado1.Text = tbMontoBs.Value + (tbMontoDolar.Value * IIf(cbCambioDolar.Text = "", 0, Convert.ToDecimal(cbCambioDolar.Text))) + tbMontoTarej.Value
+                If Convert.ToDecimal(tbtotal.Text) <> 0 And Convert.ToDecimal(txtMontoPagado1.Text) >= Convert.ToDecimal(tbtotal.Text) Then
+                    txtCambio1.Text = Convert.ToDecimal(txtMontoPagado1.Text) - Convert.ToDecimal(tbtotal.Text)
+                Else
+                    txtCambio1.Text = "0.00"
+                End If
+            End If
+            tbMontoBs.Enabled = False
+            tbMontoDolar.Enabled = False
+            tbMontoTarej.IsInputReadOnly = True
+            tbMontoTarej.Focus()
+        Else
+            tbMontoBs.Enabled = True
+            tbMontoDolar.Enabled = True
+            tbMontoTarej.Value = 0
+        End If
+    End Sub
+
+    Private Sub tbMontoDolar_ValueChanged(sender As Object, e As EventArgs) Handles tbMontoDolar.ValueChanged
+        tbMontoBs.Value = 0
+        tbMontoTarej.Value = 0
+        If tbMontoDolar.Value <> 0 And tbMontoDolar.Text <> String.Empty Then
+            txtMontoPagado1.Text = tbMontoBs.Value + (tbMontoDolar.Value * IIf(cbCambioDolar.Text = "", 0, Convert.ToDecimal(cbCambioDolar.Text))) + tbMontoTarej.Value
+            If Convert.ToDecimal(tbtotal.Text) <> 0 And Convert.ToDecimal(txtMontoPagado1.Text) >= Convert.ToDecimal(tbtotal.Text) Then
+                txtCambio1.Text = Convert.ToDecimal(txtMontoPagado1.Text) - Convert.ToDecimal(tbtotal.Text)
+            Else
+                txtCambio1.Text = "0.00"
+            End If
+        End If
+    End Sub
 
 
 
