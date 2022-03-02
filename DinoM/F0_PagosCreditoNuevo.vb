@@ -291,14 +291,14 @@ Public Class F0_PagosCreditoNuevo
         With grfactura.RootTable.Columns("NroDoc")
             .Width = 90
             .Visible = True
-            .Caption = "Nro Venta"
+            .Caption = "Nro Crédito"
             .TextAlignment = TextAlignment.Far
         End With
         With grfactura.RootTable.Columns("factura")
             .Caption = "Factura"
             .Width = 100
             .TextAlignment = TextAlignment.Far
-            .Visible = True
+            .Visible = False
         End With
         With grfactura.RootTable.Columns("cliente")
             .Caption = "Cliente"
@@ -314,8 +314,8 @@ Public Class F0_PagosCreditoNuevo
             .Visible = True
         End With
         With grfactura.RootTable.Columns("NumeroRecibo")
-            .Caption = "Nro Recibo"
-            .Width = 120
+            .Caption = "Nro Factura"
+            .Width = 150
             .TextAlignment = TextAlignment.Far
             .Visible = True
         End With
@@ -460,7 +460,7 @@ Public Class F0_PagosCreditoNuevo
             .Visible = False
         End With
         With grPendiente.RootTable.Columns("NroDoc")
-            .Caption = "Nro Venta"
+            .Caption = "Nro Crédito"
             .Width = 90
             .TextAlignment = TextAlignment.Far
             .Visible = True
@@ -469,7 +469,7 @@ Public Class F0_PagosCreditoNuevo
             .Caption = "Nro Factura"
             .Width = 95
             .TextAlignment = TextAlignment.Far
-            .Visible = True
+            .Visible = false
         End With
         With grPendiente.RootTable.Columns("cliente")
             .Caption = "Cliente"
@@ -489,7 +489,7 @@ Public Class F0_PagosCreditoNuevo
             .Visible = True
         End With
         With grPendiente.RootTable.Columns("totalfactura")
-            .Caption = "Total Factura"
+            .Caption = "Total Crédito"
             .Width = 120
             .MaxLength = 100
             .FormatString = "0.00"

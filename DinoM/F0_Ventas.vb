@@ -2022,7 +2022,11 @@ Public Class F0_Ventas
 
             objrep.SetDataSource(dt)
             objrep.SetParameterValue("Literal1", li)
-            objrep.SetParameterValue("ENombre", "Nota de Entrega Nro. " + tbCodigo.Text)
+            If swTipoVenta.Value = True Then
+                objrep.SetParameterValue("ENombre", "Nota de Entrega Nro. " + tbCodigo.Text)
+            Else
+                objrep.SetParameterValue("ENombre", "Nota de Crédito Nro. " + tbCodigo.Text)
+            End If
             objrep.SetParameterValue("ECiudadPais", _FechaPar)
             objrep.SetParameterValue("Sucursal", cbSucursal.Text)
             objrep.SetParameterValue("Observacion", tbObservacion.Text)

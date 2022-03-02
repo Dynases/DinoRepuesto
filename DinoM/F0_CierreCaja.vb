@@ -433,8 +433,8 @@ Public Class F0_CierreCaja
             End With
 
             With Dgv_VentasPagos.RootTable.Columns("tarjeta")
-                .Caption = "TARJETA"
-                .Width = 120
+                .Caption = "TRANSFERENCIA"
+                .Width = 130
                 .Visible = True
                 .FormatString = "0.00"
                 .AggregateFunction = AggregateFunction.Sum

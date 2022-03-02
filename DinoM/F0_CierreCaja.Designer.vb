@@ -24,9 +24,9 @@ Partial Class F0_CierreCaja
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F0_CierreCaja))
+        Dim cbSucursal_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim cbTurno_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim cbbanco_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
-        Dim cbSucursal_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.GroupPanel3 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.SuperTabControl2 = New DevComponents.DotNetBar.SuperTabControl()
@@ -37,6 +37,8 @@ Partial Class F0_CierreCaja
         Me.Dgv_Depositos = New Janus.Windows.GridEX.GridEX()
         Me.DEPÓSITO = New DevComponents.DotNetBar.SuperTabItem()
         Me.GroupPanel2 = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.LabelX20 = New DevComponents.DotNetBar.LabelX()
+        Me.cbSucursal = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         Me.LabelX19 = New DevComponents.DotNetBar.LabelX()
         Me.lbNroCaja = New System.Windows.Forms.Label()
         Me.LabelX15 = New DevComponents.DotNetBar.LabelX()
@@ -89,8 +91,6 @@ Partial Class F0_CierreCaja
         Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Dgv_Buscador = New Janus.Windows.GridEX.GridEX()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.cbSucursal = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
-        Me.LabelX20 = New DevComponents.DotNetBar.LabelX()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelInferior.SuspendLayout()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,6 +116,7 @@ Partial Class F0_CierreCaja
         Me.SuperTabControlPanel4.SuspendLayout()
         CType(Me.Dgv_Depositos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanel2.SuspendLayout()
+        CType(Me.cbSucursal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbTurno, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbMontoInicial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Tb_TipoCambio, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,7 +143,6 @@ Partial Class F0_CierreCaja
         Me.Panel4.SuspendLayout()
         Me.GroupPanel1.SuspendLayout()
         CType(Me.Dgv_Buscador, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cbSucursal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelSuperior
@@ -497,6 +497,37 @@ Partial Class F0_CierreCaja
         Me.GroupPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.GroupPanel2.TabIndex = 0
         Me.GroupPanel2.Text = "DATOS"
+        '
+        'LabelX20
+        '
+        Me.LabelX20.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX20.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX20.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX20.Location = New System.Drawing.Point(249, 31)
+        Me.LabelX20.Name = "LabelX20"
+        Me.LabelX20.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX20.Size = New System.Drawing.Size(100, 23)
+        Me.LabelX20.TabIndex = 387
+        Me.LabelX20.Text = "Sucursal:"
+        '
+        'cbSucursal
+        '
+        cbSucursal_DesignTimeLayout.LayoutString = resources.GetString("cbSucursal_DesignTimeLayout.LayoutString")
+        Me.cbSucursal.DesignTimeLayout = cbSucursal_DesignTimeLayout
+        Me.cbSucursal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbSucursal.Location = New System.Drawing.Point(248, 57)
+        Me.cbSucursal.Name = "cbSucursal"
+        Me.cbSucursal.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.cbSucursal.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.cbSucursal.SelectedIndex = -1
+        Me.cbSucursal.SelectedItem = Nothing
+        Me.cbSucursal.Size = New System.Drawing.Size(140, 22)
+        Me.cbSucursal.TabIndex = 386
+        Me.cbSucursal.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'LabelX19
         '
@@ -1056,7 +1087,7 @@ Partial Class F0_CierreCaja
         Me.LabelX3.Name = "LabelX3"
         Me.LabelX3.Size = New System.Drawing.Size(120, 23)
         Me.LabelX3.TabIndex = 60
-        Me.LabelX3.Text = "T. Contado+Tarjeta"
+        Me.LabelX3.Text = "T. Contado+Transf."
         '
         'tbTEfectivo
         '
@@ -1213,9 +1244,9 @@ Partial Class F0_CierreCaja
         Me.LabelX2.ForeColor = System.Drawing.Color.DarkCyan
         Me.LabelX2.Location = New System.Drawing.Point(22, 255)
         Me.LabelX2.Name = "LabelX2"
-        Me.LabelX2.Size = New System.Drawing.Size(90, 23)
+        Me.LabelX2.Size = New System.Drawing.Size(120, 23)
         Me.LabelX2.TabIndex = 58
-        Me.LabelX2.Text = "Total Tarjeta"
+        Me.LabelX2.Text = "Total Transferencia"
         '
         'tbTCredito
         '
@@ -1380,37 +1411,6 @@ Partial Class F0_CierreCaja
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 500
         '
-        'cbSucursal
-        '
-        cbSucursal_DesignTimeLayout.LayoutString = resources.GetString("cbSucursal_DesignTimeLayout.LayoutString")
-        Me.cbSucursal.DesignTimeLayout = cbSucursal_DesignTimeLayout
-        Me.cbSucursal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbSucursal.Location = New System.Drawing.Point(248, 57)
-        Me.cbSucursal.Name = "cbSucursal"
-        Me.cbSucursal.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
-        Me.cbSucursal.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.cbSucursal.SelectedIndex = -1
-        Me.cbSucursal.SelectedItem = Nothing
-        Me.cbSucursal.Size = New System.Drawing.Size(140, 22)
-        Me.cbSucursal.TabIndex = 386
-        Me.cbSucursal.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
-        '
-        'LabelX20
-        '
-        Me.LabelX20.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.LabelX20.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX20.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX20.Location = New System.Drawing.Point(249, 31)
-        Me.LabelX20.Name = "LabelX20"
-        Me.LabelX20.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX20.Size = New System.Drawing.Size(100, 23)
-        Me.LabelX20.TabIndex = 387
-        Me.LabelX20.Text = "Sucursal:"
-        '
         'F0_CierreCaja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1448,6 +1448,7 @@ Partial Class F0_CierreCaja
         CType(Me.Dgv_Depositos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupPanel2.ResumeLayout(False)
         Me.GroupPanel2.PerformLayout()
+        CType(Me.cbSucursal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbTurno, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbMontoInicial, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Tb_TipoCambio, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1474,7 +1475,6 @@ Partial Class F0_CierreCaja
         Me.Panel4.ResumeLayout(False)
         Me.GroupPanel1.ResumeLayout(False)
         CType(Me.Dgv_Buscador, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cbSucursal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

@@ -1593,10 +1593,10 @@ Partial Class F0_Ventas
         Me.LabelX21.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX21.Font = New System.Drawing.Font("Georgia", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX21.ForeColor = System.Drawing.Color.White
-        Me.LabelX21.Location = New System.Drawing.Point(202, 57)
+        Me.LabelX21.Location = New System.Drawing.Point(215, 57)
         Me.LabelX21.Name = "LabelX21"
         Me.LabelX21.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX21.Size = New System.Drawing.Size(65, 18)
+        Me.LabelX21.Size = New System.Drawing.Size(62, 18)
         Me.LabelX21.TabIndex = 285
         Me.LabelX21.Text = "T. Cambio:"
         '
@@ -1607,7 +1607,7 @@ Partial Class F0_Ventas
         cbCambioDolar_DesignTimeLayout.LayoutString = resources.GetString("cbCambioDolar_DesignTimeLayout.LayoutString")
         Me.cbCambioDolar.DesignTimeLayout = cbCambioDolar_DesignTimeLayout
         Me.cbCambioDolar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbCambioDolar.Location = New System.Drawing.Point(276, 54)
+        Me.cbCambioDolar.Location = New System.Drawing.Point(281, 55)
         Me.cbCambioDolar.Name = "cbCambioDolar"
         Me.cbCambioDolar.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.cbCambioDolar.Office2007CustomColor = System.Drawing.Color.DodgerBlue
@@ -1624,7 +1624,7 @@ Partial Class F0_Ventas
         Me.btAgregarTCambio.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
         Me.btAgregarTCambio.Image = Global.DinoM.My.Resources.Resources.add
         Me.btAgregarTCambio.ImageFixedSize = New System.Drawing.Size(21, 20)
-        Me.btAgregarTCambio.Location = New System.Drawing.Point(379, 56)
+        Me.btAgregarTCambio.Location = New System.Drawing.Point(384, 56)
         Me.btAgregarTCambio.Name = "btAgregarTCambio"
         Me.btAgregarTCambio.Size = New System.Drawing.Size(21, 20)
         Me.btAgregarTCambio.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -1642,7 +1642,7 @@ Partial Class F0_Ventas
         Me.tbMontoTarej.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbMontoTarej.ForeColor = System.Drawing.Color.Black
         Me.tbMontoTarej.Increment = 1.0R
-        Me.tbMontoTarej.Location = New System.Drawing.Point(97, 54)
+        Me.tbMontoTarej.Location = New System.Drawing.Point(109, 54)
         Me.tbMontoTarej.MinValue = 0R
         Me.tbMontoTarej.Name = "tbMontoTarej"
         Me.tbMontoTarej.Size = New System.Drawing.Size(95, 23)
@@ -1659,10 +1659,10 @@ Partial Class F0_Ventas
         Me.chbTarjeta.Font = New System.Drawing.Font("Georgia", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chbTarjeta.Location = New System.Drawing.Point(9, 51)
         Me.chbTarjeta.Name = "chbTarjeta"
-        Me.chbTarjeta.Size = New System.Drawing.Size(70, 30)
+        Me.chbTarjeta.Size = New System.Drawing.Size(98, 30)
         Me.chbTarjeta.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.chbTarjeta.TabIndex = 279
-        Me.chbTarjeta.Text = "Tarjeta:"
+        Me.chbTarjeta.Text = "Transferencia:"
         Me.chbTarjeta.TextColor = System.Drawing.Color.White
         '
         'tbMontoBs
@@ -1676,7 +1676,7 @@ Partial Class F0_Ventas
         Me.tbMontoBs.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbMontoBs.ForeColor = System.Drawing.Color.Black
         Me.tbMontoBs.Increment = 1.0R
-        Me.tbMontoBs.Location = New System.Drawing.Point(97, 18)
+        Me.tbMontoBs.Location = New System.Drawing.Point(109, 18)
         Me.tbMontoBs.MinValue = 0R
         Me.tbMontoBs.Name = "tbMontoBs"
         Me.tbMontoBs.Size = New System.Drawing.Size(95, 23)
@@ -1710,7 +1710,7 @@ Partial Class F0_Ventas
         Me.tbMontoDolar.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbMontoDolar.ForeColor = System.Drawing.Color.Black
         Me.tbMontoDolar.Increment = 1.0R
-        Me.tbMontoDolar.Location = New System.Drawing.Point(276, 17)
+        Me.tbMontoDolar.Location = New System.Drawing.Point(281, 18)
         Me.tbMontoDolar.MinValue = 0R
         Me.tbMontoDolar.Name = "tbMontoDolar"
         Me.tbMontoDolar.Size = New System.Drawing.Size(100, 23)
@@ -1726,7 +1726,7 @@ Partial Class F0_Ventas
         Me.LabelX20.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX20.Font = New System.Drawing.Font("Georgia", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX20.ForeColor = System.Drawing.Color.White
-        Me.LabelX20.Location = New System.Drawing.Point(202, 20)
+        Me.LabelX20.Location = New System.Drawing.Point(207, 20)
         Me.LabelX20.Name = "LabelX20"
         Me.LabelX20.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX20.Size = New System.Drawing.Size(70, 18)

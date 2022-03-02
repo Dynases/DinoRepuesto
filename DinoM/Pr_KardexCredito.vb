@@ -85,7 +85,7 @@ Public Class Pr_KardexCredito
             objrep.SetParameterValue("Empresa2", ParEmp3)
             objrep.SetParameterValue("Empresa3", ParEmp4)
             objrep.SetParameterValue("Name", "Cliente:")
-            objrep.SetParameterValue("Total", "Total Venta:")
+            objrep.SetParameterValue("Total", "TOTAL CRÉDITO:")
             MReportViewer.ReportSource = objrep
             MReportViewer.Show()
             MReportViewer.BringToFront()
