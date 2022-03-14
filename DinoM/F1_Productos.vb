@@ -1020,6 +1020,7 @@ Public Class F1_Productos
             lbHora.Text = .GetValue("yfhact").ToString
             lbUsuario.Text = .GetValue("yfuact").ToString
             _PCargarGridCategoriasPrecios(.GetValue("yfnumi"))
+            _PCargarGridhistoricoPrecios(.GetValue("yfnumi"))
         End With
 
         Dim Mecanico As Double = 0
@@ -1500,6 +1501,91 @@ Public Class F1_Productos
         _prAplicarCondiccionDescuento()
     End Sub
 
+    Private Sub _PCargarGridhistoricoPrecios(codigoProducto As Integer)
+        Dim dtHistPrecios As DataTable
+        dtHistPrecios = L_fnHistoricoPreciosProducto(codigoProducto)
+        JG_HistPrecios.DataSource = dtHistPrecios
+        JG_HistPrecios.RetrieveStructure()
+
+        With JG_HistPrecios.RootTable.Columns("hanumi")
+            .Visible = False
+        End With
+        With JG_HistPrecios.RootTable.Columns("haalm")
+            .Visible = False
+        End With
+        With JG_HistPrecios.RootTable.Columns("haidprod")
+            .Visible = False
+        End With
+        With JG_HistPrecios.RootTable.Columns("hafecha")
+            .Caption = "Fecha"
+            .Width = 85
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.BackColor = Color.AliceBlue
+            .Visible = True
+        End With
+        With JG_HistPrecios.RootTable.Columns("haconcepto")
+            .Caption = "Concepto"
+            .Width = 180
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Visible = True
+        End With
+
+        With JG_HistPrecios.RootTable.Columns("haPCosto")
+            .Caption = "P. Costo"
+            .Width = 100
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .FormatString = "0.00"
+        End With
+        With JG_HistPrecios.RootTable.Columns("haPVentaFact")
+            .Caption = "P. VentaFact."
+            .Width = 100
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .FormatString = "0.00"
+        End With
+        With JG_HistPrecios.RootTable.Columns("haPVentaPublico")
+            .Caption = "P. Venta Público"
+            .Width = 100
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .FormatString = "0.00"
+        End With
+        With JG_HistPrecios.RootTable.Columns("haPMecanico")
+            .Caption = "P. Mecánico"
+            .Width = 100
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .FormatString = "0.00"
+        End With
+        With JG_HistPrecios.RootTable.Columns("haest")
+            .Visible = False
+        End With
+        With JG_HistPrecios.RootTable.Columns("hafact")
+            .Visible = False
+        End With
+        With JG_HistPrecios.RootTable.Columns("hahact")
+            .Visible = False
+        End With
+        With JG_HistPrecios.RootTable.Columns("hauact")
+            .Caption = "Usuario"
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .Visible = True
+        End With
+
+        'Habilitar Filtradores
+        With JG_HistPrecios
+            '.DefaultFilterRowComparison = FilterConditionOperator.Contains
+            '.FilterMode = FilterMode.Automatic
+            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+            .GroupByBoxVisible = False
+            'diseño de la grilla
+            .VisualStyle = VisualStyle.Office2007
+            '.AllowEdit = InheritableBoolean.False
+        End With
+
+    End Sub
+
     Public Sub _prAplicarCondiccionDescuento()
         Dim fc As GridEXFormatCondition
         fc = New GridEXFormatCondition(JGr_Descuentos.RootTable.Columns("estadoDescuento"), ConditionOperator.Equal, 0)
@@ -1691,12 +1777,7 @@ Public Class F1_Productos
             tbPrecioVentaNormal.Value = PrecioVentaFactura - (PrecioVentaFactura * 0.1)
             tbPrecioMecanico.Value = PrecioVentaFactura - (PrecioVentaFactura * 0.15)
 
-
-
         End If
-
-
-
     End Sub
     Private Sub tbPrecioFacturado_ValueChanged(sender As Object, e As EventArgs) Handles tbPrecioFacturado.ValueChanged
         If (tbCodBarra.ReadOnly = False) Then
@@ -1706,10 +1787,7 @@ Public Class F1_Productos
                 tbPrecioVentaNormal.Value = PrecioVentaFactura - (PrecioVentaFactura * 0.1)
                 tbPrecioMecanico.Value = PrecioVentaFactura - (PrecioVentaFactura * 0.15)
             End If
-
-
         End If
-
     End Sub
     Private Sub LabelX17_Click(sender As Object, e As EventArgs) Handles LabelX17.Click
 
@@ -2193,4 +2271,6 @@ Public Class F1_Productos
         End If
 
     End Sub
+
+
 End Class

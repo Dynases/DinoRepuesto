@@ -1125,7 +1125,6 @@ Public Class P_Principal
     Private Sub SideNavItem4_Click(sender As Object, e As EventArgs) Handles VentanaVenta.Click
         If (FVentas.Visible = False) Then
             FVentas.Visible = True
-
         End If
     End Sub
 

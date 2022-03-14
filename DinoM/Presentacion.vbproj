@@ -247,6 +247,12 @@
     <Compile Include="F0_Compra.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="F0_KardexPrecios.Designer.vb">
+      <DependentUpon>F0_KardexPrecios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F0_KardexPrecios.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="F0_KardexMovimiento.Designer.vb">
       <DependentUpon>F0_KardexMovimiento.vb</DependentUpon>
     </Compile>
@@ -970,6 +976,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="F0_Compra.resx">
       <DependentUpon>F0_Compra.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F0_KardexPrecios.resx">
+      <DependentUpon>F0_KardexPrecios.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="F0_KardexMovimiento.resx">
       <DependentUpon>F0_KardexMovimiento.vb</DependentUpon>

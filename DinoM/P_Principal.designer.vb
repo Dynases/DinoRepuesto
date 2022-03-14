@@ -221,12 +221,12 @@ Partial Class P_Principal
         'SideNav1
         '
         Me.SideNav1.BackColor = System.Drawing.Color.FromArgb(CType(CType(49, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.SideNav1.Controls.Add(Me.SideNavPanel8)
+        Me.SideNav1.Controls.Add(Me.SideNav_Ventas)
         Me.SideNav1.Controls.Add(Me.SideNavPanel6)
         Me.SideNav1.Controls.Add(Me.SideNavPanel5)
-        Me.SideNav1.Controls.Add(Me.SideNav_Ventas)
         Me.SideNav1.Controls.Add(Me.SideNavPanel7)
         Me.SideNav1.Controls.Add(Me.SideNav_Conf)
-        Me.SideNav1.Controls.Add(Me.SideNavPanel8)
         Me.SideNav1.Controls.Add(Me.SideNavPanel3)
         Me.SideNav1.Controls.Add(Me.SideNavPanel9)
         Me.SideNav1.Controls.Add(Me.SideNavPanel4)
@@ -250,6 +250,7 @@ Partial Class P_Principal
         Me.SideNavPanel6.Name = "SideNavPanel6"
         Me.SideNavPanel6.Size = New System.Drawing.Size(845, 524)
         Me.SideNavPanel6.TabIndex = 109
+        Me.SideNavPanel6.Visible = False
         '
         'Panel2
         '
@@ -1491,9 +1492,8 @@ Partial Class P_Principal
         Me.SideNavPanel8.Location = New System.Drawing.Point(142, 36)
         Me.SideNavPanel8.Margin = New System.Windows.Forms.Padding(2)
         Me.SideNavPanel8.Name = "SideNavPanel8"
-        Me.SideNavPanel8.Size = New System.Drawing.Size(637, 524)
+        Me.SideNavPanel8.Size = New System.Drawing.Size(845, 524)
         Me.SideNavPanel8.TabIndex = 184
-        Me.SideNavPanel8.Visible = False
         '
         'PanelVentaAtajo
         '
@@ -1501,7 +1501,7 @@ Partial Class P_Principal
         Me.PanelVentaAtajo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelVentaAtajo.Location = New System.Drawing.Point(0, 0)
         Me.PanelVentaAtajo.Name = "PanelVentaAtajo"
-        Me.PanelVentaAtajo.Size = New System.Drawing.Size(637, 524)
+        Me.PanelVentaAtajo.Size = New System.Drawing.Size(845, 524)
         Me.PanelVentaAtajo.TabIndex = 2
         '
         'SideNavPanel3
@@ -2319,7 +2319,6 @@ Partial Class P_Principal
         '
         'FP_COMPRAS
         '
-        Me.FP_COMPRAS.Checked = True
         Me.FP_COMPRAS.Name = "FP_COMPRAS"
         Me.FP_COMPRAS.Panel = Me.SideNavPanel6
         Me.FP_COMPRAS.Symbol = ""
@@ -2366,6 +2365,7 @@ Partial Class P_Principal
         '
         'VentanaVenta
         '
+        Me.VentanaVenta.Checked = True
         Me.VentanaVenta.Name = "VentanaVenta"
         Me.VentanaVenta.Panel = Me.SideNavPanel8
         Me.VentanaVenta.Symbol = ""
