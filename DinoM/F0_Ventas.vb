@@ -289,7 +289,7 @@ Public Class F0_Ventas
 
         tbMontoBs.IsInputReadOnly = False
         tbMontoDolar.IsInputReadOnly = False
-        tbMontoTarej.IsInputReadOnly = False
+        'tbMontoTarej.IsInputReadOnly = False
 
         If (tbCodigo.Text.Length > 0) Then
             cbSucursal.ReadOnly = True
@@ -1421,6 +1421,28 @@ Public Class F0_Ventas
                 Return False
             End If
         End If
+        If swTipoVenta.Value = True Then
+            If (chbTarjeta.Checked = True) Then
+                Return True
+            Else
+                If tbMontoBs.Value > 0 Then
+                    If (Convert.ToDecimal(tbMontoBs.Text) < Convert.ToDecimal(tbtotal.Text)) Then
+                        Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                        ToastNotification.Show(Me, "El monto Pagado en Bs. debe ser mayor o igual al Total General".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                        Return False
+                    End If
+                Else
+                    If tbMontoDolar.Value > 0 Then
+                        If (Convert.ToDecimal(tbMontoDolar.Text) < Convert.ToDecimal(tbtotal.Text)) Then
+                            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                            ToastNotification.Show(Me, "El monto Pagado en $ debe ser mayor o igual al Total General".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                            Return False
+                        End If
+                    End If
+                End If
+            End If
+
+        End If
 
         Return True
     End Function
@@ -2361,9 +2383,21 @@ Public Class F0_Ventas
             lbCredito.Visible = True
             tbFechaVenc.Visible = True
             tbFechaVenc.Value = DateAdd(DateInterval.Day, _dias, Now.Date)
+            ''Deshabilitar formas de pago
+            tbMontoBs.IsInputReadOnly = True
+            tbMontoDolar.IsInputReadOnly = True
+            tbMontoTarej.IsInputReadOnly = True
+            chbTarjeta.Enabled = False
+            cbCambioDolar.Enabled = False
         Else
             lbCredito.Visible = False
             tbFechaVenc.Visible = False
+            ''Habilitar formas de pago
+            tbMontoBs.IsInputReadOnly = False
+            tbMontoDolar.IsInputReadOnly = False
+            tbMontoTarej.IsInputReadOnly = False
+            chbTarjeta.Enabled = True
+            cbCambioDolar.Enabled = True
         End If
     End Sub
 

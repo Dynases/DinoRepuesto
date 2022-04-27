@@ -250,8 +250,6 @@ Public Class F0_BuscarProductos
     End Sub
     Private Sub tbProducto_TextChanged(sender As Object, e As EventArgs) Handles tbProducto.TextChanged
 
-
-
         Dim charSequence As String
         charSequence = tbProducto.Text.ToUpper
         If (charSequence.Trim = String.Empty) Then
@@ -303,7 +301,8 @@ Public Class F0_BuscarProductos
             Dim cant As Integer = vectoraux.Length
 
             For i As Integer = 0 To dt.Rows.Count - 1 Step 1
-                Dim nombre As String = dt.Rows(i).Item("yfcdprod1").ToString.ToUpper +
+                Dim nombre As String = dt.Rows(i).Item("yfnumi").ToString.ToUpper +
+                    " " + dt.Rows(i).Item("yfcdprod1").ToString.ToUpper +
                     " " + dt.Rows(i).Item("CodigoFabrica").ToString.ToUpper +
                     " " + dt.Rows(i).Item("Marca").ToString.ToUpper +
                     " " + dt.Rows(i).Item("grupo1").ToString.ToUpper +
@@ -311,6 +310,7 @@ Public Class F0_BuscarProductos
                     " " + dt.Rows(i).Item("Categoria").ToString.ToUpper +
                     " " + dt.Rows(i).Item("Medida").ToString.ToUpper +
                     " " + dt.Rows(i).Item("Item").ToString.ToUpper
+
                 Select Case cant
                     Case 1
 

@@ -37,6 +37,13 @@ Partial Class Pr_ReporteMorosidadGeneral
         Me.tbCodigoVendedor = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.tbCodigoCliente = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.lbcliente = New DevComponents.DotNetBar.LabelX()
+        Me.CheckTodosClientes = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.checkUnCliente = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.tbCliente = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabPrincipal.SuspendLayout()
         Me.SuperTabControlPanelRegistro.SuspendLayout()
@@ -70,17 +77,18 @@ Partial Class Pr_ReporteMorosidadGeneral
         Me.SuperTabPrincipal.ControlBox.MenuBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabPrincipal.ControlBox.MenuBox, Me.SuperTabPrincipal.ControlBox.CloseBox})
+        Me.SuperTabPrincipal.Size = New System.Drawing.Size(1362, 741)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelBuscador, 0)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelRegistro, 0)
         '
         'SuperTabControlPanelBuscador
         '
-        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(4)
         Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(858, 561)
         '
         'SuperTabControlPanelRegistro
         '
-        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(4)
         Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(1330, 741)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelInferior, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelIzq, 0)
@@ -99,7 +107,8 @@ Partial Class Pr_ReporteMorosidadGeneral
         '
         'PanelInferior
         '
-        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelInferior.Location = New System.Drawing.Point(0, 705)
+        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(4)
         Me.PanelInferior.Size = New System.Drawing.Size(1330, 36)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Gold
@@ -141,22 +150,24 @@ Partial Class Pr_ReporteMorosidadGeneral
         '
         'PanelPrincipal
         '
-        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(4)
         Me.PanelPrincipal.Size = New System.Drawing.Size(967, 705)
         '
         'MPanelUserAct
         '
         Me.MPanelUserAct.Location = New System.Drawing.Point(1130, 0)
-        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(4)
         '
         'MReportViewer
         '
-        Me.MReportViewer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MReportViewer.Margin = New System.Windows.Forms.Padding(4)
         Me.MReportViewer.Size = New System.Drawing.Size(967, 705)
+        Me.MReportViewer.ToolPanelWidth = 200
         '
         'MGPFiltros
         '
         Me.MGPFiltros.Controls.Add(Me.GroupBox2)
+        Me.MGPFiltros.Size = New System.Drawing.Size(363, 633)
         '
         '
         '
@@ -185,12 +196,23 @@ Partial Class Pr_ReporteMorosidadGeneral
         '
         '
         Me.MGPFiltros.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'PanelIzq
+        '
+        Me.PanelIzq.Size = New System.Drawing.Size(363, 705)
         Me.PanelIzq.Controls.SetChildIndex(Me.PanelSuperior, 0)
         Me.PanelIzq.Controls.SetChildIndex(Me.MGPFiltros, 0)
         '
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox2.Controls.Add(Me.LabelX4)
+        Me.GroupBox2.Controls.Add(Me.LabelX1)
+        Me.GroupBox2.Controls.Add(Me.tbCliente)
+        Me.GroupBox2.Controls.Add(Me.CheckTodosClientes)
+        Me.GroupBox2.Controls.Add(Me.checkUnCliente)
+        Me.GroupBox2.Controls.Add(Me.tbCodigoCliente)
+        Me.GroupBox2.Controls.Add(Me.lbcliente)
         Me.GroupBox2.Controls.Add(Me.tbAlmacen)
         Me.GroupBox2.Controls.Add(Me.tbVendedor)
         Me.GroupBox2.Controls.Add(Me.CheckTodosAlmacen)
@@ -215,14 +237,14 @@ Partial Class Pr_ReporteMorosidadGeneral
         Me.tbAlmacen.BackColor = System.Drawing.Color.Gainsboro
         tbAlmacen_DesignTimeLayout.LayoutString = resources.GetString("tbAlmacen_DesignTimeLayout.LayoutString")
         Me.tbAlmacen.DesignTimeLayout = tbAlmacen_DesignTimeLayout
-        Me.tbAlmacen.Font = New System.Drawing.Font("Open Sans Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbAlmacen.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbAlmacen.Location = New System.Drawing.Point(72, 98)
         Me.tbAlmacen.Name = "tbAlmacen"
         Me.tbAlmacen.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.tbAlmacen.Office2007CustomColor = System.Drawing.Color.DodgerBlue
         Me.tbAlmacen.SelectedIndex = -1
         Me.tbAlmacen.SelectedItem = Nothing
-        Me.tbAlmacen.Size = New System.Drawing.Size(164, 25)
+        Me.tbAlmacen.Size = New System.Drawing.Size(164, 22)
         Me.tbAlmacen.TabIndex = 247
         Me.tbAlmacen.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -275,12 +297,12 @@ Partial Class Pr_ReporteMorosidadGeneral
         '
         Me.tbCodAlmacen.Border.Class = "TextBoxBorder"
         Me.tbCodAlmacen.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbCodAlmacen.Font = New System.Drawing.Font("Open Sans Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbCodAlmacen.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbCodAlmacen.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.tbCodAlmacen.Location = New System.Drawing.Point(42, 98)
         Me.tbCodAlmacen.Name = "tbCodAlmacen"
         Me.tbCodAlmacen.PreventEnterBeep = True
-        Me.tbCodAlmacen.Size = New System.Drawing.Size(22, 25)
+        Me.tbCodAlmacen.Size = New System.Drawing.Size(22, 22)
         Me.tbCodAlmacen.TabIndex = 243
         Me.tbCodAlmacen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.tbCodAlmacen.Visible = False
@@ -334,12 +356,12 @@ Partial Class Pr_ReporteMorosidadGeneral
         '
         Me.tbCodigoVendedor.Border.Class = "TextBoxBorder"
         Me.tbCodigoVendedor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbCodigoVendedor.Font = New System.Drawing.Font("Open Sans Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbCodigoVendedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbCodigoVendedor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.tbCodigoVendedor.Location = New System.Drawing.Point(44, 46)
         Me.tbCodigoVendedor.Name = "tbCodigoVendedor"
         Me.tbCodigoVendedor.PreventEnterBeep = True
-        Me.tbCodigoVendedor.Size = New System.Drawing.Size(22, 25)
+        Me.tbCodigoVendedor.Size = New System.Drawing.Size(22, 22)
         Me.tbCodigoVendedor.TabIndex = 238
         Me.tbCodigoVendedor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.tbCodigoVendedor.Visible = False
@@ -365,13 +387,120 @@ Partial Class Pr_ReporteMorosidadGeneral
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 500
         '
+        'tbCodigoCliente
+        '
+        '
+        '
+        '
+        Me.tbCodigoCliente.Border.Class = "TextBoxBorder"
+        Me.tbCodigoCliente.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbCodigoCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbCodigoCliente.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.tbCodigoCliente.Location = New System.Drawing.Point(44, 160)
+        Me.tbCodigoCliente.Name = "tbCodigoCliente"
+        Me.tbCodigoCliente.PreventEnterBeep = True
+        Me.tbCodigoCliente.Size = New System.Drawing.Size(22, 22)
+        Me.tbCodigoCliente.TabIndex = 249
+        Me.tbCodigoCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.tbCodigoCliente.Visible = False
+        '
+        'lbcliente
+        '
+        Me.lbcliente.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbcliente.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbcliente.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbcliente.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbcliente.Location = New System.Drawing.Point(7, 131)
+        Me.lbcliente.Name = "lbcliente"
+        Me.lbcliente.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbcliente.Size = New System.Drawing.Size(74, 23)
+        Me.lbcliente.TabIndex = 248
+        Me.lbcliente.Text = "Cliente:"
+        '
+        'CheckTodosClientes
+        '
+        '
+        '
+        '
+        Me.CheckTodosClientes.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.CheckTodosClientes.Location = New System.Drawing.Point(294, 159)
+        Me.CheckTodosClientes.Name = "CheckTodosClientes"
+        Me.CheckTodosClientes.Size = New System.Drawing.Size(55, 23)
+        Me.CheckTodosClientes.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.CheckTodosClientes.TabIndex = 252
+        Me.CheckTodosClientes.Text = "Todos"
+        '
+        'checkUnCliente
+        '
+        '
+        '
+        '
+        Me.checkUnCliente.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.checkUnCliente.Location = New System.Drawing.Point(244, 159)
+        Me.checkUnCliente.Name = "checkUnCliente"
+        Me.checkUnCliente.Size = New System.Drawing.Size(44, 23)
+        Me.checkUnCliente.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.checkUnCliente.TabIndex = 251
+        Me.checkUnCliente.Text = "Uno"
+        '
+        'tbCliente
+        '
+        Me.tbCliente.BackColor = System.Drawing.Color.Gainsboro
+        '
+        '
+        '
+        Me.tbCliente.Border.Class = "TextBoxBorder"
+        Me.tbCliente.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbCliente.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.tbCliente.Location = New System.Drawing.Point(73, 160)
+        Me.tbCliente.Name = "tbCliente"
+        Me.tbCliente.PreventEnterBeep = True
+        Me.tbCliente.Size = New System.Drawing.Size(167, 22)
+        Me.tbCliente.TabIndex = 253
+        '
+        'LabelX1
+        '
+        Me.LabelX1.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX1.Font = New System.Drawing.Font("Georgia", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX1.Location = New System.Drawing.Point(187, 145)
+        Me.LabelX1.Name = "LabelX1"
+        Me.LabelX1.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX1.Size = New System.Drawing.Size(54, 12)
+        Me.LabelX1.TabIndex = 254
+        Me.LabelX1.Text = "Ctrl+Enter"
+        '
+        'LabelX4
+        '
+        Me.LabelX4.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX4.Font = New System.Drawing.Font("Georgia", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX4.Location = New System.Drawing.Point(187, 33)
+        Me.LabelX4.Name = "LabelX4"
+        Me.LabelX4.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX4.Size = New System.Drawing.Size(54, 12)
+        Me.LabelX4.TabIndex = 255
+        Me.LabelX4.Text = "Ctrl+Enter"
+        '
         'Pr_ReporteMorosidadGeneral
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1362, 741)
         Me.Location = New System.Drawing.Point(0, 0)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Pr_ReporteMorosidadGeneral"
         Me.Text = "INFORME DE MORISIDAD"
         Me.Controls.SetChildIndex(Me.SuperTabPrincipal, 0)
@@ -408,4 +537,11 @@ Partial Class Pr_ReporteMorosidadGeneral
     Friend WithEvents tbVendedor As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents tbAlmacen As Janus.Windows.GridEX.EditControls.MultiColumnCombo
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents CheckTodosClientes As DevComponents.DotNetBar.Controls.CheckBoxX
+    Friend WithEvents checkUnCliente As DevComponents.DotNetBar.Controls.CheckBoxX
+    Friend WithEvents tbCodigoCliente As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents lbcliente As DevComponents.DotNetBar.LabelX
+    Friend WithEvents tbCliente As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents LabelX4 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents LabelX1 As DevComponents.DotNetBar.LabelX
 End Class

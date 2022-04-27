@@ -57,7 +57,7 @@ Partial Class Pr_StockMinimo
         Me.cbAlmacen.DesignTimeLayout = cbAlmacen_DesignTimeLayout
         Me.cbAlmacen.DisabledBackColor = System.Drawing.Color.White
         Me.cbAlmacen.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbAlmacen.Location = New System.Drawing.Point(65, 14)
+        Me.cbAlmacen.Location = New System.Drawing.Point(65, 34)
         Me.cbAlmacen.Name = "cbAlmacen"
         Me.cbAlmacen.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.cbAlmacen.Office2007CustomColor = System.Drawing.Color.DodgerBlue
@@ -74,7 +74,7 @@ Partial Class Pr_StockMinimo
         Me.cbGrupos.DesignTimeLayout = cbGrupos_DesignTimeLayout
         Me.cbGrupos.DisabledBackColor = System.Drawing.Color.White
         Me.cbGrupos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbGrupos.Location = New System.Drawing.Point(65, 72)
+        Me.cbGrupos.Location = New System.Drawing.Point(65, 97)
         Me.cbGrupos.Name = "cbGrupos"
         Me.cbGrupos.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.cbGrupos.Office2007CustomColor = System.Drawing.Color.DodgerBlue
@@ -88,7 +88,7 @@ Partial Class Pr_StockMinimo
         '
         Me.Panel1.Controls.Add(Me.CheckTodosAlmacen)
         Me.Panel1.Controls.Add(Me.checkUnaAlmacen)
-        Me.Panel1.Location = New System.Drawing.Point(241, 5)
+        Me.Panel1.Location = New System.Drawing.Point(241, 27)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(120, 35)
@@ -129,7 +129,7 @@ Partial Class Pr_StockMinimo
         '
         Me.Panel2.Controls.Add(Me.checkTodosGrupos)
         Me.Panel2.Controls.Add(Me.checkUnaGrupo)
-        Me.Panel2.Location = New System.Drawing.Point(240, 62)
+        Me.Panel2.Location = New System.Drawing.Point(241, 88)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(119, 35)
@@ -176,12 +176,12 @@ Partial Class Pr_StockMinimo
         Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX1.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX1.Location = New System.Drawing.Point(6, 73)
+        Me.LabelX1.Location = New System.Drawing.Point(4, 74)
         Me.LabelX1.Name = "LabelX1"
         Me.LabelX1.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX1.Size = New System.Drawing.Size(42, 16)
+        Me.LabelX1.Size = New System.Drawing.Size(66, 16)
         Me.LabelX1.TabIndex = 259
-        Me.LabelX1.Text = "Linea:"
+        Me.LabelX1.Text = "Categoría:"
         '
         'LabelX3
         '
@@ -253,10 +253,13 @@ Partial Class Pr_StockMinimo
         Me.btn_Salir.BackColor = System.Drawing.Color.Transparent
         Me.btn_Salir.FlatAppearance.BorderSize = 0
         Me.btn_Salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_Salir.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Salir.ForeColor = System.Drawing.Color.White
         Me.btn_Salir.Image = Global.DinoM.My.Resources.Resources.atras1
+        Me.btn_Salir.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btn_Salir.Location = New System.Drawing.Point(177, 1)
         Me.btn_Salir.Name = "btn_Salir"
-        Me.btn_Salir.Size = New System.Drawing.Size(72, 72)
+        Me.btn_Salir.Size = New System.Drawing.Size(74, 73)
         Me.btn_Salir.TabIndex = 262
         Me.btn_Salir.Text = "SALIR"
         Me.btn_Salir.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -266,10 +269,13 @@ Partial Class Pr_StockMinimo
         '
         Me.btn_Generar.FlatAppearance.BorderSize = 0
         Me.btn_Generar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_Generar.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Generar.ForeColor = System.Drawing.Color.White
         Me.btn_Generar.Image = Global.DinoM.My.Resources.Resources.pie_chart1
+        Me.btn_Generar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.btn_Generar.Location = New System.Drawing.Point(99, 0)
         Me.btn_Generar.Name = "btn_Generar"
-        Me.btn_Generar.Size = New System.Drawing.Size(72, 72)
+        Me.btn_Generar.Size = New System.Drawing.Size(73, 74)
         Me.btn_Generar.TabIndex = 261
         Me.btn_Generar.Text = "GENERAR"
         Me.btn_Generar.TextAlign = System.Drawing.ContentAlignment.BottomCenter

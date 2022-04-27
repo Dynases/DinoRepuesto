@@ -99,6 +99,7 @@ Public Class F0_MovimientoNuevo
         cbConcepto.ReadOnly = True
         tbObservacion.ReadOnly = True
         tbFecha.IsInputReadOnly = True
+        tbFecha.Enabled = False
         cbAlmacenOrigen.ReadOnly = True
         ''''''''''
         btnModificar.Enabled = True

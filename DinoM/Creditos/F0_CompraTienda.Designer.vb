@@ -1247,9 +1247,9 @@ Partial Class F0_CompraTienda
         Me.LabelX4.Location = New System.Drawing.Point(13, 88)
         Me.LabelX4.Name = "LabelX4"
         Me.LabelX4.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX4.Size = New System.Drawing.Size(100, 23)
+        Me.LabelX4.Size = New System.Drawing.Size(110, 23)
         Me.LabelX4.TabIndex = 231
-        Me.LabelX4.Text = "Fecha Prestamo:"
+        Me.LabelX4.Text = "Fecha Préstamo:"
         '
         'tbFechaVenc
         '

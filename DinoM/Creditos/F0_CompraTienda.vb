@@ -103,7 +103,9 @@ Public Class F0_CompraTienda
         tbCodProv.ReadOnly = True
         tbObservacion.ReadOnly = True
         tbFechaVenta.IsInputReadOnly = True
+        tbFechaVenta.Enabled = False
         tbFechaVenc.IsInputReadOnly = True
+        tbFechaVenc.Enabled = False
         cbSucursal.ReadOnly = True
         swTipoVenta.IsReadOnly = True
 
@@ -156,6 +158,7 @@ Public Class F0_CompraTienda
         tbObservacion.ReadOnly = False
         tbFechaVenta.IsInputReadOnly = False
         tbFechaVenc.IsInputReadOnly = False
+        tbFechaVenc.Enabled = True
         If (tbCodigo.Text.Length > 0) Then
             cbSucursal.ReadOnly = True
         Else
@@ -514,7 +517,7 @@ Public Class F0_CompraTienda
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
             .FormatString = "0.00"
-            .Caption = "Precio U.".ToUpper
+            .Caption = "Precio U.($)".ToUpper
         End With
         If (_estadoPor = 1) Then
             With grdetalle.RootTable.Columns("cbutven")
@@ -1078,6 +1081,14 @@ Public Class F0_CompraTienda
                 Return False
             End If
         End If
+        If (tbFechaVenc.Value < tbFechaVenta.Value) Then
+
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "La Fecha de Venc. del Crédito no puede ser menor a la Fecha de Préstamo".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            tbProveedor.Focus()
+            Return False
+        End If
+
 
         ''Controla que no se metan un mismo producto con el mismo lote y fecha de vencimiento
         Dim dt1 As DataTable = CType(grdetalle.DataSource, DataTable)

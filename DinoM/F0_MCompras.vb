@@ -102,8 +102,11 @@ Public Class F0_MCompras
         tbCodProv.ReadOnly = True
         tbObservacion.ReadOnly = True
         tbFechaVenta.IsInputReadOnly = True
+        tbFechaVenta.Enabled = False
         tbFechaVenc.IsInputReadOnly = True
+        tbFechaVenc.Enabled = False
         cbSucursal.ReadOnly = True
+
         swTipoVenta.IsReadOnly = True
 
         tbNitProv.ReadOnly = True
@@ -145,11 +148,13 @@ Public Class F0_MCompras
         tbObservacion.ReadOnly = False
         tbFechaVenta.IsInputReadOnly = False
         tbFechaVenc.IsInputReadOnly = False
-        If (tbCodigo.Text.Length > 0) Then
-            cbSucursal.ReadOnly = True
-        Else
-            cbSucursal.ReadOnly = False
-        End If
+        tbFechaVenc.Enabled = True
+
+        'If (tbCodigo.Text.Length > 0) Then
+        '    cbSucursal.ReadOnly = True
+        'Else
+        '    cbSucursal.ReadOnly = False
+        'End If
 
         swTipoVenta.IsReadOnly = False
         btnGrabar.Enabled = True
@@ -200,6 +205,7 @@ Public Class F0_MCompras
         swTipoVenta.Value = False
         _CodProveedor = 0
         tbFechaVenta.Value = Now.Date
+        tbFechaVenc.Value = Now.Date
         tbFechaVenc.Visible = True
         lbCredito.Visible = True
         tbCodProv.Clear()
@@ -272,6 +278,16 @@ Public Class F0_MCompras
         Else
             lbTipoCambio.Visible = True
             tbTipoCambio.Visible = True
+        End If
+
+        If (gi_userSuc > 0) Then
+            Dim dt As DataTable = CType(cbSucursal.DataSource, DataTable)
+            For i As Integer = 0 To dt.Rows.Count - 1 Step 1
+
+                If (dt.Rows(i).Item("aanumi") = gi_userSuc) Then
+                    cbSucursal.SelectedIndex = i
+                End If
+            Next
         End If
     End Sub
     Public Sub _prMostrarRegistro(_N As Integer)
@@ -492,7 +508,7 @@ Public Class F0_MCompras
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
             .FormatString = "0.00"
-            .Caption = "Precio U.".ToUpper
+            .Caption = "Precio U.($)".ToUpper
         End With
         If (_estadoPor = 1) Then
             With grdetalle.RootTable.Columns("cbutven")
@@ -1052,6 +1068,13 @@ Public Class F0_MCompras
                 tbNFactura.Focus()
                 Return False
             End If
+        End If
+        If (tbFechaVenc.Value < tbFechaVenta.Value) Then
+
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "La Fecha de Venc. del Crédito no puede ser menor a la Fecha de la Compra".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            tbProveedor.Focus()
+            Return False
         End If
 
         ''Controla que no se metan un mismo producto con el mismo lote y fecha de vencimiento

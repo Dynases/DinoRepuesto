@@ -1990,7 +1990,8 @@ Public Class F1_Productos
             Dim cant As Integer = vectoraux.Length
 
             For i As Integer = 0 To dt.Rows.Count - 1 Step 1
-                Dim nombre As String = dt.Rows(i).Item("yfcdprod2").ToString.ToUpper +
+                Dim nombre As String = dt.Rows(i).Item("yfnumi").ToString.ToUpper +
+                     " " + dt.Rows(i).Item("yfcdprod2").ToString.ToUpper +
                     " " + dt.Rows(i).Item("yfcprod").ToString.ToUpper +
                     " " + dt.Rows(i).Item("yfdetprod").ToString.ToUpper +
                     " " + dt.Rows(i).Item("yfcbarra").ToString.ToUpper +

@@ -32,6 +32,7 @@ Public Class F0_PagosCreditoCompraUlt
 
         'L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
         _prCargarComboLibreria(cbbanco, 6, 1)
+        _prCargarComboLibreriaSucursal(cbSucursal)
 
         'Me.WindowState = FormWindowState.Maximized
         _prAsignarPermisos()
@@ -65,10 +66,27 @@ Public Class F0_PagosCreditoCompraUlt
         img2.Save(Bin, System.Drawing.Imaging.ImageFormat.Png)
         Return Bin.ToArray()
     End Function
+    Private Sub _prCargarComboLibreriaSucursal(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
+        Dim dt As New DataTable
+        dt = L_fnListarSucursales()
+        With mCombo
+            .DropDownList.Columns.Clear()
+            .DropDownList.Columns.Add("aanumi").Width = 60
+            .DropDownList.Columns("aanumi").Caption = "COD"
+            .DropDownList.Columns.Add("aabdes").Width = 500
+            .DropDownList.Columns("aabdes").Caption = "SUCURSAL"
+            .ValueMember = "aanumi"
+            .DisplayMember = "aabdes"
+            .DataSource = dt
+            .Refresh()
+        End With
+    End Sub
     Private Sub _prInhabiliitar()
         tbnrodoc.ReadOnly = True
         tbfecha.IsInputReadOnly = True
+        tbfecha.Enabled = False
         tbObservacion.ReadOnly = True
+        cbSucursal.ReadOnly = True
 
         ''''''''''
         btnModificar.Enabled = True
@@ -90,7 +108,7 @@ Public Class F0_PagosCreditoCompraUlt
     Private Sub _prhabilitar()
         grcobranza.Enabled = False
         tbnrodoc.ReadOnly = False
-        tbfecha.IsInputReadOnly = False
+        'tbfecha.IsInputReadOnly = False
         tbObservacion.ReadOnly = False
 
 
@@ -192,6 +210,17 @@ Public Class F0_PagosCreditoCompraUlt
         _prAddDetalle()
         tbObservacion.Focus()
 
+        ''Recupera y asigna la Sucursal a la que pertenece el usuario
+        If (gi_userSuc > 0) Then
+            Dim dt As DataTable = CType(cbSucursal.DataSource, DataTable)
+            For i As Integer = 0 To dt.Rows.Count - 1 Step 1
+
+                If (dt.Rows(i).Item("aanumi") = gi_userSuc) Then
+                    cbSucursal.SelectedIndex = i
+                End If
+
+            Next
+        End If
     End Sub
     Sub _prAddDetalle()
         Dim Bin As New MemoryStream
@@ -349,7 +378,7 @@ Public Class F0_PagosCreditoCompraUlt
             lbFecha.Text = CType(.GetValue("tefact"), Date).ToString("dd/MM/yyyy")
             lbHora.Text = .GetValue("tehact").ToString
             lbUsuario.Text = .GetValue("teuact").ToString
-
+            cbSucursal.Value = .GetValue("Sucursal")
         End With
 
         _prDetalleCobranzas(tbnrodoc.Text)
@@ -739,7 +768,7 @@ Public Class F0_PagosCreditoCompraUlt
         Dim numi As String = ""
         Dim dtCobro As DataTable = L_fnCobranzasObtenerLosPagosCompra(-1)
         _prInterpretarDatosCobranza(dtCobro)
-        Dim res As Boolean = L_fnGrabarCobranzaCompras(numi, tbfecha.Value.ToString("yyyy/MM/dd"), 0, tbObservacion.Text, dtCobro)
+        Dim res As Boolean = L_fnGrabarCobranzaCompras(numi, tbfecha.Value.ToString("yyyy/MM/dd"), 0, tbObservacion.Text, dtCobro, cbSucursal.Value)
 
 
         If res Then
@@ -1033,6 +1062,7 @@ Public Class F0_PagosCreditoCompraUlt
                     CType(grfactura.DataSource, DataTable).Rows(pos).Item("pendiente") = grPendiente.GetValue("pendiente")
 
                     _prCargarTablaCreditos()
+                    _prCargarTablaPagos(CType(grfactura.DataSource, DataTable).Rows(pos).Item("numiCredito"))
                     grPendiente.RemoveFilters()
                     grPendiente.Focus()
                     grPendiente.MoveTo(grPendiente.FilterRow)
@@ -1158,6 +1188,10 @@ Public Class F0_PagosCreditoCompraUlt
             Timer1.Enabled = False
         End If
 
+    End Sub
+
+    Private Sub grPendiente_EditingCell(sender As Object, e As EditingCellEventArgs) Handles grPendiente.EditingCell
+        e.Cancel = True
     End Sub
 
 #End Region

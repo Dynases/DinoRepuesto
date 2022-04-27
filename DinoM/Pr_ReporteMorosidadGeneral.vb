@@ -8,6 +8,7 @@ Public Class Pr_ReporteMorosidadGeneral
     Public _tab As SuperTabItem
     Dim Almacen As String = ""
     Dim Vendedor As String = ""
+    Dim Cliente As String = ""
     Public Sub _prIniciarTodo()
         'L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
         _PMIniciarTodo()
@@ -22,26 +23,56 @@ Public Class Pr_ReporteMorosidadGeneral
         tbAlmacen.Enabled = False
         CheckTodosVendedor.CheckValue = True
         CheckTodosAlmacen.CheckValue = True
+        CheckTodosClientes.CheckValue = True
 
 
     End Sub
     Public Sub _prInterpretarDatos(ByRef _dt As DataTable)
-        If (CheckTodosVendedor.Checked And CheckTodosAlmacen.Checked) Then
+        'If (CheckTodosVendedor.Checked And CheckTodosAlmacen.Checked) Then
+        '    _dt = L_fnReporteMorosidadTodosAlmacenVendedor()
+        '    Almacen = "TODOS ALMACENES"
+        '    Vendedor = "TODOS VENDEDORES"
+        'Else
+        '    If (checkUnaVendedor.Checked And CheckTodosAlmacen.Checked And tbCodigoVendedor.Text.Length > 0) Then
+        '        _dt = L_fnReporteMorosidadTodosAlmacenUnVendedor(tbCodigoVendedor.Text)
+        '        Almacen = "TODOS ALMACANES"
+        '        Vendedor = "" + tbVendedor.Text
+        '    End If
+        '    If (checkUnaVendedor.Checked And CheckUnaALmacen.Checked And tbCodigoVendedor.Text.Length > 0 And tbAlmacen.Value > 0) Then
+        '        _dt = L_fnReporteMorosidadUnAlmacenUnVendedor(tbCodigoVendedor.Text, tbAlmacen.Value)
+        '        Almacen = "" + tbAlmacen.Text
+        '        Vendedor = "" + tbVendedor.Text
+        '    End If
+        'End If
+
+        If (CheckTodosVendedor.Checked And CheckTodosAlmacen.Checked And CheckTodosClientes.Checked) Then
             _dt = L_fnReporteMorosidadTodosAlmacenVendedor()
-            Almacen = "TODOS ALMACANES"
             Vendedor = "TODOS VENDEDORES"
+            Almacen = "TODOS ALMACENES"
+            Cliente = "TODOS CLIENTES"
         Else
-            If (checkUnaVendedor.Checked And CheckTodosAlmacen.Checked And tbCodigoVendedor.Text.Length > 0) Then
-                _dt = L_fnReporteMorosidadTodosAlmacenUnVendedor(tbCodigoVendedor.Text)
-                Almacen = "TODOS ALMACANES"
+            Vendedor = "TODOS VENDEDORES"
+            Almacen = "TODOS ALMACENES"
+            Cliente = "TODOS CLIENTES"
+            Dim idVendedor As Integer = 0
+            Dim idAlmacen As Integer = 0
+            Dim idCliente As Integer = 0
+
+            If CheckTodosVendedor.Checked = False And checkUnaVendedor.Checked = True And tbCodigoVendedor.Text <> String.Empty Then
+                idVendedor = tbCodigoVendedor.Text
                 Vendedor = "" + tbVendedor.Text
             End If
-            If (checkUnaVendedor.Checked And CheckUnaALmacen.Checked And tbCodigoVendedor.Text.Length > 0 And tbAlmacen.Value > 0) Then
-                _dt = L_fnReporteMorosidadUnAlmacenUnVendedor(tbCodigoVendedor.Text, tbAlmacen.Value)
+            If CheckTodosAlmacen.Checked = False And CheckUnaALmacen.Checked = True Then
+                idAlmacen = tbAlmacen.Value
                 Almacen = "" + tbAlmacen.Text
-                Vendedor = "" + tbVendedor.Text
             End If
+            If CheckTodosClientes.Checked = False And checkUnCliente.Checked = True And tbCodigoCliente.Text <> String.Empty Then
+                idCliente = tbCodigoCliente.Text
+                Cliente = "" + tbCliente.Text
+            End If
+            _dt = L_fnReporteMorosidadFiltros(idVendedor, idAlmacen, idCliente)
         End If
+
     End Sub
     Private Sub _prCargarReporte()
         Dim _dt As New DataTable
@@ -72,6 +103,22 @@ Public Class Pr_ReporteMorosidadGeneral
 
     End Sub
     Private Sub btnGenerar_Click(sender As Object, e As EventArgs) Handles btnGenerar.Click
+        If checkUnaVendedor.Checked = True Or checkUnCliente.Checked = True Then
+            If (checkUnaVendedor.Checked = True And tbVendedor.Text = String.Empty) Then
+                ToastNotification.Show(Me, "Debe seleccionar un vendedor...!!!".ToUpper,
+                                       My.Resources.INFORMATION, 2000,
+                                       eToastGlowColor.Blue,
+                                       eToastPosition.TopCenter)
+                Return
+            End If
+            If (checkUnCliente.Checked = True And tbCliente.Text = String.Empty) Then
+                ToastNotification.Show(Me, "Debe seleccionar un cliente...!!!".ToUpper,
+                                       My.Resources.INFORMATION, 2000,
+                                       eToastGlowColor.Blue,
+                                       eToastPosition.TopCenter)
+                Return
+            End If
+        End If
         _prCargarReporte()
 
     End Sub
@@ -202,6 +249,68 @@ Public Class Pr_ReporteMorosidadGeneral
         Else
             Me.Opacity = 100
             Timer1.Enabled = False
+        End If
+    End Sub
+
+    Private Sub tbCliente_KeyDown(sender As Object, e As KeyEventArgs) Handles tbCliente.KeyDown
+        If (checkUnCliente.Checked) Then
+            If e.KeyData = Keys.Control + Keys.Enter Then
+                Dim dt As DataTable
+                dt = L_fnListarClienteCreditos()
+
+                Dim listEstCeldas As New List(Of Modelo.Celda)
+                listEstCeldas.Add(New Modelo.Celda("ydnumi,", False, "ID", 50))
+                listEstCeldas.Add(New Modelo.Celda("ydcod", True, "ID", 50))
+                listEstCeldas.Add(New Modelo.Celda("yddesc", True, "NOMBRE", 280))
+                listEstCeldas.Add(New Modelo.Celda("yddctnum", True, "N. Documento".ToUpper, 150))
+                listEstCeldas.Add(New Modelo.Celda("yddirec", True, "DIRECCION", 220))
+                listEstCeldas.Add(New Modelo.Celda("ydtelf1", True, "Telefono".ToUpper, 200))
+                listEstCeldas.Add(New Modelo.Celda("ydfnac", True, "F.Nacimiento".ToUpper, 150, "MM/dd,YYYY"))
+                Dim ef = New Efecto
+                ef.tipo = 3
+                ef.dt = dt
+                ef.SeleclCol = 1
+                ef.listEstCeldas = listEstCeldas
+                ef.alto = 50
+                ef.ancho = 350
+                ef.Context = "Seleccione Cliente".ToUpper
+                ef.ShowDialog()
+                Dim bandera As Boolean = False
+                bandera = ef.band
+                If (bandera = True) Then
+                    Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
+                    If (IsNothing(Row)) Then
+                        tbCliente.Focus()
+                        Return
+                    End If
+                    tbCodigoCliente.Text = Row.Cells("ydnumi").Value
+                    tbCliente.Text = Row.Cells("yddesc").Value
+                    btnGenerar.Focus()
+                End If
+
+            End If
+
+        End If
+    End Sub
+
+    Private Sub checkUnCliente_CheckValueChanged(sender As Object, e As EventArgs) Handles checkUnCliente.CheckValueChanged
+        If (checkUnCliente.Checked) Then
+            CheckTodosClientes.CheckValue = False
+            tbCliente.Enabled = True
+            tbCliente.BackColor = Color.White
+            tbCliente.Focus()
+
+        End If
+    End Sub
+
+    Private Sub CheckTodosClientes_CheckValueChanged(sender As Object, e As EventArgs) Handles CheckTodosClientes.CheckValueChanged
+        If (CheckTodosClientes.Checked) Then
+            checkUnCliente.CheckValue = False
+            tbCliente.Enabled = True
+            tbCliente.BackColor = Color.Gainsboro
+            tbCliente.Clear()
+            tbCodigoCliente.Clear()
+
         End If
     End Sub
 End Class

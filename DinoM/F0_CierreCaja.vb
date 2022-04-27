@@ -68,6 +68,7 @@ Public Class F0_CierreCaja
             tbTotalGral.Value = 0
             tbTIngresos.Value = 0
             tbTEgresos.Value = 0
+            tbTPagosPrestamos.Value = 0
             tbTotalGral.Value = 0
 
             tbTEfectivo.Value = 0
@@ -336,22 +337,29 @@ Public Class F0_CierreCaja
             End With
 
             With Dgv_VentasPagos.RootTable.Columns("tarjeta")
-                .Caption = "TARJETA"
+                .Caption = "TRANSFERENCIA"
                 .Width = 120
                 .Visible = True
                 .FormatString = "0.00"
                 .AggregateFunction = AggregateFunction.Sum
                 .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             End With
-            With Dgv_VentasPagos.RootTable.Columns("pagos")
-                .Caption = "PAGOS"
+            With Dgv_VentasPagos.RootTable.Columns("pagosCliente")
+                .Caption = "PAGOS CLIENTES"
                 .Width = 120
                 .Visible = True
                 .FormatString = "0.00"
                 .AggregateFunction = AggregateFunction.Sum
                 .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             End With
-
+            With Dgv_VentasPagos.RootTable.Columns("pagosPrestamo")
+                .Caption = "PAGOS PRÉSTAMOS"
+                .Width = 120
+                .Visible = True
+                .FormatString = "0.00"
+                .AggregateFunction = AggregateFunction.Sum
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            End With
             With Dgv_VentasPagos.RootTable.Columns("tipocambio")
                 .Caption = "TIPO CAMBIO"
                 .Width = 200
@@ -440,15 +448,22 @@ Public Class F0_CierreCaja
                 .AggregateFunction = AggregateFunction.Sum
                 .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             End With
-            With Dgv_VentasPagos.RootTable.Columns("pagos")
-                .Caption = "PAGOS"
+            With Dgv_VentasPagos.RootTable.Columns("pagosCliente")
+                .Caption = "PAGOS CLIENTE"
                 .Width = 120
                 .Visible = True
                 .FormatString = "0.00"
                 .AggregateFunction = AggregateFunction.Sum
                 .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             End With
-
+            With Dgv_VentasPagos.RootTable.Columns("pagosPrestamo")
+                .Caption = "PAGOS PRÉSTAMO"
+                .Width = 120
+                .Visible = True
+                .FormatString = "0.00"
+                .AggregateFunction = AggregateFunction.Sum
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            End With
             With Dgv_VentasPagos.RootTable.Columns("tipocambio")
                 .Caption = "TIPO CAMBIO"
                 .Width = 200
@@ -523,8 +538,8 @@ Public Class F0_CierreCaja
     End Sub
     Private Sub _prhabilitar()
         TbCodigo.ReadOnly = True
-        tbFecha.IsInputReadOnly = False
-        tbFecha.Enabled = True
+        ' tbFecha.IsInputReadOnly = False
+        'tbFecha.Enabled = True
         cbTurno.ReadOnly = False
         tbMontoInicial.IsInputReadOnly = False
         tbObservacion.ReadOnly = False
@@ -542,16 +557,21 @@ Public Class F0_CierreCaja
             tbMontoInicial.IsInputReadOnly = True
             tbObservacion.ReadOnly = True
             swEstado.IsReadOnly = True
+            cbSucursal.Enabled = False
 
             tbMontoI.IsInputReadOnly = True
-            tbTCredito.IsInputReadOnly = True
-            tbTTarjeta.IsInputReadOnly = True
-            tbTDeposito.IsInputReadOnly = True
             tbTContado.IsInputReadOnly = True
-            tbTotalGral.IsInputReadOnly = True
-            tbTEfectivo.IsInputReadOnly = True
-            tbTDiferencia.IsInputReadOnly = True
             tbTPagos.IsInputReadOnly = True
+            tbTIngresos.IsInputReadOnly = True
+            tbTEgresos.IsInputReadOnly = True
+            tbTPagosPrestamos.IsInputReadOnly = True
+            tbTotalGral.IsInputReadOnly = True
+
+            tbTEfectivo.IsInputReadOnly = True
+            tbTDeposito.IsInputReadOnly = True
+            tbTTarjeta.IsInputReadOnly = True
+            tbTDiferencia.IsInputReadOnly = True
+            tbTCredito.IsInputReadOnly = True
 
             btnModificar.Enabled = True
             btnGrabar.Enabled = False
@@ -618,7 +638,10 @@ Public Class F0_CierreCaja
             Dim numi As String = ""
             Dim res As Boolean = L_fnGrabarCaja(numi, tbFecha.Value.ToString("yyyy/MM/dd"), tbTotalGral.Value, tbTCredito.Value,
                                                 tbTTarjeta.Value, tbTContado.Value, tbTDeposito.Value, tbTEfectivo.Value,
-                                                tbTDiferencia.Value, tbTPagos.Value, cbTurno.Text, tbMontoInicial.Value, tbTIngresos.Value, tbTEgresos.Value, IIf(swEstado.Value = True, 1, 0), Tb_TipoCambio.Value, tbObservacion.Text, CType(Dgv_Cortes.DataSource, DataTable), CType(Dgv_Depositos.DataSource, DataTable), gs_NroCaja, cbSucursal.Value)
+                                                tbTDiferencia.Value, tbTPagos.Value, cbTurno.Text, tbMontoInicial.Value, tbTIngresos.Value,
+                                                tbTEgresos.Value, IIf(swEstado.Value = True, 1, 0), Tb_TipoCambio.Value, tbObservacion.Text,
+                                                CType(Dgv_Cortes.DataSource, DataTable), CType(Dgv_Depositos.DataSource, DataTable), gs_NroCaja,
+                                                cbSucursal.Value, tbTPagosPrestamos.Value)
             If res Then
 
                 Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
@@ -656,8 +679,10 @@ Public Class F0_CierreCaja
                 Dim dtventas As DataTable = dv.ToTable(True, "tanumi", "tipocambio")
                 Dim TContado As Double = tbTContado.Value - tbTTarjeta.Value
                 Dim res As Boolean = L_fnModificarCaja(TbCodigo.Text, tbFecha.Value.ToString("yyyy/MM/dd"), tbTotalGral.Value, tbTCredito.Value,
-                                                    tbTTarjeta.Value, TContado, tbTDeposito.Value, tbTEfectivo.Value,
-                                                    tbTDiferencia.Value, tbTPagos.Value, cbTurno.Text, tbMontoInicial.Value, tbTIngresos.Value, tbTEgresos.Value, Tb_TipoCambio.Value, tbObservacion.Text, CType(Dgv_Cortes.DataSource, DataTable), CType(Dgv_Depositos.DataSource, DataTable), dtventas, gs_NroCaja)
+                                                    tbTTarjeta.Value, TContado, tbTDeposito.Value, tbTEfectivo.Value, tbTDiferencia.Value, tbTPagos.Value,
+                                                    cbTurno.Text, tbMontoInicial.Value, tbTIngresos.Value, tbTEgresos.Value, Tb_TipoCambio.Value,
+                                                    tbObservacion.Text, CType(Dgv_Cortes.DataSource, DataTable), CType(Dgv_Depositos.DataSource, DataTable),
+                                                    dtventas, gs_NroCaja, tbTPagosPrestamos.Value)
                 If res Then
 
                     Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
@@ -775,6 +800,12 @@ Public Class F0_CierreCaja
                 .Caption = "EGRESOS"
                 .FormatString = "0.00"
             End With
+            With Dgv_Buscador.RootTable.Columns("ccPagosPrest")
+                .Width = 130
+                .Visible = False
+                .Caption = "PAGOS PRÉSTAMOS"
+                .FormatString = "0.00"
+            End With
             With Dgv_Buscador.RootTable.Columns("ccObs")
                 .Width = 130
                 .Visible = False
@@ -870,6 +901,7 @@ Public Class F0_CierreCaja
                 tbTEfectivo.Value = .GetValue("ccEfectivoBs")
                 tbTDiferencia.Value = .GetValue("ccDiferencia")
                 tbTPagos.Value = .GetValue("ccPagos")
+                tbTPagosPrestamos.Value = .GetValue("ccPagosPrest")
 
                 lbFecha.Text = CType(.GetValue("ccfact"), Date).ToString("dd/MM/yyyy")
                 lbHora.Text = .GetValue("cchact").ToString
@@ -963,6 +995,7 @@ Public Class F0_CierreCaja
             objrep.SetParameterValue("TPagos", tbTPagos.Text)
             objrep.SetParameterValue("TIngresos", tbTIngresos.Text)
             objrep.SetParameterValue("TEgresos", tbTEgresos.Text)
+            objrep.SetParameterValue("TPagosPrestamos", tbTPagosPrestamos.Text)
             objrep.SetParameterValue("TotalCaja", tbTotalGral.Text)
             objrep.SetParameterValue("TotalCortes", tbTEfectivo.Text)
             objrep.SetParameterValue("TotalDepositos", tbTDeposito.Text)
@@ -1089,12 +1122,13 @@ Public Class F0_CierreCaja
                         tbTCredito.Text = Dgv_VentasPagos.GetTotal(Dgv_VentasPagos.RootTable.Columns("credito"), AggregateFunction.Sum)
                         tbTTarjeta.Text = Dgv_VentasPagos.GetTotal(Dgv_VentasPagos.RootTable.Columns("tarjeta"), AggregateFunction.Sum)
                         tbTContado.Text = Dgv_VentasPagos.GetTotal(Dgv_VentasPagos.RootTable.Columns("totalbs"), AggregateFunction.Sum) - tbTCredito.Text
-                        tbTPagos.Text = Dgv_VentasPagos.GetTotal(Dgv_VentasPagos.RootTable.Columns("pagos"), AggregateFunction.Sum)
+                        tbTPagos.Text = Dgv_VentasPagos.GetTotal(Dgv_VentasPagos.RootTable.Columns("pagosCliente"), AggregateFunction.Sum)
 
                         tbTIngresos.Text = IIf(IsDBNull(dtIngEgre.Compute("Sum(ieMonto)", "ieTipo=1 and ieIdCaja=0")), 0, dtIngEgre.Compute("Sum(ieMonto)", "ieTipo=1 and ieIdCaja=0"))
                         tbTEgresos.Text = IIf(IsDBNull(dtIngEgre.Compute("Sum(ieMonto)", "ieTipo=0 and ieIdCaja=0")), 0, dtIngEgre.Compute("Sum(ieMonto)", "ieTipo=0 and ieIdCaja=0"))
+                        tbTPagosPrestamos.Text = Dgv_VentasPagos.GetTotal(Dgv_VentasPagos.RootTable.Columns("pagosPrestamo"), AggregateFunction.Sum)
 
-                        tbTotalGral.Text = (tbMontoInicial.Value + tbTContado.Value + tbTPagos.Value + tbTIngresos.Value) - tbTEgresos.Value
+                        tbTotalGral.Text = (tbMontoInicial.Value + tbTContado.Value + tbTPagos.Value + tbTIngresos.Value) - (tbTEgresos.Value + tbTPagosPrestamos.Value)
 
 
                         tbTDeposito.Text = 0
