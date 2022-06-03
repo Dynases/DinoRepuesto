@@ -511,7 +511,7 @@ Partial Class F0_MCompras
         Me.LabelX10.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX10.Size = New System.Drawing.Size(101, 18)
         Me.LabelX10.TabIndex = 40
-        Me.LabelX10.Text = "Subtotal:"
+        Me.LabelX10.Text = "Subtotal $:"
         '
         'tbPdesc
         '
@@ -578,9 +578,9 @@ Partial Class F0_MCompras
         Me.LabelX11.Location = New System.Drawing.Point(22, 65)
         Me.LabelX11.Name = "LabelX11"
         Me.LabelX11.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX11.Size = New System.Drawing.Size(44, 18)
+        Me.LabelX11.Size = New System.Drawing.Size(54, 18)
         Me.LabelX11.TabIndex = 38
-        Me.LabelX11.Text = "Total:"
+        Me.LabelX11.Text = "Total $:"
         '
         'LabelX9
         '
@@ -596,7 +596,7 @@ Partial Class F0_MCompras
         Me.LabelX9.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX9.Size = New System.Drawing.Size(101, 18)
         Me.LabelX9.TabIndex = 36
-        Me.LabelX9.Text = "M. Descuento:"
+        Me.LabelX9.Text = "M. Descuento $:"
         '
         'PanelContentSup
         '

@@ -1367,13 +1367,15 @@ Public Class AccesoLogica
 
 
 #Region "TV001 Ventas"
-    Public Shared Function L_fnGeneralVenta() As DataTable
+    Public Shared Function L_fnGeneralVenta(idsucursal As Integer) As DataTable
         Dim _Tabla As DataTable
 
         Dim _listParam As New List(Of Datos.DParametro)
 
         _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@almacen", idsucursal))
         _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+
         _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
 
         Return _Tabla
@@ -3236,7 +3238,7 @@ Public Class AccesoLogica
         Return _resultado
     End Function
     '@tenumi ,@tefdoc,@tety4vend ,@teobs ,@newFecha ,@newHora ,@teuact 
-    Public Shared Function L_fnGrabarCobranzaCompras(_tenumi As String, _tefdoc As String, _tety4vend As Integer, _teobs As String, detalle As DataTable,
+    Public Shared Function L_fnGrabarCobranzaCompras(ByRef _tenumi As String, _tefdoc As String, _tety4vend As Integer, _teobs As String, detalle As DataTable,
                                                      _Sucursal As Integer) As Boolean
         Dim _Tabla As DataTable
         Dim _resultado As Boolean

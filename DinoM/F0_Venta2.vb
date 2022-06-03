@@ -583,7 +583,7 @@ Public Class F0_Venta2
 
     Private Sub _prCargarVenta()
         Dim dt As New DataTable
-        dt = L_fnGeneralVenta()
+        dt = L_fnGeneralVenta(gi_userSuc)
         grVentas.DataSource = dt
         grVentas.RetrieveStructure()
         grVentas.AlternatingColors = True

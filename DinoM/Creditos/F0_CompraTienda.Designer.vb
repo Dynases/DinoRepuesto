@@ -141,7 +141,7 @@ Partial Class F0_CompraTienda
         'PanelSuperior
         '
         Me.PanelSuperior.Margin = New System.Windows.Forms.Padding(2)
-        Me.PanelSuperior.Size = New System.Drawing.Size(897, 72)
+        Me.PanelSuperior.Size = New System.Drawing.Size(1232, 72)
         Me.PanelSuperior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelSuperior.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PanelSuperior.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
@@ -160,7 +160,7 @@ Partial Class F0_CompraTienda
         '
         Me.PanelInferior.Location = New System.Drawing.Point(0, 570)
         Me.PanelInferior.Margin = New System.Windows.Forms.Padding(2)
-        Me.PanelInferior.Size = New System.Drawing.Size(897, 39)
+        Me.PanelInferior.Size = New System.Drawing.Size(1232, 39)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Transparent
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.Transparent
@@ -217,13 +217,13 @@ Partial Class F0_CompraTienda
         '
         'PanelToolBar2
         '
-        Me.PanelToolBar2.Location = New System.Drawing.Point(817, 0)
+        Me.PanelToolBar2.Location = New System.Drawing.Point(1152, 0)
         Me.PanelToolBar2.Margin = New System.Windows.Forms.Padding(2)
         '
         'PanelPrincipal
         '
         Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(2)
-        Me.PanelPrincipal.Size = New System.Drawing.Size(897, 609)
+        Me.PanelPrincipal.Size = New System.Drawing.Size(1232, 609)
         Me.PanelPrincipal.Controls.SetChildIndex(Me.PanelInferior, 0)
         Me.PanelPrincipal.Controls.SetChildIndex(Me.PanelUsuario, 0)
         Me.PanelPrincipal.Controls.SetChildIndex(Me.PanelSuperior, 0)
@@ -247,7 +247,7 @@ Partial Class F0_CompraTienda
         '
         'MPanelUserAct
         '
-        Me.MPanelUserAct.Location = New System.Drawing.Point(697, 0)
+        Me.MPanelUserAct.Location = New System.Drawing.Point(1032, 0)
         Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(2)
         '
         'MRlAccion
@@ -257,7 +257,7 @@ Partial Class F0_CompraTienda
         '
         Me.MRlAccion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.MRlAccion.Margin = New System.Windows.Forms.Padding(2)
-        Me.MRlAccion.Size = New System.Drawing.Size(441, 72)
+        Me.MRlAccion.Size = New System.Drawing.Size(776, 72)
         '
         'PanelContent
         '
@@ -265,17 +265,17 @@ Partial Class F0_CompraTienda
         Me.PanelContent.Controls.Add(Me.PanelTotal)
         Me.PanelContent.Controls.Add(Me.PanelContentSup)
         Me.PanelContent.Margin = New System.Windows.Forms.Padding(2)
-        Me.PanelContent.Size = New System.Drawing.Size(864, 498)
+        Me.PanelContent.Size = New System.Drawing.Size(1199, 498)
         '
         'Panel1
         '
         Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
-        Me.Panel1.Size = New System.Drawing.Size(897, 498)
+        Me.Panel1.Size = New System.Drawing.Size(1232, 498)
         '
         'MSuperTabControlPanel1
         '
         Me.MSuperTabControlPanel1.Margin = New System.Windows.Forms.Padding(2)
-        Me.MSuperTabControlPanel1.Size = New System.Drawing.Size(864, 498)
+        Me.MSuperTabControlPanel1.Size = New System.Drawing.Size(1199, 498)
         '
         'MSuperTabControl
         '
@@ -294,14 +294,14 @@ Partial Class F0_CompraTienda
         Me.MSuperTabControl.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.MSuperTabControl.ControlBox.MenuBox, Me.MSuperTabControl.ControlBox.CloseBox})
         Me.MSuperTabControl.Controls.Add(Me.SuperTabControlPanel1)
         Me.MSuperTabControl.Margin = New System.Windows.Forms.Padding(2)
-        Me.MSuperTabControl.Size = New System.Drawing.Size(897, 498)
+        Me.MSuperTabControl.Size = New System.Drawing.Size(1232, 498)
         Me.MSuperTabControl.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItem1})
         Me.MSuperTabControl.Controls.SetChildIndex(Me.SuperTabControlPanel1, 0)
         Me.MSuperTabControl.Controls.SetChildIndex(Me.MSuperTabControlPanel1, 0)
         '
         'PictureBox1
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(624, 0)
+        Me.PictureBox1.Location = New System.Drawing.Point(959, 0)
         Me.PictureBox1.Margin = New System.Windows.Forms.Padding(2)
         '
         'PanelDetalle
@@ -312,7 +312,7 @@ Partial Class F0_CompraTienda
         Me.PanelDetalle.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelDetalle.Location = New System.Drawing.Point(0, 230)
         Me.PanelDetalle.Name = "PanelDetalle"
-        Me.PanelDetalle.Size = New System.Drawing.Size(864, 177)
+        Me.PanelDetalle.Size = New System.Drawing.Size(1199, 177)
         Me.PanelDetalle.TabIndex = 4
         '
         'GroupPanel4
@@ -325,7 +325,7 @@ Partial Class F0_CompraTienda
         Me.GroupPanel4.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupPanel4.Location = New System.Drawing.Point(0, 0)
         Me.GroupPanel4.Name = "GroupPanel4"
-        Me.GroupPanel4.Size = New System.Drawing.Size(864, 0)
+        Me.GroupPanel4.Size = New System.Drawing.Size(1199, 0)
         '
         '
         '
@@ -365,7 +365,7 @@ Partial Class F0_CompraTienda
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel5.Location = New System.Drawing.Point(0, 0)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(858, 8)
+        Me.Panel5.Size = New System.Drawing.Size(1193, 8)
         Me.Panel5.TabIndex = 0
         '
         'grdetalle
@@ -379,7 +379,7 @@ Partial Class F0_CompraTienda
         Me.grdetalle.Name = "grdetalle"
         Me.grdetalle.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.grdetalle.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.grdetalle.Size = New System.Drawing.Size(858, 8)
+        Me.grdetalle.Size = New System.Drawing.Size(1193, 8)
         Me.grdetalle.TabIndex = 3
         Me.grdetalle.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -393,7 +393,7 @@ Partial Class F0_CompraTienda
         Me.GPanelProductos.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GPanelProductos.Location = New System.Drawing.Point(0, -30)
         Me.GPanelProductos.Name = "GPanelProductos"
-        Me.GPanelProductos.Size = New System.Drawing.Size(864, 207)
+        Me.GPanelProductos.Size = New System.Drawing.Size(1199, 207)
         '
         '
         '
@@ -433,7 +433,7 @@ Partial Class F0_CompraTienda
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel7.Location = New System.Drawing.Point(0, 0)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(858, 184)
+        Me.Panel7.Size = New System.Drawing.Size(1193, 184)
         Me.Panel7.TabIndex = 0
         '
         'grProductos
@@ -448,7 +448,7 @@ Partial Class F0_CompraTienda
         Me.grProductos.Name = "grProductos"
         Me.grProductos.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.grProductos.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.grProductos.Size = New System.Drawing.Size(858, 184)
+        Me.grProductos.Size = New System.Drawing.Size(1193, 184)
         Me.grProductos.TabIndex = 0
         Me.grProductos.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -461,7 +461,7 @@ Partial Class F0_CompraTienda
         Me.PanelTotal.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelTotal.Location = New System.Drawing.Point(0, 407)
         Me.PanelTotal.Name = "PanelTotal"
-        Me.PanelTotal.Size = New System.Drawing.Size(864, 91)
+        Me.PanelTotal.Size = New System.Drawing.Size(1199, 91)
         Me.PanelTotal.TabIndex = 5
         '
         'Panel4
@@ -476,7 +476,7 @@ Partial Class F0_CompraTienda
         Me.Panel4.Controls.Add(Me.LabelX11)
         Me.Panel4.Controls.Add(Me.LabelX9)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel4.Location = New System.Drawing.Point(483, 0)
+        Me.Panel4.Location = New System.Drawing.Point(818, 0)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(381, 91)
         Me.Panel4.TabIndex = 39
@@ -529,7 +529,7 @@ Partial Class F0_CompraTienda
         Me.LabelX10.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX10.Size = New System.Drawing.Size(101, 18)
         Me.LabelX10.TabIndex = 40
-        Me.LabelX10.Text = "Subtotal:"
+        Me.LabelX10.Text = "Subtotal $:"
         '
         'tbPdesc
         '
@@ -596,9 +596,9 @@ Partial Class F0_CompraTienda
         Me.LabelX11.Location = New System.Drawing.Point(22, 65)
         Me.LabelX11.Name = "LabelX11"
         Me.LabelX11.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX11.Size = New System.Drawing.Size(44, 18)
+        Me.LabelX11.Size = New System.Drawing.Size(54, 18)
         Me.LabelX11.TabIndex = 38
-        Me.LabelX11.Text = "Total:"
+        Me.LabelX11.Text = "Total $:"
         '
         'LabelX9
         '
@@ -614,7 +614,7 @@ Partial Class F0_CompraTienda
         Me.LabelX9.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX9.Size = New System.Drawing.Size(101, 18)
         Me.LabelX9.TabIndex = 36
-        Me.LabelX9.Text = "M. Descuento:"
+        Me.LabelX9.Text = "M. Descuento $:"
         '
         'PanelContentSup
         '
@@ -623,7 +623,7 @@ Partial Class F0_CompraTienda
         Me.PanelContentSup.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelContentSup.Location = New System.Drawing.Point(0, 0)
         Me.PanelContentSup.Name = "PanelContentSup"
-        Me.PanelContentSup.Size = New System.Drawing.Size(864, 230)
+        Me.PanelContentSup.Size = New System.Drawing.Size(1199, 230)
         Me.PanelContentSup.TabIndex = 6
         '
         'GroupPanel1
@@ -637,7 +637,7 @@ Partial Class F0_CompraTienda
         Me.GroupPanel1.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.GroupPanel1.Location = New System.Drawing.Point(0, 0)
         Me.GroupPanel1.Name = "GroupPanel1"
-        Me.GroupPanel1.Size = New System.Drawing.Size(864, 230)
+        Me.GroupPanel1.Size = New System.Drawing.Size(1199, 230)
         '
         '
         '
@@ -706,7 +706,7 @@ Partial Class F0_CompraTienda
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(858, 207)
+        Me.Panel2.Size = New System.Drawing.Size(1193, 207)
         Me.Panel2.TabIndex = 234
         '
         'btnAgregar
@@ -771,7 +771,6 @@ Partial Class F0_CompraTienda
         Me.LabelX14.Size = New System.Drawing.Size(90, 23)
         Me.LabelX14.TabIndex = 673
         Me.LabelX14.Text = "Tipo Moneda:"
-        Me.LabelX14.Visible = False
         '
         'swMoneda
         '
@@ -791,7 +790,6 @@ Partial Class F0_CompraTienda
         Me.swMoneda.TabIndex = 672
         Me.swMoneda.Value = True
         Me.swMoneda.ValueObject = "Y"
-        Me.swMoneda.Visible = False
         '
         'swRetencion
         '
@@ -1589,7 +1587,7 @@ Partial Class F0_CompraTienda
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(897, 609)
+        Me.ClientSize = New System.Drawing.Size(1232, 609)
         Me.Location = New System.Drawing.Point(0, 0)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "F0_CompraTienda"

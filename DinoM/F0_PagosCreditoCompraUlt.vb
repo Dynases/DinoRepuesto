@@ -131,9 +131,8 @@ Public Class F0_PagosCreditoCompraUlt
         End With
         With grcobranza.RootTable.Columns("tdnrodoc")
             .Width = 120
-            .Visible = False
+            .Visible = True
             .Caption = "Nro. Compra"
-            .FormatString = "dd/MM/yyyy"
         End With
         With grcobranza.RootTable.Columns("tefdoc")
             .Width = 120
@@ -151,13 +150,23 @@ Public Class F0_PagosCreditoCompraUlt
             .Width = 300
             .Visible = False
         End With
+        With grcobranza.RootTable.Columns("nombre")
+            .Caption = "Proveedor"
+            .Width = 200
+            .Visible = True
+        End With
+        With grcobranza.RootTable.Columns("nrorecibo")
+            .Caption = "Nro. Recibo"
+            .Width = 100
+            .Visible = True
+        End With
         With grcobranza.RootTable.Columns("teobs")
             .Caption = "Observacion"
             .Width = 250
             .Visible = True
         End With
         With grcobranza.RootTable.Columns("total")
-            .Caption = "Total"
+            .Caption = "Total $"
             .Width = 100
             .TextAlignment = TextAlignment.Far
             .FormatString = "0.00"
@@ -175,7 +184,10 @@ Public Class F0_PagosCreditoCompraUlt
             .Width = 100
             .Visible = False
         End With
-
+        With grcobranza.RootTable.Columns("Sucursal")
+            .Width = 100
+            .Visible = False
+        End With
 
         With grcobranza
             .GroupByBoxVisible = False
@@ -281,7 +293,7 @@ Public Class F0_PagosCreditoCompraUlt
             .FormatString = "0.00"
             .Visible = True
             .TextAlignment = TextAlignment.Far
-            .Caption = "Pendiente"
+            .Caption = "Pendiente $"
         End With
 
         With grfactura.RootTable.Columns("NroDoc")
@@ -297,7 +309,7 @@ Public Class F0_PagosCreditoCompraUlt
             .Visible = True
         End With
         With grfactura.RootTable.Columns("PagoAc")
-            .Caption = "Total Pagado"
+            .Caption = "Total Pagado $"
             .Width = 180
             .FormatString = "0.00"
             .TextAlignment = TextAlignment.Far
@@ -469,7 +481,7 @@ Public Class F0_PagosCreditoCompraUlt
             .Visible = True
         End With
         With grPendiente.RootTable.Columns("totalfactura")
-            .Caption = "Total"
+            .Caption = "Total $"
             .Width = 120
             .MaxLength = 100
             .FormatString = "0.00"
@@ -477,7 +489,7 @@ Public Class F0_PagosCreditoCompraUlt
             .Visible = True
         End With
         With grPendiente.RootTable.Columns("pendiente")
-            .Caption = "Pendiente Pago"
+            .Caption = "Pendiente Pago $"
             .Width = 140
             .FormatString = "0.00"
             .TextAlignment = TextAlignment.Far
@@ -539,7 +551,8 @@ Public Class F0_PagosCreditoCompraUlt
             .Visible = True
         End With
         With grpagos.RootTable.Columns("tdmonto")
-            .Caption = "Pagos"
+            .Caption = "Pagos $"
+            .HeaderAlignment = TextAlignment.Far
             .Width = 180
             .FormatString = "0.00"
             .TextAlignment = TextAlignment.Far
@@ -779,7 +792,7 @@ Public Class F0_PagosCreditoCompraUlt
                                       eToastGlowColor.Green,
                                       eToastPosition.TopCenter
                                       )
-
+            P_GenerarReporteDirecto(numi)
             _prCargarCobranza()
             _Limpiar()
 
@@ -835,7 +848,7 @@ Public Class F0_PagosCreditoCompraUlt
         ParteEntera = Int(total)
         ParteDecimal = total - ParteEntera
         Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
-        IIf(ParteDecimal.ToString.Equals("0"), "00", ParteDecimal.ToString) + "/100 Bolivianos"
+        IIf(ParteDecimal.ToString.Equals("0"), "00", ParteDecimal.ToString) + "/100 Dólares"
 
         P_Global.Visualizador = New Visualizador
 
@@ -847,6 +860,34 @@ Public Class F0_PagosCreditoCompraUlt
         objrep.SetParameterValue("usuario", gs_user)
         P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
         P_Global.Visualizador.Show() 'Comentar
+        P_Global.Visualizador.BringToFront() 'Comentar
+
+
+    End Sub
+
+    Private Sub P_GenerarReporteDirecto(numi As String)
+        Dim dt As DataTable = L_fnCobranzasReporteCompras(numi)
+        Dim total As Double = dt.Compute("SUM(importe)", "")
+        If Not IsNothing(P_Global.Visualizador) Then
+            P_Global.Visualizador.Close()
+        End If
+        Dim ParteEntera As Long
+        Dim ParteDecimal As Double
+        ParteEntera = Int(total)
+        ParteDecimal = total - ParteEntera
+        Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
+        IIf(ParteDecimal.ToString.Equals("0"), "00", ParteDecimal.ToString) + "/100 Dólares"
+
+        P_Global.Visualizador = New Visualizador
+
+        Dim objrep As New R_ReportePagosCobranzas
+        '' GenerarNro(_dt)
+        ''objrep.SetDataSource(Dt1Kardex)
+        objrep.SetDataSource(dt)
+        objrep.SetParameterValue("total", li)
+        objrep.SetParameterValue("usuario", gs_user)
+        P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
+        P_Global.Visualizador.ShowDialog() 'Comentar
         P_Global.Visualizador.BringToFront() 'Comentar
 
 

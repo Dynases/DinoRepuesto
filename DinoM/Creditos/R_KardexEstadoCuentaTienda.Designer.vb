@@ -76,17 +76,20 @@ Partial Class R_KardexEstadoCuentaTienda
         Me.SuperTabPrincipal.ControlBox.MenuBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabPrincipal.ControlBox.MenuBox, Me.SuperTabPrincipal.ControlBox.CloseBox})
-        Me.SuperTabPrincipal.Size = New System.Drawing.Size(974, 557)
+        Me.SuperTabPrincipal.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SuperTabPrincipal.Size = New System.Drawing.Size(730, 453)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelBuscador, 0)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelRegistro, 0)
         '
         'SuperTabControlPanelBuscador
         '
-        Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(939, 557)
+        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(704, 453)
         '
         'SuperTabControlPanelRegistro
         '
-        Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(939, 557)
+        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(698, 453)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelInferior, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelIzq, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelPrincipal, 0)
@@ -104,8 +107,9 @@ Partial Class R_KardexEstadoCuentaTienda
         '
         'PanelInferior
         '
-        Me.PanelInferior.Location = New System.Drawing.Point(0, 513)
-        Me.PanelInferior.Size = New System.Drawing.Size(939, 44)
+        Me.PanelInferior.Location = New System.Drawing.Point(0, 417)
+        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PanelInferior.Size = New System.Drawing.Size(698, 36)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Gold
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.Gold
@@ -146,21 +150,26 @@ Partial Class R_KardexEstadoCuentaTienda
         '
         'PanelPrincipal
         '
-        Me.PanelPrincipal.Size = New System.Drawing.Size(455, 513)
+        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PanelPrincipal.Size = New System.Drawing.Size(335, 417)
         '
         'MPanelUserAct
         '
-        Me.MPanelUserAct.Location = New System.Drawing.Point(672, 0)
+        Me.MPanelUserAct.Location = New System.Drawing.Point(498, 0)
+        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         '
         'MReportViewer
         '
-        Me.MReportViewer.Size = New System.Drawing.Size(455, 513)
+        Me.MReportViewer.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.MReportViewer.Size = New System.Drawing.Size(335, 417)
+        Me.MReportViewer.ToolPanelWidth = 200
         '
         'MGPFiltros
         '
         Me.MGPFiltros.Controls.Add(Me.GroupBox2)
         Me.MGPFiltros.Controls.Add(Me.GroupBox1)
-        Me.MGPFiltros.Size = New System.Drawing.Size(484, 424)
+        Me.MGPFiltros.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.MGPFiltros.Size = New System.Drawing.Size(363, 345)
         '
         '
         '
@@ -192,7 +201,8 @@ Partial Class R_KardexEstadoCuentaTienda
         '
         'PanelIzq
         '
-        Me.PanelIzq.Size = New System.Drawing.Size(484, 513)
+        Me.PanelIzq.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PanelIzq.Size = New System.Drawing.Size(363, 417)
         Me.PanelIzq.Controls.SetChildIndex(Me.PanelSuperior, 0)
         Me.PanelIzq.Controls.SetChildIndex(Me.MGPFiltros, 0)
         '
@@ -204,10 +214,8 @@ Partial Class R_KardexEstadoCuentaTienda
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox1.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox1.Size = New System.Drawing.Size(478, 84)
+        Me.GroupBox1.Size = New System.Drawing.Size(357, 68)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Agrupados"
@@ -219,15 +227,14 @@ Partial Class R_KardexEstadoCuentaTienda
         '
         Me.swdetresum.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.swdetresum.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.swdetresum.Location = New System.Drawing.Point(128, 57)
-        Me.swdetresum.Margin = New System.Windows.Forms.Padding(4)
+        Me.swdetresum.Location = New System.Drawing.Point(96, 46)
         Me.swdetresum.Name = "swdetresum"
         Me.swdetresum.OffBackColor = System.Drawing.Color.DarkSlateGray
         Me.swdetresum.OffText = "RESUMEN"
         Me.swdetresum.OffTextColor = System.Drawing.Color.White
         Me.swdetresum.OnBackColor = System.Drawing.Color.Gold
         Me.swdetresum.OnText = "DETALLE"
-        Me.swdetresum.Size = New System.Drawing.Size(216, 27)
+        Me.swdetresum.Size = New System.Drawing.Size(162, 22)
         Me.swdetresum.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.swdetresum.TabIndex = 247
         Me.swdetresum.Value = True
@@ -241,15 +248,14 @@ Partial Class R_KardexEstadoCuentaTienda
         '
         Me.swCreditoCliente.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.swCreditoCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.swCreditoCliente.Location = New System.Drawing.Point(128, 25)
-        Me.swCreditoCliente.Margin = New System.Windows.Forms.Padding(4)
+        Me.swCreditoCliente.Location = New System.Drawing.Point(96, 20)
         Me.swCreditoCliente.Name = "swCreditoCliente"
         Me.swCreditoCliente.OffBackColor = System.Drawing.Color.DarkSlateGray
-        Me.swCreditoCliente.OffText = "UN PROVEEDOR"
+        Me.swCreditoCliente.OffText = "UNA TIENDA"
         Me.swCreditoCliente.OffTextColor = System.Drawing.Color.White
         Me.swCreditoCliente.OnBackColor = System.Drawing.Color.Gold
         Me.swCreditoCliente.OnText = "TODAS TIENDAS"
-        Me.swCreditoCliente.Size = New System.Drawing.Size(251, 27)
+        Me.swCreditoCliente.Size = New System.Drawing.Size(188, 22)
         Me.swCreditoCliente.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.swCreditoCliente.TabIndex = 6
         Me.swCreditoCliente.Value = True
@@ -272,11 +278,9 @@ Partial Class R_KardexEstadoCuentaTienda
         Me.GroupBox2.Controls.Add(Me.tbFechaI)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(0, 84)
-        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4)
+        Me.GroupBox2.Location = New System.Drawing.Point(0, 68)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox2.Size = New System.Drawing.Size(478, 313)
+        Me.GroupBox2.Size = New System.Drawing.Size(357, 254)
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Datos"
@@ -291,11 +295,10 @@ Partial Class R_KardexEstadoCuentaTienda
         Me.tbCuentas.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbCuentas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbCuentas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbCuentas.Location = New System.Drawing.Point(97, 204)
-        Me.tbCuentas.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbCuentas.Location = New System.Drawing.Point(73, 166)
         Me.tbCuentas.Name = "tbCuentas"
         Me.tbCuentas.PreventEnterBeep = True
-        Me.tbCuentas.Size = New System.Drawing.Size(223, 26)
+        Me.tbCuentas.Size = New System.Drawing.Size(167, 22)
         Me.tbCuentas.TabIndex = 246
         '
         'tbCliente
@@ -308,11 +311,10 @@ Partial Class R_KardexEstadoCuentaTienda
         Me.tbCliente.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbCliente.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbCliente.Location = New System.Drawing.Point(96, 142)
-        Me.tbCliente.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbCliente.Location = New System.Drawing.Point(72, 115)
         Me.tbCliente.Name = "tbCliente"
         Me.tbCliente.PreventEnterBeep = True
-        Me.tbCliente.Size = New System.Drawing.Size(339, 26)
+        Me.tbCliente.Size = New System.Drawing.Size(254, 22)
         Me.tbCliente.TabIndex = 245
         '
         'CheckTodosCuenta
@@ -321,10 +323,9 @@ Partial Class R_KardexEstadoCuentaTienda
         '
         '
         Me.CheckTodosCuenta.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.CheckTodosCuenta.Location = New System.Drawing.Point(392, 204)
-        Me.CheckTodosCuenta.Margin = New System.Windows.Forms.Padding(4)
+        Me.CheckTodosCuenta.Location = New System.Drawing.Point(294, 166)
         Me.CheckTodosCuenta.Name = "CheckTodosCuenta"
-        Me.CheckTodosCuenta.Size = New System.Drawing.Size(73, 28)
+        Me.CheckTodosCuenta.Size = New System.Drawing.Size(55, 23)
         Me.CheckTodosCuenta.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.CheckTodosCuenta.TabIndex = 244
         Me.CheckTodosCuenta.Text = "Todos"
@@ -335,10 +336,9 @@ Partial Class R_KardexEstadoCuentaTienda
         '
         '
         Me.CheckUnaCuenta.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.CheckUnaCuenta.Location = New System.Drawing.Point(325, 204)
-        Me.CheckUnaCuenta.Margin = New System.Windows.Forms.Padding(4)
+        Me.CheckUnaCuenta.Location = New System.Drawing.Point(244, 166)
         Me.CheckUnaCuenta.Name = "CheckUnaCuenta"
-        Me.CheckUnaCuenta.Size = New System.Drawing.Size(59, 28)
+        Me.CheckUnaCuenta.Size = New System.Drawing.Size(44, 23)
         Me.CheckUnaCuenta.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.CheckUnaCuenta.TabIndex = 240
         Me.CheckUnaCuenta.Text = "Una"
@@ -352,11 +352,10 @@ Partial Class R_KardexEstadoCuentaTienda
         Me.tbcodCuenta.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbcodCuenta.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbcodCuenta.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbcodCuenta.Location = New System.Drawing.Point(56, 202)
-        Me.tbcodCuenta.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbcodCuenta.Location = New System.Drawing.Point(42, 164)
         Me.tbcodCuenta.Name = "tbcodCuenta"
         Me.tbcodCuenta.PreventEnterBeep = True
-        Me.tbcodCuenta.Size = New System.Drawing.Size(29, 26)
+        Me.tbcodCuenta.Size = New System.Drawing.Size(22, 22)
         Me.tbcodCuenta.TabIndex = 243
         Me.tbcodCuenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.tbcodCuenta.Visible = False
@@ -370,11 +369,10 @@ Partial Class R_KardexEstadoCuentaTienda
         Me.lbCuentas.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbCuentas.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbCuentas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbCuentas.Location = New System.Drawing.Point(9, 172)
-        Me.lbCuentas.Margin = New System.Windows.Forms.Padding(4)
+        Me.lbCuentas.Location = New System.Drawing.Point(7, 140)
         Me.lbCuentas.Name = "lbCuentas"
         Me.lbCuentas.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbCuentas.Size = New System.Drawing.Size(99, 28)
+        Me.lbCuentas.Size = New System.Drawing.Size(74, 23)
         Me.lbCuentas.TabIndex = 241
         Me.lbCuentas.Text = "Cuentas:"
         '
@@ -387,11 +385,10 @@ Partial Class R_KardexEstadoCuentaTienda
         Me.tbCodigoCliente.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbCodigoCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbCodigoCliente.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbCodigoCliente.Location = New System.Drawing.Point(59, 138)
-        Me.tbCodigoCliente.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbCodigoCliente.Location = New System.Drawing.Point(44, 112)
         Me.tbCodigoCliente.Name = "tbCodigoCliente"
         Me.tbCodigoCliente.PreventEnterBeep = True
-        Me.tbCodigoCliente.Size = New System.Drawing.Size(29, 26)
+        Me.tbCodigoCliente.Size = New System.Drawing.Size(22, 22)
         Me.tbCodigoCliente.TabIndex = 238
         Me.tbCodigoCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.tbCodigoCliente.Visible = False
@@ -405,11 +402,10 @@ Partial Class R_KardexEstadoCuentaTienda
         Me.lbcliente.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbcliente.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbcliente.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbcliente.Location = New System.Drawing.Point(12, 108)
-        Me.lbcliente.Margin = New System.Windows.Forms.Padding(4)
+        Me.lbcliente.Location = New System.Drawing.Point(9, 88)
         Me.lbcliente.Name = "lbcliente"
         Me.lbcliente.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbcliente.Size = New System.Drawing.Size(99, 28)
+        Me.lbcliente.Size = New System.Drawing.Size(74, 23)
         Me.lbcliente.TabIndex = 236
         Me.lbcliente.Text = "Tienda:"
         '
@@ -422,11 +418,10 @@ Partial Class R_KardexEstadoCuentaTienda
         Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX1.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX1.Location = New System.Drawing.Point(92, 60)
-        Me.LabelX1.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX1.Location = New System.Drawing.Point(69, 49)
         Me.LabelX1.Name = "LabelX1"
         Me.LabelX1.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX1.Size = New System.Drawing.Size(69, 28)
+        Me.LabelX1.Size = New System.Drawing.Size(52, 23)
         Me.LabelX1.TabIndex = 235
         Me.LabelX1.Text = "Al:"
         '
@@ -441,8 +436,7 @@ Partial Class R_KardexEstadoCuentaTienda
         Me.tbFechaF.ButtonDropDown.Visible = True
         Me.tbFechaF.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbFechaF.IsPopupCalendarOpen = False
-        Me.tbFechaF.Location = New System.Drawing.Point(193, 60)
-        Me.tbFechaF.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbFechaF.Location = New System.Drawing.Point(145, 49)
         '
         '
         '
@@ -473,7 +467,7 @@ Partial Class R_KardexEstadoCuentaTienda
         Me.tbFechaF.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbFechaF.MonthCalendar.TodayButtonVisible = True
         Me.tbFechaF.Name = "tbFechaF"
-        Me.tbFechaF.Size = New System.Drawing.Size(160, 26)
+        Me.tbFechaF.Size = New System.Drawing.Size(120, 22)
         Me.tbFechaF.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.tbFechaF.TabIndex = 234
         '
@@ -486,11 +480,10 @@ Partial Class R_KardexEstadoCuentaTienda
         Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX4.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX4.Location = New System.Drawing.Point(88, 21)
-        Me.LabelX4.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX4.Location = New System.Drawing.Point(66, 17)
         Me.LabelX4.Name = "LabelX4"
         Me.LabelX4.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX4.Size = New System.Drawing.Size(99, 28)
+        Me.LabelX4.Size = New System.Drawing.Size(74, 23)
         Me.LabelX4.TabIndex = 233
         Me.LabelX4.Text = "Fecha Del:"
         '
@@ -505,8 +498,7 @@ Partial Class R_KardexEstadoCuentaTienda
         Me.tbFechaI.ButtonDropDown.Visible = True
         Me.tbFechaI.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbFechaI.IsPopupCalendarOpen = False
-        Me.tbFechaI.Location = New System.Drawing.Point(193, 22)
-        Me.tbFechaI.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbFechaI.Location = New System.Drawing.Point(145, 18)
         '
         '
         '
@@ -537,7 +529,7 @@ Partial Class R_KardexEstadoCuentaTienda
         Me.tbFechaI.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbFechaI.MonthCalendar.TodayButtonVisible = True
         Me.tbFechaI.Name = "tbFechaI"
-        Me.tbFechaI.Size = New System.Drawing.Size(160, 26)
+        Me.tbFechaI.Size = New System.Drawing.Size(120, 22)
         Me.tbFechaI.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.tbFechaI.TabIndex = 232
         '
@@ -548,10 +540,11 @@ Partial Class R_KardexEstadoCuentaTienda
         '
         'R_KardexEstadoCuentaTienda
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(974, 557)
+        Me.ClientSize = New System.Drawing.Size(730, 453)
         Me.Location = New System.Drawing.Point(0, 0)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "R_KardexEstadoCuentaTienda"
         Me.Text = "R_KardexEstadoCuentaTienda"
         Me.Controls.SetChildIndex(Me.SuperTabPrincipal, 0)

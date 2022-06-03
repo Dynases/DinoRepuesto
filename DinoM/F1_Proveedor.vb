@@ -287,7 +287,7 @@ Public Class F1_Proveedor
         cbTipoDoc.ReadOnly = False
         tbNdoc.ReadOnly = False
         tbFnac.Enabled = True
-        tbFIngr.Enabled = True
+        'tbFIngr.Enabled = True
         tbUltVenta.Enabled = True
         swEstado.IsReadOnly = False
         _prCrearCarpetaImagenes()

@@ -549,7 +549,7 @@ Public Class F0_Ventas
         With grdetalle.RootTable.Columns("Item")
             .Caption = "Item"
             .Width = 50
-            .Visible = False
+            .Visible = True
         End With
         With grdetalle.RootTable.Columns("yfcbarra")
             .Caption = "C.Barra"
@@ -798,7 +798,7 @@ Public Class F0_Ventas
 
     Private Sub _prCargarVenta()
         Dim dt As New DataTable
-        dt = L_fnGeneralVenta()
+        dt = L_fnGeneralVenta(gi_userSuc)
         grVentas.DataSource = dt
         grVentas.RetrieveStructure()
         grVentas.AlternatingColors = True

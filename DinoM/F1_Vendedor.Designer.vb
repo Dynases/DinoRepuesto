@@ -121,6 +121,7 @@ Partial Class F1_Vendedor
         Me.SuperTabPrincipal.ControlBox.MenuBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabPrincipal.ControlBox.MenuBox, Me.SuperTabPrincipal.ControlBox.CloseBox})
+        Me.SuperTabPrincipal.Size = New System.Drawing.Size(1362, 741)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelBuscador, 0)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelRegistro, 0)
         '
@@ -150,6 +151,7 @@ Partial Class F1_Vendedor
         '
         'PanelInferior
         '
+        Me.PanelInferior.Location = New System.Drawing.Point(0, 705)
         Me.PanelInferior.Size = New System.Drawing.Size(1330, 36)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.DarkSlateGray
@@ -182,6 +184,10 @@ Partial Class F1_Vendedor
         Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingTop = 3
         Me.BubbleBarUsuario.MouseOverTabColors.BorderColor = System.Drawing.SystemColors.Highlight
         Me.BubbleBarUsuario.SelectedTabColors.BorderColor = System.Drawing.Color.Black
+        '
+        'TxtNombreUsu
+        '
+        Me.TxtNombreUsu.Size = New System.Drawing.Size(200, 36)
         '
         'btnSalir
         '
@@ -269,6 +275,10 @@ Partial Class F1_Vendedor
         'btnImprimir
         '
         Me.btnImprimir.Visible = False
+        '
+        'btnUltimo
+        '
+        Me.btnUltimo.Location = New System.Drawing.Point(129, 0)
         '
         'MPanelUserAct
         '
@@ -913,6 +923,7 @@ Partial Class F1_Vendedor
         Me.LabelX16.Size = New System.Drawing.Size(93, 23)
         Me.LabelX16.TabIndex = 247
         Me.LabelX16.Text = "Ultima Venta:"
+        Me.LabelX16.Visible = False
         '
         'tbUltVenta
         '
@@ -922,6 +933,7 @@ Partial Class F1_Vendedor
         Me.tbUltVenta.Name = "tbUltVenta"
         Me.tbUltVenta.Size = New System.Drawing.Size(122, 22)
         Me.tbUltVenta.TabIndex = 5
+        Me.tbUltVenta.Visible = False
         '
         'LabelX13
         '

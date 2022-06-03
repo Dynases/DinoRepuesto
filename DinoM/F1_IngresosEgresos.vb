@@ -205,7 +205,7 @@ Public Class F1_IngresosEgresos
         listEstCeldas.Add(New Modelo.Celda("ieDescripcion", True, "Descripción", 350))
         listEstCeldas.Add(New Modelo.Celda("ieConcepto", False))
         listEstCeldas.Add(New Modelo.Celda("ycdes3", True, "Concepto", 250))
-        listEstCeldas.Add(New Modelo.Celda("ieMonto", True, "Monto", 150, "0.00"))
+        listEstCeldas.Add(New Modelo.Celda("ieMonto", True, "Monto Bs.", 150, "0.00"))
         listEstCeldas.Add(New Modelo.Celda("ieObs", False))
         listEstCeldas.Add(New Modelo.Celda("ieEstado", False))
         listEstCeldas.Add(New Modelo.Celda("ieIdCaja", False))

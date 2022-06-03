@@ -351,7 +351,7 @@ Public Class F1_Vendedor
         tbNdoc.ReadOnly = False
 
         tbFnac.Enabled = True
-        tbFIngr.Enabled = True
+        'tbFIngr.Enabled = True
         tbUltVenta.Enabled = True
 
         swEstado.IsReadOnly = False

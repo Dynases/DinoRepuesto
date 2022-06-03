@@ -212,7 +212,7 @@ Public Class F0_MCompras
         swEmision.Value = False
         swConsigna.Value = False
         swRetencion.Value = False
-        swMoneda.Value = True
+        swMoneda.Value = False
         tbTipoCambio.Value = 0
 
         tbNFactura.Clear()
@@ -547,7 +547,7 @@ Public Class F0_MCompras
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
             .FormatString = "0.00"
-            .Caption = "Sub Total".ToUpper
+            .Caption = "Sub Total ($)".ToUpper
         End With
         With grdetalle.RootTable.Columns("cbobs")
             .Width = 50
@@ -1290,6 +1290,7 @@ Public Class F0_MCompras
 
         objrep.SetParameterValue("Literal", _Literal)
 
+
         P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
         P_Global.Visualizador.ShowDialog() 'Comentar
         P_Global.Visualizador.BringToFront()
@@ -2018,7 +2019,10 @@ salirIf:
     End Sub
 
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
-        P_GenerarReporteCompra()
+        If tbCodigo.Text <> String.Empty Then
+            P_GenerarReporteCompra()
+        End If
+
     End Sub
 
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click

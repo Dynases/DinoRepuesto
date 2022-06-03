@@ -558,11 +558,23 @@
       <DependentUpon>R_EstadoCuentasCompra.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reporte\R_HisotorialCobrosComprasCredito.vb">
+      <DependentUpon>R_HisotorialCobrosComprasCredito.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reporte\R_Movimiento.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>R_Movimiento.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\R_NotaPrestamo.vb">
+      <DependentUpon>R_NotaPrestamo.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reporte\R_NotaCompra.vb">
       <AutoGen>True</AutoGen>
@@ -632,6 +644,12 @@
     </Compile>
     <Compile Include="Reporte\R_ReporteCobranzasCarta.vb">
       <DependentUpon>R_ReporteCobranzasCarta.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reporte\R_ReportePagosPrestamos.vb">
+      <DependentUpon>R_ReportePagosPrestamos.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -1134,9 +1152,17 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_EstadoCuentasCompra.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\R_HisotorialCobrosComprasCredito.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_HisotorialCobrosComprasCredito.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reporte\R_Movimiento.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_Movimiento.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\R_NotaPrestamo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_NotaPrestamo.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\R_NotaCompra.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1185,6 +1211,10 @@
     <EmbeddedResource Include="Reporte\R_ReporteCobranzasCarta.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_ReporteCobranzasCarta.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\R_ReportePagosPrestamos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_ReportePagosPrestamos.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\R_SaldosPorLinea.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

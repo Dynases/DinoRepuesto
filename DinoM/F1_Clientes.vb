@@ -322,8 +322,8 @@ Public Class F1_Clientes
         tbNdoc.ReadOnly = False
         tbNombFac.ReadOnly = False
         tbFnac.Enabled = True
-        tbFIngr.Enabled = True
-        tbUltVenta.Enabled = True
+        'tbFIngr.Enabled = True
+        'tbUltVenta.Enabled = True
         tbNit.ReadOnly = False
         Tbdias.ReadOnly = False
         TbLCred.ReadOnly = False
@@ -835,9 +835,6 @@ Public Class F1_Clientes
         End If
     End Sub
 
-    Private Sub btnGrabar_Click(sender As Object, e As EventArgs) Handles btnGrabar.Click
-
-    End Sub
 
     Private Sub JGrM_Buscador_KeyDown(sender As Object, e As KeyEventArgs) Handles JGrM_Buscador.KeyDown
         If e.KeyData = Keys.Enter Then
@@ -951,13 +948,6 @@ Public Class F1_Clientes
         End If
     End Sub
 
-    Private Sub TextBoxX1_TextChanged(sender As Object, e As EventArgs) Handles Tbdias.TextChanged
-
-    End Sub
-
-    Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
-
-    End Sub
 
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
         P_GenerarReporte()

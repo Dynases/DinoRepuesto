@@ -66,7 +66,7 @@ Public Class R_KardexEstadoCuentaTienda
         _prInterpretarDatos(_dt)
         If (_dt.Rows.Count > 0) Then
 
-            Dim objrep As New R_HisotorialCobrosVentasCredito
+            Dim objrep As New R_HisotorialCobrosComprasCredito
             objrep.SetDataSource(_dt)
             Dim dt2 As DataTable = L_fnNameReporte()
             Dim ParEmp1 As String = ""

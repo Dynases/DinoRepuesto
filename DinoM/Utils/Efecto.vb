@@ -63,8 +63,9 @@ Public Class Efecto
     End Sub
     Public Sub _prLogin()
         Dim Frm As New Login
-        Frm.ShowDialog()
         Me.Close()
+        Frm.ShowDialog()
+        'Me.Close()
     End Sub
     Sub _prMostrarFormAyuda()
 
