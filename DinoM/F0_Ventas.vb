@@ -334,6 +334,7 @@ Public Class F0_Ventas
         _CodCliente = 0
         _CodEmpleado = 0
         tbFechaVenta.Value = Now.Date
+        tbFechaVenc.Value = Now.Date
         tbFechaVenc.Visible = False
         lbCredito.Visible = False
         _prCargarDetalleVenta(-1)
@@ -548,12 +549,12 @@ Public Class F0_Ventas
 
         With grdetalle.RootTable.Columns("Item")
             .Caption = "Item"
-            .Width = 50
+            .Width = 90
             .Visible = True
         End With
         With grdetalle.RootTable.Columns("yfcbarra")
             .Caption = "C.Barra"
-            .Width = 50
+            .Width = 90
             .Visible = True
         End With
         With grdetalle.RootTable.Columns("CodigoFabrica")
@@ -1390,6 +1391,11 @@ Public Class F0_Ventas
             cbSucursal.Focus()
             Return False
         End If
+        If (tbFechaVenc.Value < tbFechaVenta.Value) Then
+            Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+            ToastNotification.Show(Me, "La Fecha de Venc. del Crédito no puede ser menor a la Fecha de la Venta".ToUpper, img, 2500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            Return False
+        End If
         'Validar datos de factura
         'If (TbNit.Text = String.Empty) Then
         '    Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
@@ -2017,15 +2023,21 @@ Public Class F0_Ventas
         End If
         Dim ParteEntera As Long
         Dim ParteDecimal As Decimal
+        Dim pDecimal() As String
         ParteEntera = Int(total)
         ParteDecimal = Math.Round(total - ParteEntera, 2)
+        pDecimal = Split(ParteDecimal.ToString, ".")
+
+
         Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
-        IIf(ParteDecimal.ToString.Equals("0"), "00", ParteDecimal.ToString) + "/100 Bolivianos"
+        IIf(pDecimal(1).ToString.Equals("0"), "00", pDecimal(1).ToString) + "/100 Bolivianos"
 
         ParteEntera = Int(totald)
         ParteDecimal = Math.Round(totald - ParteEntera, 2)
+        pDecimal = Split(ParteDecimal.ToString, ".")
+
         Dim lid As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
-        IIf(ParteDecimal.ToString.Equals("0"), "00", ParteDecimal.ToString) + "/100 Dolares"
+        IIf(pDecimal(1).ToString.Equals("0"), "00", pDecimal(1).ToString) + "/100 Dolares"
 
         Dim dt2 As DataTable = L_fnNameReporte()
 
@@ -2045,9 +2057,9 @@ Public Class F0_Ventas
             objrep.SetDataSource(dt)
             objrep.SetParameterValue("Literal1", li)
             If swTipoVenta.Value = True Then
-                objrep.SetParameterValue("ENombre", "Nota de Entrega Nro. " + tbCodigo.Text)
+                objrep.SetParameterValue("ENombre", "Nota de Entrega Nro. " + numi)
             Else
-                objrep.SetParameterValue("ENombre", "Nota de Crédito Nro. " + tbCodigo.Text)
+                objrep.SetParameterValue("ENombre", "Nota de Crédito Nro. " + numi)
             End If
             objrep.SetParameterValue("ECiudadPais", _FechaPar)
             objrep.SetParameterValue("Sucursal", cbSucursal.Text)
@@ -2446,7 +2458,7 @@ Public Class F0_Ventas
             grdetalle.Select()
             If _codeBar = 1 Then
                 If gb_CodigoBarra Then
-                    grdetalle.Col = 3
+                    grdetalle.Col = 4
                     grdetalle.Row = 0
                 Else
                     grdetalle.Col = 5

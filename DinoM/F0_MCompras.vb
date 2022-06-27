@@ -1076,6 +1076,14 @@ Public Class F0_MCompras
             tbProveedor.Focus()
             Return False
         End If
+        If swMoneda.Value = False Then
+            If tbTipoCambio.Value <= 0 Then
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "El tipo de cambio debe ser mayor a 0".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                Return False
+            End If
+
+        End If
 
         ''Controla que no se metan un mismo producto con el mismo lote y fecha de vencimiento
         Dim dt1 As DataTable = CType(grdetalle.DataSource, DataTable)

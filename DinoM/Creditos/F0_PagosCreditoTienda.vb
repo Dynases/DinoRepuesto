@@ -158,7 +158,7 @@ Public Class F0_PagosCreditoTienda
             .Visible = True
         End With
         With grcobranza.RootTable.Columns("total")
-            .Caption = "Total $"
+            .Caption = "Total Bs."
             .Width = 100
             .TextAlignment = TextAlignment.Far
             .FormatString = "0.00"
@@ -285,7 +285,7 @@ Public Class F0_PagosCreditoTienda
             .FormatString = "0.00"
             .Visible = True
             .TextAlignment = TextAlignment.Far
-            .Caption = "Pendiente $"
+            .Caption = "Pendiente Bs."
         End With
 
         With grfactura.RootTable.Columns("NroDoc")
@@ -301,7 +301,7 @@ Public Class F0_PagosCreditoTienda
             .Visible = True
         End With
         With grfactura.RootTable.Columns("PagoAc")
-            .Caption = "Total Pagado $"
+            .Caption = "Total Pagado Bs."
             .Width = 180
             .FormatString = "0.00"
             .TextAlignment = TextAlignment.Far
@@ -473,7 +473,7 @@ Public Class F0_PagosCreditoTienda
             .Visible = True
         End With
         With grPendiente.RootTable.Columns("totalfactura")
-            .Caption = "Total"
+            .Caption = "Total Bs."
             .Width = 120
             .MaxLength = 100
             .FormatString = "0.00"
@@ -481,7 +481,7 @@ Public Class F0_PagosCreditoTienda
             .Visible = True
         End With
         With grPendiente.RootTable.Columns("pendiente")
-            .Caption = "Pendiente Pago"
+            .Caption = "Pendiente Pago Bs."
             .Width = 140
             .FormatString = "0.00"
             .TextAlignment = TextAlignment.Far
@@ -543,7 +543,7 @@ Public Class F0_PagosCreditoTienda
             .Visible = True
         End With
         With grpagos.RootTable.Columns("tdmonto")
-            .Caption = "Pagos $"
+            .Caption = "Pagos Bs"
             .Width = 180
             .FormatString = "0.00"
             .TextAlignment = TextAlignment.Far
@@ -836,10 +836,20 @@ Public Class F0_PagosCreditoTienda
         End If
         Dim ParteEntera As Long
         Dim ParteDecimal As Double
+        Dim pDecimal() As String
         ParteEntera = Int(total)
-        ParteDecimal = total - ParteEntera
+        ParteDecimal = Math.Round(total - ParteEntera, 2)
+        pDecimal = Split(ParteDecimal.ToString, ".")
+        If ParteDecimal <> 0 Then
+            ParteDecimal = pDecimal(1)
+        End If
         Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
-        IIf(ParteDecimal.ToString.Equals("0"), "00", ParteDecimal.ToString) + "/100 Dólares"
+        IIf(ParteDecimal.ToString.Equals("0"), "00", ParteDecimal.ToString) + "/100 Bolivianos"
+
+
+
+        '_TotalDecimal = _TotalLi - Math.Truncate(_TotalLi)
+
 
         P_Global.Visualizador = New Visualizador
 
@@ -861,10 +871,17 @@ Public Class F0_PagosCreditoTienda
         End If
         Dim ParteEntera As Long
         Dim ParteDecimal As Double
+        Dim pDecimal() As String
         ParteEntera = Int(total)
-        ParteDecimal = total - ParteEntera
+        ParteDecimal = Math.Round(total - ParteEntera, 2)
+        pDecimal = Split(ParteDecimal.ToString, ".")
+        If ParteDecimal <> 0 Then
+            ParteDecimal = pDecimal(1)
+        End If
+
         Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
-        IIf(ParteDecimal.ToString.Equals("0"), "00", ParteDecimal.ToString) + "/100 Dólares"
+        IIf(ParteDecimal.ToString.Equals("0"), "00", ParteDecimal.ToString) + "/100 Bolivianos"
+
 
         P_Global.Visualizador = New Visualizador
 

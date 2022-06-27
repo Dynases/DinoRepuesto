@@ -22,10 +22,21 @@ Public Class Pr_ReporteMorosidadGeneral
         tbVendedor.Enabled = False
         tbAlmacen.Enabled = False
         CheckTodosVendedor.CheckValue = True
-        CheckTodosAlmacen.CheckValue = True
+        'CheckTodosAlmacen.CheckValue = True
+        CheckUnaALmacen.CheckValue = True
         CheckTodosClientes.CheckValue = True
 
+        If (gi_userSuc > 0) Then
+            Dim dt As DataTable = CType(tbAlmacen.DataSource, DataTable)
+            For i As Integer = 0 To dt.Rows.Count - 1 Step 1
 
+                If (dt.Rows(i).Item("aanumi") = gi_userSuc) Then
+                    tbAlmacen.SelectedIndex = i
+                End If
+            Next
+        End If
+        tbAlmacen.ReadOnly = True
+        CheckUnaALmacen.Enabled = False
     End Sub
     Public Sub _prInterpretarDatos(ByRef _dt As DataTable)
         'If (CheckTodosVendedor.Checked And CheckTodosAlmacen.Checked) Then

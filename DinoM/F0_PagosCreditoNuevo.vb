@@ -1303,8 +1303,13 @@ Public Class F0_PagosCreditoNuevo
         End If
         Dim ParteEntera As Long
         Dim ParteDecimal As Double
+        Dim pDecimal() As String
         ParteEntera = Int(total)
-        ParteDecimal = total - ParteEntera
+        ParteDecimal = Math.Round(total - ParteEntera, 2)
+        pDecimal = Split(ParteDecimal.ToString, ".")
+        If ParteDecimal <> 0 Then
+            ParteDecimal = pDecimal(1)
+        End If
         Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
         IIf(ParteDecimal.ToString.Equals("0"), "00", ParteDecimal.ToString) + "/100 Bolivianos"
 
@@ -1331,8 +1336,13 @@ Public Class F0_PagosCreditoNuevo
         End If
         Dim ParteEntera As Long
         Dim ParteDecimal As Double
+        Dim pDecimal() As String
         ParteEntera = Int(total)
-        ParteDecimal = total - ParteEntera
+        ParteDecimal = Math.Round(total - ParteEntera, 2)
+        pDecimal = Split(ParteDecimal.ToString, ".")
+        If ParteDecimal <> 0 Then
+            ParteDecimal = pDecimal(1)
+        End If
         Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
         IIf(ParteDecimal.ToString.Equals("0"), "00", ParteDecimal.ToString) + "/100 Bolivianos"
 

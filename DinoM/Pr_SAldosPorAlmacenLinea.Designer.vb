@@ -43,6 +43,9 @@ Partial Class Pr_SAldosPorAlmacenLinea
         Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
         Me.ButtonItem1 = New DevComponents.DotNetBar.ButtonItem()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.GroupPanelBuscador = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.JGrM_Buscador = New Janus.Windows.GridEX.GridEX()
+        Me.btnExportar = New DevComponents.DotNetBar.ButtonX()
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabPrincipal.SuspendLayout()
         Me.SuperTabControlPanelRegistro.SuspendLayout()
@@ -63,6 +66,8 @@ Partial Class Pr_SAldosPorAlmacenLinea
         Me.Panel2.SuspendLayout()
         CType(Me.cbGrupos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbAlmacen, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupPanelBuscador.SuspendLayout()
+        CType(Me.JGrM_Buscador, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SuperTabPrincipal
@@ -210,6 +215,8 @@ Partial Class Pr_SAldosPorAlmacenLinea
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox2.Controls.Add(Me.btnExportar)
+        Me.GroupBox2.Controls.Add(Me.GroupPanelBuscador)
         Me.GroupBox2.Controls.Add(Me.Panel3)
         Me.GroupBox2.Controls.Add(Me.Panel1)
         Me.GroupBox2.Controls.Add(Me.Panel2)
@@ -445,6 +452,79 @@ Partial Class Pr_SAldosPorAlmacenLinea
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 500
         '
+        'GroupPanelBuscador
+        '
+        Me.GroupPanelBuscador.CanvasColor = System.Drawing.SystemColors.Control
+        Me.GroupPanelBuscador.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
+        Me.GroupPanelBuscador.Controls.Add(Me.JGrM_Buscador)
+        Me.GroupPanelBuscador.DisabledBackColor = System.Drawing.Color.Empty
+        Me.GroupPanelBuscador.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupPanelBuscador.Location = New System.Drawing.Point(77, 475)
+        Me.GroupPanelBuscador.Name = "GroupPanelBuscador"
+        Me.GroupPanelBuscador.Size = New System.Drawing.Size(200, 100)
+        '
+        '
+        '
+        Me.GroupPanelBuscador.Style.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
+        Me.GroupPanelBuscador.Style.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
+        Me.GroupPanelBuscador.Style.BackColorGradientAngle = 90
+        Me.GroupPanelBuscador.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.GroupPanelBuscador.Style.BorderBottomWidth = 1
+        Me.GroupPanelBuscador.Style.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
+        Me.GroupPanelBuscador.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.GroupPanelBuscador.Style.BorderLeftWidth = 1
+        Me.GroupPanelBuscador.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.GroupPanelBuscador.Style.BorderRightWidth = 1
+        Me.GroupPanelBuscador.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.GroupPanelBuscador.Style.BorderTopWidth = 1
+        Me.GroupPanelBuscador.Style.CornerDiameter = 4
+        Me.GroupPanelBuscador.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
+        Me.GroupPanelBuscador.Style.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupPanelBuscador.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
+        Me.GroupPanelBuscador.Style.TextColor = System.Drawing.Color.White
+        Me.GroupPanelBuscador.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
+        '
+        '
+        '
+        Me.GroupPanelBuscador.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.GroupPanelBuscador.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.GroupPanelBuscador.TabIndex = 259
+        Me.GroupPanelBuscador.Text = "B U S C A D O R"
+        Me.GroupPanelBuscador.Visible = False
+        '
+        'JGrM_Buscador
+        '
+        Me.JGrM_Buscador.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.JGrM_Buscador.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.JGrM_Buscador.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.JGrM_Buscador.HeaderFormatStyle.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.JGrM_Buscador.HeaderFormatStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
+        Me.JGrM_Buscador.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight
+        Me.JGrM_Buscador.Location = New System.Drawing.Point(0, 0)
+        Me.JGrM_Buscador.Name = "JGrM_Buscador"
+        Me.JGrM_Buscador.SelectedFormatStyle.BackColor = System.Drawing.Color.DodgerBlue
+        Me.JGrM_Buscador.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.JGrM_Buscador.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
+        Me.JGrM_Buscador.Size = New System.Drawing.Size(194, 77)
+        Me.JGrM_Buscador.TabIndex = 0
+        '
+        'btnExportar
+        '
+        Me.btnExportar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnExportar.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
+        Me.btnExportar.Image = Global.DinoM.My.Resources.Resources.sheets
+        Me.btnExportar.ImageFixedSize = New System.Drawing.Size(50, 55)
+        Me.btnExportar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btnExportar.Location = New System.Drawing.Point(117, 255)
+        Me.btnExportar.Name = "btnExportar"
+        Me.btnExportar.Size = New System.Drawing.Size(65, 72)
+        Me.btnExportar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btnExportar.TabIndex = 260
+        Me.btnExportar.Text = "Exportar"
+        '
         'Pr_SAldosPorAlmacenLinea
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -477,6 +557,8 @@ Partial Class Pr_SAldosPorAlmacenLinea
         Me.Panel2.ResumeLayout(False)
         CType(Me.cbGrupos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbAlmacen, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupPanelBuscador.ResumeLayout(False)
+        CType(Me.JGrM_Buscador, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -497,4 +579,7 @@ Partial Class Pr_SAldosPorAlmacenLinea
     Friend WithEvents LabelX2 As DevComponents.DotNetBar.LabelX
     Friend WithEvents ButtonItem1 As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents Timer1 As Timer
+    Protected WithEvents GroupPanelBuscador As DevComponents.DotNetBar.Controls.GroupPanel
+    Protected WithEvents JGrM_Buscador As Janus.Windows.GridEX.GridEX
+    Friend WithEvents btnExportar As DevComponents.DotNetBar.ButtonX
 End Class
