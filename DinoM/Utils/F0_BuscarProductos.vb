@@ -301,8 +301,7 @@ Public Class F0_BuscarProductos
             Dim cant As Integer = vectoraux.Length
 
             For i As Integer = 0 To dt.Rows.Count - 1 Step 1
-                Dim nombre As String = dt.Rows(i).Item("yfnumi").ToString.ToUpper +
-                    " " + dt.Rows(i).Item("yfcdprod1").ToString.ToUpper +
+                Dim nombre As String = dt.Rows(i).Item("yfcdprod1").ToString.ToUpper +
                     " " + dt.Rows(i).Item("CodigoFabrica").ToString.ToUpper +
                     " " + dt.Rows(i).Item("Marca").ToString.ToUpper +
                     " " + dt.Rows(i).Item("grupo1").ToString.ToUpper +
