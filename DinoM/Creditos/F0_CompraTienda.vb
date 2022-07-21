@@ -181,7 +181,7 @@ Public Class F0_CompraTienda
 
         tbMdesc.IsInputReadOnly = False
 
-        swMoneda.IsReadOnly = False
+        'swMoneda.IsReadOnly = False
         tbTipoCambio.IsInputReadOnly = False
 
 

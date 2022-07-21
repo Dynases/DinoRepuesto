@@ -26,6 +26,7 @@ Public Class Pr_KardexCredito
         tbCuentas.Visible = False
         lbcliente.Visible = False
         lbCuentas.Visible = False
+        lbCtrl.Visible = False
         CheckTodosCuenta.CheckValue = True
         CheckUnaCuenta.Visible = False
         CheckTodosCuenta.Visible = False
@@ -231,6 +232,7 @@ Public Class Pr_KardexCredito
         tbCliente.Visible = True
         'tbCuentas.Visible = True
         lbcliente.Visible = True
+        lbCtrl.Visible = True
         'lbCuentas.Visible = True
         'CheckTodosCuenta.CheckValue = True
         'CheckUnaCuenta.Visible = True

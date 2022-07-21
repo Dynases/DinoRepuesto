@@ -161,6 +161,7 @@ Public Class F0_PagosCreditoTienda
             .Caption = "Total Bs."
             .Width = 100
             .TextAlignment = TextAlignment.Far
+            .HeaderAlignment = TextAlignment.Far
             .FormatString = "0.00"
             .Visible = True
         End With
@@ -285,14 +286,16 @@ Public Class F0_PagosCreditoTienda
             .FormatString = "0.00"
             .Visible = True
             .TextAlignment = TextAlignment.Far
+            .HeaderAlignment = TextAlignment.Far
             .Caption = "Pendiente Bs."
         End With
 
         With grfactura.RootTable.Columns("NroDoc")
-            .Width = 90
+            .Width = 100
             .Visible = True
-            .Caption = "Nro Prestamo"
+            .Caption = "Nro Préstamo"
             .TextAlignment = TextAlignment.Far
+            .HeaderAlignment = TextAlignment.Far
         End With
 
         With grfactura.RootTable.Columns("proveedor")
@@ -305,6 +308,7 @@ Public Class F0_PagosCreditoTienda
             .Width = 180
             .FormatString = "0.00"
             .TextAlignment = TextAlignment.Far
+            .HeaderAlignment = TextAlignment.Far
             .AggregateFunction = AggregateFunction.Sum
             .Visible = True
         End With
@@ -312,6 +316,7 @@ Public Class F0_PagosCreditoTienda
             .Caption = "Nro Recibo"
             .Width = 120
             .TextAlignment = TextAlignment.Far
+            .HeaderAlignment = TextAlignment.Far
             .Visible = True
         End With
         With grfactura.RootTable.Columns("DescBanco")
@@ -333,6 +338,7 @@ Public Class F0_PagosCreditoTienda
             .Caption = "Nro Cheque"
             .Width = 120
             .TextAlignment = TextAlignment.Far
+            .HeaderAlignment = TextAlignment.Far
             .Visible = True
         End With
         If (_fnAccesible()) Then
@@ -453,8 +459,8 @@ Public Class F0_PagosCreditoTienda
         ',a.tctc1numi ,a.tcty4prov  ,proveedor,a.tcfdoc , totalfactura,pendiente,PagoAc,NumeroRecibo
 
         With grPendiente.RootTable.Columns("NroDoc")
-            .Caption = "Nro Prestamo"
-            .Width = 90
+            .Caption = "Nro Préstamo"
+            .Width = 100
             .TextAlignment = TextAlignment.Far
             .Visible = True
         End With
@@ -478,6 +484,7 @@ Public Class F0_PagosCreditoTienda
             .MaxLength = 100
             .FormatString = "0.00"
             .TextAlignment = TextAlignment.Far
+            .HeaderAlignment = TextAlignment.Far
             .Visible = True
         End With
         With grPendiente.RootTable.Columns("pendiente")
@@ -485,6 +492,7 @@ Public Class F0_PagosCreditoTienda
             .Width = 140
             .FormatString = "0.00"
             .TextAlignment = TextAlignment.Far
+            .HeaderAlignment = TextAlignment.Far
             .MaxLength = 10
             .Visible = True
         End With
@@ -532,9 +540,9 @@ Public Class F0_PagosCreditoTienda
             .Visible = False
         End With
         With grpagos.RootTable.Columns("tdnrodoc")
-            .Caption = "Nro Prestamo"
+            .Caption = "Nro Préstamo"
             .TextAlignment = TextAlignment.Far
-            .Width = 90
+            .Width = 100
             .Visible = True
         End With
         With grpagos.RootTable.Columns("tdfechaPago")
@@ -547,13 +555,15 @@ Public Class F0_PagosCreditoTienda
             .Width = 180
             .FormatString = "0.00"
             .TextAlignment = TextAlignment.Far
+            .HeaderAlignment = TextAlignment.Far
             .AggregateFunction = AggregateFunction.Sum
             .Visible = True
         End With
         With grpagos.RootTable.Columns("tdnrorecibo")
             .Caption = "Nro Recibo"
-            .Width = 180
+            .Width = 120
             .TextAlignment = TextAlignment.Far
+            .HeaderAlignment = TextAlignment.Far
             .Visible = True
         End With
         With grpagos.RootTable.Columns("tdfact")
@@ -574,11 +584,6 @@ Public Class F0_PagosCreditoTienda
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
-
-
-            .VisualStyle = VisualStyle.Office2007
-
-
             .RowHeaders = InheritableBoolean.True
             .TotalRow = InheritableBoolean.True
             .TotalRowFormatStyle.BackColor = Color.Gold

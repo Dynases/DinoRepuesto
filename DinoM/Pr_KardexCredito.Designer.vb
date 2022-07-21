@@ -41,6 +41,7 @@ Partial Class Pr_KardexCredito
         Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
         Me.tbFechaI = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.lbCtrl = New DevComponents.DotNetBar.LabelX()
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabPrincipal.SuspendLayout()
         Me.SuperTabControlPanelRegistro.SuspendLayout()
@@ -261,6 +262,7 @@ Partial Class Pr_KardexCredito
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox2.Controls.Add(Me.lbCtrl)
         Me.GroupBox2.Controls.Add(Me.tbCuentas)
         Me.GroupBox2.Controls.Add(Me.tbCliente)
         Me.GroupBox2.Controls.Add(Me.CheckTodosCuenta)
@@ -535,6 +537,22 @@ Partial Class Pr_KardexCredito
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 500
         '
+        'lbCtrl
+        '
+        Me.lbCtrl.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbCtrl.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbCtrl.Font = New System.Drawing.Font("Georgia", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbCtrl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbCtrl.Location = New System.Drawing.Point(271, 93)
+        Me.lbCtrl.Name = "lbCtrl"
+        Me.lbCtrl.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbCtrl.Size = New System.Drawing.Size(55, 18)
+        Me.lbCtrl.TabIndex = 247
+        Me.lbCtrl.Text = "Ctrl+Enter"
+        '
         'Pr_KardexCredito
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -584,4 +602,5 @@ Partial Class Pr_KardexCredito
     Friend WithEvents tbCuentas As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents swdetresum As DevComponents.DotNetBar.Controls.SwitchButton
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents lbCtrl As DevComponents.DotNetBar.LabelX
 End Class

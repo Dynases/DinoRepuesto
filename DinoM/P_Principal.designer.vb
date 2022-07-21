@@ -26,6 +26,8 @@ Partial Class P_Principal
         Dim MetroTileFrame2 As DevComponents.DotNetBar.Metro.MetroTileFrame
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(P_Principal))
         Me.SideNav1 = New DevComponents.DotNetBar.Controls.SideNav()
+        Me.SideNavPanel9 = New DevComponents.DotNetBar.Controls.SideNavPanel()
+        Me.PanelBuscador = New System.Windows.Forms.Panel()
         Me.SideNavPanel5 = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.MetroTilePanel6 = New DevComponents.DotNetBar.Metro.MetroTilePanel()
@@ -103,8 +105,6 @@ Partial Class P_Principal
         Me.SideNavPanel3 = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.superTabControl3 = New DevComponents.DotNetBar.SuperTabControl()
         Me.PanelPrincipal = New System.Windows.Forms.Panel()
-        Me.SideNavPanel9 = New DevComponents.DotNetBar.Controls.SideNavPanel()
-        Me.PanelBuscador = New System.Windows.Forms.Panel()
         Me.SideNav_Logistica = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.MetroTilePanel2 = New DevComponents.DotNetBar.Metro.MetroTilePanel()
         Me.btZonas = New DevComponents.DotNetBar.Metro.MetroTileItem()
@@ -172,6 +172,7 @@ Partial Class P_Principal
         MetroTileFrame1 = New DevComponents.DotNetBar.Metro.MetroTileFrame()
         MetroTileFrame2 = New DevComponents.DotNetBar.Metro.MetroTileFrame()
         Me.SideNav1.SuspendLayout()
+        Me.SideNavPanel9.SuspendLayout()
         Me.SideNavPanel5.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SideNavPanel6.SuspendLayout()
@@ -186,7 +187,6 @@ Partial Class P_Principal
         Me.SideNavPanel3.SuspendLayout()
         CType(Me.superTabControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.superTabControl3.SuspendLayout()
-        Me.SideNavPanel9.SuspendLayout()
         Me.SideNav_Logistica.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SideNavPanel1.SuspendLayout()
@@ -221,10 +221,10 @@ Partial Class P_Principal
         'SideNav1
         '
         Me.SideNav1.BackColor = System.Drawing.Color.FromArgb(CType(CType(49, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.SideNav1.Controls.Add(Me.SideNavPanel7)
         Me.SideNav1.Controls.Add(Me.SideNavPanel9)
         Me.SideNav1.Controls.Add(Me.SideNavPanel5)
         Me.SideNav1.Controls.Add(Me.SideNavPanel6)
-        Me.SideNav1.Controls.Add(Me.SideNavPanel7)
         Me.SideNav1.Controls.Add(Me.SideNav_Ventas)
         Me.SideNav1.Controls.Add(Me.SideNav_Conf)
         Me.SideNav1.Controls.Add(Me.SideNavPanel4)
@@ -241,6 +241,26 @@ Partial Class P_Principal
         Me.SideNav1.Size = New System.Drawing.Size(992, 561)
         Me.SideNav1.TabIndex = 1
         Me.SideNav1.Text = "SideNav1"
+        '
+        'SideNavPanel9
+        '
+        Me.SideNavPanel9.Controls.Add(Me.PanelBuscador)
+        Me.SideNavPanel9.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SideNavPanel9.Location = New System.Drawing.Point(142, 36)
+        Me.SideNavPanel9.Margin = New System.Windows.Forms.Padding(2)
+        Me.SideNavPanel9.Name = "SideNavPanel9"
+        Me.SideNavPanel9.Size = New System.Drawing.Size(845, 524)
+        Me.SideNavPanel9.TabIndex = 215
+        Me.SideNavPanel9.Visible = False
+        '
+        'PanelBuscador
+        '
+        Me.PanelBuscador.BackColor = System.Drawing.SystemColors.Control
+        Me.PanelBuscador.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelBuscador.Location = New System.Drawing.Point(0, 0)
+        Me.PanelBuscador.Name = "PanelBuscador"
+        Me.PanelBuscador.Size = New System.Drawing.Size(845, 524)
+        Me.PanelBuscador.TabIndex = 3
         '
         'SideNavPanel5
         '
@@ -787,7 +807,6 @@ Partial Class P_Principal
         Me.SideNavPanel7.Name = "SideNavPanel7"
         Me.SideNavPanel7.Size = New System.Drawing.Size(845, 524)
         Me.SideNavPanel7.TabIndex = 162
-        Me.SideNavPanel7.Visible = False
         '
         'MenuCreditos
         '
@@ -1679,25 +1698,6 @@ Partial Class P_Principal
         Me.PanelPrincipal.Size = New System.Drawing.Size(637, 524)
         Me.PanelPrincipal.TabIndex = 1
         '
-        'SideNavPanel9
-        '
-        Me.SideNavPanel9.Controls.Add(Me.PanelBuscador)
-        Me.SideNavPanel9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SideNavPanel9.Location = New System.Drawing.Point(142, 36)
-        Me.SideNavPanel9.Margin = New System.Windows.Forms.Padding(2)
-        Me.SideNavPanel9.Name = "SideNavPanel9"
-        Me.SideNavPanel9.Size = New System.Drawing.Size(845, 524)
-        Me.SideNavPanel9.TabIndex = 215
-        '
-        'PanelBuscador
-        '
-        Me.PanelBuscador.BackColor = System.Drawing.SystemColors.Control
-        Me.PanelBuscador.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelBuscador.Location = New System.Drawing.Point(0, 0)
-        Me.PanelBuscador.Name = "PanelBuscador"
-        Me.PanelBuscador.Size = New System.Drawing.Size(845, 524)
-        Me.PanelBuscador.TabIndex = 3
-        '
         'SideNav_Logistica
         '
         Me.SideNav_Logistica.BackColor = System.Drawing.Color.White
@@ -2333,6 +2333,7 @@ Partial Class P_Principal
         '
         'FP_CREDITOS
         '
+        Me.FP_CREDITOS.Checked = True
         Me.FP_CREDITOS.Name = "FP_CREDITOS"
         Me.FP_CREDITOS.Panel = Me.SideNavPanel7
         Me.FP_CREDITOS.Symbol = ""
@@ -2372,7 +2373,6 @@ Partial Class P_Principal
         '
         'VentanaBuscadorPRoducto
         '
-        Me.VentanaBuscadorPRoducto.Checked = True
         Me.VentanaBuscadorPRoducto.Name = "VentanaBuscadorPRoducto"
         Me.VentanaBuscadorPRoducto.Panel = Me.SideNavPanel9
         Me.VentanaBuscadorPRoducto.Symbol = "59552"
@@ -2575,6 +2575,7 @@ Partial Class P_Principal
         Me.Text = "Dino "
         Me.SideNav1.ResumeLayout(False)
         Me.SideNav1.PerformLayout()
+        Me.SideNavPanel9.ResumeLayout(False)
         Me.SideNavPanel5.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.SideNavPanel6.ResumeLayout(False)
@@ -2589,7 +2590,6 @@ Partial Class P_Principal
         Me.SideNavPanel3.ResumeLayout(False)
         CType(Me.superTabControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.superTabControl3.ResumeLayout(False)
-        Me.SideNavPanel9.ResumeLayout(False)
         Me.SideNav_Logistica.ResumeLayout(False)
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SideNavPanel1.ResumeLayout(False)
