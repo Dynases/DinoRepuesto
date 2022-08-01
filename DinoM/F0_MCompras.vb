@@ -411,7 +411,6 @@ Public Class F0_MCompras
             End With
         End If
 
-
         With grdetalle.RootTable.Columns("cbnumi")
             .Width = 100
             .Caption = "CODIGO"
@@ -459,7 +458,6 @@ Public Class F0_MCompras
             .WordWrap = True
             .MaxLines = 2
             .Visible = True
-
         End With
         With grdetalle.RootTable.Columns("Procedencia")
             .Caption = "Procedencia"
@@ -467,9 +465,7 @@ Public Class F0_MCompras
             .WordWrap = True
             .MaxLines = 2
             .Visible = True
-
         End With
-
 
         With grdetalle.RootTable.Columns("producto")
             .Caption = "Descripcion"
@@ -486,11 +482,11 @@ Public Class F0_MCompras
         End With
 
         With grdetalle.RootTable.Columns("cbcmin")
-            .Width = 100
+            .Width = 110
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
             .FormatString = "0.00"
-            .Caption = "Cantidad".ToUpper
+            .Caption = "Cantidad"
         End With
         With grdetalle.RootTable.Columns("cbumin")
             .Width = 50
@@ -504,11 +500,11 @@ Public Class F0_MCompras
             .Caption = "Unidad".ToUpper
         End With
         With grdetalle.RootTable.Columns("cbpcost")
-            .Width = 120
+            .Width = 140
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
             .FormatString = "0.00"
-            .Caption = "Precio U.($)".ToUpper
+            .Caption = "P.CostoUn.($)"
         End With
         If (_estadoPor = 1) Then
             With grdetalle.RootTable.Columns("cbutven")
@@ -543,11 +539,11 @@ Public Class F0_MCompras
         End If
 
         With grdetalle.RootTable.Columns("cbptot")
-            .Width = 100
+            .Width = 120
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
             .FormatString = "0.00"
-            .Caption = "Sub Total ($)".ToUpper
+            .Caption = "Sub Total ($)"
         End With
         With grdetalle.RootTable.Columns("cbobs")
             .Width = 50
@@ -589,6 +585,27 @@ Public Class F0_MCompras
             .Width = 50
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = False
+        End With
+        With grdetalle.RootTable.Columns("cbpFacturado")
+            .Width = 140
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .FormatString = "0.00"
+            .Caption = "P.Facturado Bs"
+        End With
+        With grdetalle.RootTable.Columns("cbpPublico")
+            .Width = 140
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .FormatString = "0.00"
+            .Caption = "P.Público Bs."
+        End With
+        With grdetalle.RootTable.Columns("cbpMecanico")
+            .Width = 140
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .FormatString = "0.00"
+            .Caption = "P.Mecánico Bs."
         End With
         With grdetalle
             .GroupByBoxVisible = False
@@ -886,7 +903,7 @@ Public Class F0_MCompras
         Dim img As New Bitmap(My.Resources.delete, 28, 28)
         img.Save(Bin, Imaging.ImageFormat.Png)
         CType(grdetalle.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, "", "", "", "", "", "", 0, 0, 0, "",
-                                                        0, "20500101", CDate("2050/01/01"), 0, 0, 0, "", Now.Date, "", "", 0, Bin.GetBuffer, 0, 0)
+                                                        0, "20500101", CDate("2050/01/01"), 0, 0, 0, "", Now.Date, "", "", 0, 0, 0, 0, Bin.GetBuffer, 0, 0)
     End Sub
 
     Public Function _fnSiguienteNumi()
@@ -955,6 +972,8 @@ Public Class F0_MCompras
             _fnObtenerFilaDetalle(pos, lin)
             Dim cant As Double = grdetalle.GetValue("cbcmin")
             Dim uni As Double = grdetalle.GetValue("cbpcost")
+            Dim pFacturado As Double
+
             If (pos >= 0) Then
                 Dim TotalUnitario As Double = cant * uni
                 'grDetalle.SetValue("lcmdes", montodesc)
@@ -970,6 +989,7 @@ Public Class F0_MCompras
                 CType(grdetalle.DataSource, DataTable).Rows(pos).Item("venta") = (uni + (uni * (grdetalle.GetValue("cbutven") / 100))) * tbTipoCambio.Value
                 grdetalle.SetValue("cbprven", (uni + (uni * (grdetalle.GetValue("cbutven") / 100))) * tbTipoCambio.Value)
             End If
+
             _prCalcularPrecioTotal()
         End If
 
@@ -1216,7 +1236,12 @@ Public Class F0_MCompras
 
     Private Sub _prGuardarModificado()
         ''RecuperarDatosTFC001()
-        Dim res As Boolean = L_fnModificarCompra(tbCodigo.Text, cbSucursal.Value, tbFechaVenta.Value.ToString("yyyy/MM/dd"), _CodProveedor, IIf(swTipoVenta.Value = True, 1, 0), IIf(swTipoVenta.Value = True, Now.Date.ToString("yyyy/MM/dd"), tbFechaVenc.Value.ToString("yyyy/MM/dd")), IIf(swMoneda.Value = True, 1, 0), tbObservacion.Text, tbMdesc.Value, tbtotal.Value, CType(grdetalle.DataSource, DataTable), _detalleCompras, IIf(swEmision.Value = True, 1, 0), tbNFactura.Text, IIf(swConsigna.Value = True, 1, 0), IIf(swRetencion.Value = True, 1, 0), IIf(swMoneda.Value = True, 1, tbTipoCambio.Value))
+        Dim res As Boolean = L_fnModificarCompra(tbCodigo.Text, cbSucursal.Value, tbFechaVenta.Value.ToString("yyyy/MM/dd"), _CodProveedor,
+                                                 IIf(swTipoVenta.Value = True, 1, 0), IIf(swTipoVenta.Value = True, Now.Date.ToString("yyyy/MM/dd"),
+                                                 tbFechaVenc.Value.ToString("yyyy/MM/dd")), IIf(swMoneda.Value = True, 1, 0), tbObservacion.Text, tbMdesc.Value,
+                                                 tbtotal.Value, CType(grdetalle.DataSource, DataTable), _detalleCompras, IIf(swEmision.Value = True, 1, 0),
+                                                 tbNFactura.Text, IIf(swConsigna.Value = True, 1, 0), IIf(swRetencion.Value = True, 1, 0),
+                                                 IIf(swMoneda.Value = True, 1, tbTipoCambio.Value))
         If res Then
 
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
@@ -1412,7 +1437,6 @@ Public Class F0_MCompras
     Private Sub grdetalle_EditingCell(sender As Object, e As EditingCellEventArgs) Handles grdetalle.EditingCell
         If (_fnAccesible()) Then
 
-
             If (_estadoPor = 0) Then
                 If (e.Column.Index = grdetalle.RootTable.Columns("cbcmin").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbpcost").Index) Then
                     e.Cancel = False
@@ -1420,8 +1444,11 @@ Public Class F0_MCompras
                     e.Cancel = True
                 End If
             Else
-
-                If (e.Column.Index = grdetalle.RootTable.Columns("cbcmin").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbpcost").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbprven").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbutven").Index Or e.Column.Index = grdetalle.RootTable.Columns("cblote").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbfechavenc").Index) Then
+                If (e.Column.Index = grdetalle.RootTable.Columns("cbcmin").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbpcost").Index Or
+                    e.Column.Index = grdetalle.RootTable.Columns("cbprven").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbutven").Index Or
+                    e.Column.Index = grdetalle.RootTable.Columns("cblote").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbfechavenc").Index Or
+                    e.Column.Index = grdetalle.RootTable.Columns("cbpFacturado").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbpPublico").Index Or
+                    e.Column.Index = grdetalle.RootTable.Columns("cbpMecanico").Index) Then
                     e.Cancel = False
                 Else
                     e.Cancel = True
@@ -1589,17 +1616,101 @@ salirIf:
                     CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbptot") = cantidad * CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpcost")
                     CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbprven") = _PorcentajeUtil * CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpcost")
 
-
                 Else
                     If (grdetalle.GetValue("cbpcost") > 0) Then
                         Dim rowIndex As Integer = grdetalle.Row
                         P_PonerTotal(rowIndex)
+
+                        Dim pFacturado As Double
+                        Dim uni As Double = grdetalle.GetValue("cbpcost")
+                        ''Cálculo de los demás precios
+                        pFacturado = ((uni + (uni * 0.25) + (uni * 0.16)) * 2) * 7
+
+                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpFacturado") = Math.Round(pFacturado, 2)
+                        grdetalle.SetValue("cbpFacturado", Math.Round(pFacturado, 2))
+                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpPublico") = Math.Round(pFacturado - (pFacturado * 0.1), 2)
+                        grdetalle.SetValue("cbpPublico", Math.Round(pFacturado - (pFacturado * 0.1), 2))
+                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = Math.Round(pFacturado - (pFacturado * 0.15), 2)
+                        grdetalle.SetValue("cbpMecanico", Math.Round(pFacturado - (pFacturado * 0.15), 2))
                     Else
 
                         Dim cantidad As Double = grdetalle.GetValue("cbcmin")
                         CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpcost") = CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpcost")
                         CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbptot") = cantidad * CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpcost")
                         CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbprven") = _PorcentajeUtil * CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpcost")
+                    End If
+                End If
+            End If
+
+            ''''''''''''''''''''''PRECIO FACTURADO'''''''''''''''''''''''
+            If (e.Column.Index = grdetalle.RootTable.Columns("cbpFacturado").Index) Then
+                If (Not IsNumeric(grdetalle.GetValue("cbpFacturado")) Or grdetalle.GetValue("cbpFacturado").ToString = String.Empty) Then
+
+                    CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpFacturado") = 0
+                    grdetalle.SetValue("cbpFacturado", 0)
+                    CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpPublico") = 0
+                    grdetalle.SetValue("cbpPublico", 0)
+                    CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = 0
+                    grdetalle.SetValue("cbpMecanico", 0)
+
+                Else
+                    If (grdetalle.GetValue("cbpFacturado") > 0) Then
+                        Dim pFacturado As Double
+
+                        ''Cálculo de los demás precios
+                        pFacturado = grdetalle.GetValue("cbpFacturado")
+
+                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpFacturado") = pFacturado
+                        grdetalle.SetValue("cbpFacturado", pFacturado)
+                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpPublico") = pFacturado - (pFacturado * 0.1)
+                        grdetalle.SetValue("cbpPublico", pFacturado - (pFacturado * 0.1))
+                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = pFacturado - (pFacturado * 0.15)
+                        grdetalle.SetValue("cbpMecanico", pFacturado - (pFacturado * 0.15))
+                    Else
+                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpFacturado") = 0
+                        grdetalle.SetValue("cbpFacturado", 0)
+                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpPublico") = 0
+                        grdetalle.SetValue("cbpPublico", 0)
+                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = 0
+                        grdetalle.SetValue("cbpMecanico", 0)
+                    End If
+                End If
+            End If
+
+
+            ''''''''''''''''''''''PRECIO PÚBLICO'''''''''''''''''''''''
+            If (e.Column.Index = grdetalle.RootTable.Columns("cbpPublico").Index) Then
+                If (Not IsNumeric(grdetalle.GetValue("cbpPublico")) Or grdetalle.GetValue("cbpPublico").ToString = String.Empty) Then
+                    CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpPublico") = 0
+                    grdetalle.SetValue("cbpPublico", 0)
+                Else
+                    If (grdetalle.GetValue("cbpPublico") > 0) Then
+                        Dim cPublico As Double
+                        cPublico = grdetalle.GetValue("cbpPublico")
+                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpPublico") = cPublico
+                        grdetalle.SetValue("cbpPublico", cPublico)
+
+                    Else
+                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpPublico") = 0
+                        grdetalle.SetValue("cbpPublico", 0)
+                    End If
+                End If
+            End If
+            ''''''''''''''''''''''PRECIO MECÁNICO'''''''''''''''''''''''
+            If (e.Column.Index = grdetalle.RootTable.Columns("cbpMecanico").Index) Then
+                If (Not IsNumeric(grdetalle.GetValue("cbpMecanico")) Or grdetalle.GetValue("cbpMecanico").ToString = String.Empty) Then
+                    CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = 0
+                    grdetalle.SetValue("cbpMecanico", 0)
+                Else
+                    If (grdetalle.GetValue("cbpMecanico") > 0) Then
+                        Dim cMecanico As Double
+                        cMecanico = grdetalle.GetValue("cbpMecanico")
+                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = cMecanico
+                        grdetalle.SetValue("cbpMecanico", cMecanico)
+
+                    Else
+                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = 0
+                        grdetalle.SetValue("cbpMecanico", 0)
                     End If
                 End If
             End If
@@ -1740,19 +1851,14 @@ salirIf:
     Private Sub grdetalle_CellEdited(sender As Object, e As ColumnActionEventArgs) Handles grdetalle.CellEdited
         If (e.Column.Index = grdetalle.RootTable.Columns("cbcmin").Index) Then
             If (Not IsNumeric(grdetalle.GetValue("cbcmin")) Or grdetalle.GetValue("cbcmin").ToString = String.Empty) Then
-
-
                 grdetalle.SetValue("cbcmin", 1)
                 grdetalle.SetValue("cbptot", grdetalle.GetValue("cbpcost"))
             Else
                 If (grdetalle.GetValue("cbcmin") > 0) Then
 
-
                 Else
-
                     grdetalle.SetValue("cbcmin", 1)
                     grdetalle.SetValue("cbptot", grdetalle.GetValue("cbpcost"))
-
                 End If
             End If
         End If
@@ -2038,6 +2144,8 @@ salirIf:
         _prCalcularPrecioTotal()
 
     End Sub
+
+
 
 #End Region
 

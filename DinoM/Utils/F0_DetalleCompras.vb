@@ -251,6 +251,18 @@ Public Class F0_DetalleCompras
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = False
         End With
+        With grProductoSeleccionado.RootTable.Columns("cbpFacturado")
+            .Visible = False
+            .FormatString = "0.00"
+        End With
+        With grProductoSeleccionado.RootTable.Columns("cbpPublico")
+            .Visible = False
+            .FormatString = "0.00"
+        End With
+        With grProductoSeleccionado.RootTable.Columns("cbpMecanico")
+            .Visible = False
+            .FormatString = "0.00"
+        End With
         With grProductoSeleccionado
             .GroupByBoxVisible = False
             'diseño de la grilla
@@ -279,6 +291,8 @@ Public Class F0_DetalleCompras
             ColArNro(grProductos, "stock", "Stock", 80, "0.00")
             ColArNro(grProductos, "yhprecio", "Precio Costo", 90, "0.00")
             ColArNro(grProductos, "venta", "Precio Venta", 90, "0.00")
+            ColNoVisible(grProductos, "facturado")
+            ColNoVisible(grProductos, "mecanico")
 
             ConfigFinalBasica(grProductos)
         Catch ex As Exception
@@ -345,7 +359,7 @@ Public Class F0_DetalleCompras
         Dim img As New Bitmap(My.Resources.delete, 28, 28)
         img.Save(Bin, Imaging.ImageFormat.Png)
         CType(grProductoSeleccionado.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, "", "", "", "", "", "", 0, 0, 0, "",
-                                                        0, "20500101", CDate("2050/01/01"), 0, 0, 0, "", Now.Date, "", "", 0, Bin.GetBuffer, 0, 0)
+                                                        0, "20500101", CDate("2050/01/01"), 0, 0, 0, "", Now.Date, "", "", 0, 0, 0, 0, Bin.GetBuffer, 0, 0)
     End Sub
     Public Function _fnSiguienteNumi()
         Dim dt As DataTable = CType(grProductoSeleccionado.DataSource, DataTable)
@@ -391,6 +405,10 @@ Public Class F0_DetalleCompras
                     CType(grProductoSeleccionado.DataSource, DataTable).Rows(pos).Item("cbpcost") = grProductos.GetValue("yhprecio")
                     CType(grProductoSeleccionado.DataSource, DataTable).Rows(pos).Item("cbptot") = grProductos.GetValue("yhprecio")
                     CType(grProductoSeleccionado.DataSource, DataTable).Rows(pos).Item("cbcmin") = 1
+                    CType(grProductoSeleccionado.DataSource, DataTable).Rows(pos).Item("cbpFacturado") = grProductos.GetValue("facturado")
+                    CType(grProductoSeleccionado.DataSource, DataTable).Rows(pos).Item("cbpPublico") = grProductos.GetValue("venta")
+                    CType(grProductoSeleccionado.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = grProductos.GetValue("mecanico")
+
 
                     Dim PrecioVenta As Double = IIf(IsDBNull(grProductos.GetValue("venta")), 0, grProductos.GetValue("venta"))
                     If (PrecioVenta > 0) Then

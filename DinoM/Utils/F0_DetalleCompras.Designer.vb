@@ -51,10 +51,9 @@ Partial Class F0_DetalleCompras
         Me.GroupPanel1.DisabledBackColor = System.Drawing.Color.Empty
         Me.GroupPanel1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupPanel1.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupPanel1.Location = New System.Drawing.Point(0, 332)
-        Me.GroupPanel1.Margin = New System.Windows.Forms.Padding(4)
+        Me.GroupPanel1.Location = New System.Drawing.Point(0, 270)
         Me.GroupPanel1.Name = "GroupPanel1"
-        Me.GroupPanel1.Size = New System.Drawing.Size(1294, 405)
+        Me.GroupPanel1.Size = New System.Drawing.Size(970, 329)
         '
         '
         '
@@ -92,9 +91,8 @@ Partial Class F0_DetalleCompras
         Me.Panel1.Controls.Add(Me.grProductoSeleccionado)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1288, 378)
+        Me.Panel1.Size = New System.Drawing.Size(964, 306)
         Me.Panel1.TabIndex = 0
         '
         'grProductoSeleccionado
@@ -106,11 +104,10 @@ Partial Class F0_DetalleCompras
         Me.grProductoSeleccionado.HeaderFormatStyle.Font = New System.Drawing.Font("Georgia", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grProductoSeleccionado.HeaderFormatStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(49, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.grProductoSeleccionado.Location = New System.Drawing.Point(0, 0)
-        Me.grProductoSeleccionado.Margin = New System.Windows.Forms.Padding(4)
         Me.grProductoSeleccionado.Name = "grProductoSeleccionado"
         Me.grProductoSeleccionado.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.grProductoSeleccionado.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.grProductoSeleccionado.Size = New System.Drawing.Size(1288, 378)
+        Me.grProductoSeleccionado.Size = New System.Drawing.Size(964, 306)
         Me.grProductoSeleccionado.TabIndex = 0
         Me.grProductoSeleccionado.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -123,9 +120,8 @@ Partial Class F0_DetalleCompras
         Me.GPanelProductos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GPanelProductos.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GPanelProductos.Location = New System.Drawing.Point(0, 0)
-        Me.GPanelProductos.Margin = New System.Windows.Forms.Padding(4)
         Me.GPanelProductos.Name = "GPanelProductos"
-        Me.GPanelProductos.Size = New System.Drawing.Size(1294, 332)
+        Me.GPanelProductos.Size = New System.Drawing.Size(970, 270)
         '
         '
         '
@@ -164,9 +160,8 @@ Partial Class F0_DetalleCompras
         Me.Panel7.Controls.Add(Me.Panel3)
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel7.Location = New System.Drawing.Point(0, 0)
-        Me.Panel7.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(1288, 305)
+        Me.Panel7.Size = New System.Drawing.Size(964, 247)
         Me.Panel7.TabIndex = 0
         '
         'grProductos
@@ -180,8 +175,7 @@ Partial Class F0_DetalleCompras
         Me.grProductos.HeaderFormatStyle.Font = New System.Drawing.Font("Georgia", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grProductos.HeaderFormatStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(49, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.grProductos.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight
-        Me.grProductos.Location = New System.Drawing.Point(0, 50)
-        Me.grProductos.Margin = New System.Windows.Forms.Padding(4)
+        Me.grProductos.Location = New System.Drawing.Point(0, 41)
         Me.grProductos.Name = "grProductos"
         Me.grProductos.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.grProductos.Office2007CustomColor = System.Drawing.Color.DodgerBlue
@@ -189,7 +183,7 @@ Partial Class F0_DetalleCompras
         Me.grProductos.SelectedFormatStyle.BackColor = System.Drawing.Color.DodgerBlue
         Me.grProductos.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grProductos.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
-        Me.grProductos.Size = New System.Drawing.Size(1288, 255)
+        Me.grProductos.Size = New System.Drawing.Size(964, 206)
         Me.grProductos.TabIndex = 0
         Me.grProductos.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -202,9 +196,9 @@ Partial Class F0_DetalleCompras
         Me.Panel3.Controls.Add(Me.tbProducto)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel3.Location = New System.Drawing.Point(0, 0)
-        Me.Panel3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1288, 50)
+        Me.Panel3.Size = New System.Drawing.Size(964, 41)
         Me.Panel3.TabIndex = 1
         '
         'LabelX1
@@ -216,13 +210,12 @@ Partial Class F0_DetalleCompras
         Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX1.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX1.Location = New System.Drawing.Point(931, 16)
-        Me.LabelX1.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX1.Location = New System.Drawing.Point(698, 13)
         Me.LabelX1.Name = "LabelX1"
         Me.LabelX1.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX1.Size = New System.Drawing.Size(587, 28)
+        Me.LabelX1.Size = New System.Drawing.Size(440, 23)
         Me.LabelX1.TabIndex = 374
-        Me.LabelX1.Text = "Para actualizar el Stock debe precionar el boton Actualizar"
+        Me.LabelX1.Text = "Para actualizar el Stock debe presionar el boton Actualizar"
         Me.LabelX1.Visible = False
         '
         'ButtonX1
@@ -232,10 +225,10 @@ Partial Class F0_DetalleCompras
         Me.ButtonX1.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonX1.Image = Global.DinoM.My.Resources.Resources.refresh_1
         Me.ButtonX1.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.ButtonX1.Location = New System.Drawing.Point(724, 4)
-        Me.ButtonX1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ButtonX1.Location = New System.Drawing.Point(543, 3)
+        Me.ButtonX1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.ButtonX1.Name = "ButtonX1"
-        Me.ButtonX1.Size = New System.Drawing.Size(200, 39)
+        Me.ButtonX1.Size = New System.Drawing.Size(150, 32)
         Me.ButtonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
         Me.ButtonX1.TabIndex = 373
         Me.ButtonX1.Text = "Actualizar"
@@ -247,10 +240,10 @@ Partial Class F0_DetalleCompras
         Me.btnAgregar.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAgregar.Image = Global.DinoM.My.Resources.Resources.atras1
         Me.btnAgregar.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.btnAgregar.Location = New System.Drawing.Point(517, 2)
-        Me.btnAgregar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnAgregar.Location = New System.Drawing.Point(388, 2)
+        Me.btnAgregar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnAgregar.Name = "btnAgregar"
-        Me.btnAgregar.Size = New System.Drawing.Size(203, 39)
+        Me.btnAgregar.Size = New System.Drawing.Size(152, 32)
         Me.btnAgregar.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
         Me.btnAgregar.TabIndex = 372
         Me.btnAgregar.Text = "Confirmar / Salir"
@@ -264,11 +257,10 @@ Partial Class F0_DetalleCompras
         Me.LabelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX9.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX9.Location = New System.Drawing.Point(12, 14)
-        Me.LabelX9.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX9.Location = New System.Drawing.Point(9, 11)
         Me.LabelX9.Name = "LabelX9"
         Me.LabelX9.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX9.Size = New System.Drawing.Size(151, 28)
+        Me.LabelX9.Size = New System.Drawing.Size(113, 23)
         Me.LabelX9.TabIndex = 226
         Me.LabelX9.Text = "Buscar Producto:"
         '
@@ -282,20 +274,20 @@ Partial Class F0_DetalleCompras
         Me.tbProducto.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbProducto.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbProducto.Location = New System.Drawing.Point(179, 16)
-        Me.tbProducto.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbProducto.Location = New System.Drawing.Point(134, 13)
         Me.tbProducto.Name = "tbProducto"
         Me.tbProducto.PreventEnterBeep = True
-        Me.tbProducto.Size = New System.Drawing.Size(332, 26)
+        Me.tbProducto.Size = New System.Drawing.Size(249, 22)
         Me.tbProducto.TabIndex = 3
         '
         'F0_DetalleCompras
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1294, 737)
+        Me.ClientSize = New System.Drawing.Size(970, 599)
         Me.Controls.Add(Me.GPanelProductos)
         Me.Controls.Add(Me.GroupPanel1)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "F0_DetalleCompras"
         Me.Text = "F0_DetalleCompras"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized

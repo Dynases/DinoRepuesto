@@ -121,7 +121,7 @@ Public Class F0_Precios
             With grprecio.RootTable.Columns("yfnumi")
                 .Caption = "Cod P"
                 .Width = 70
-                .Visible = False
+                .Visible = True
             End With
             With grprecio.RootTable.Columns("yfcdprod1")
                 .Caption = "PRODUCTO"
