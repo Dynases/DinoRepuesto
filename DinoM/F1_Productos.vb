@@ -975,7 +975,6 @@ Public Class F1_Productos
                 dt.ImportRow(dtImagenesAll.Rows(i))
             End If
 
-
         Next
         Return dt
 
@@ -1518,18 +1517,17 @@ Public Class F1_Productos
         End With
         With JG_HistPrecios.RootTable.Columns("hafecha")
             .Caption = "Fecha"
-            .Width = 85
+            .Width = 80
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.BackColor = Color.AliceBlue
             .Visible = True
         End With
         With JG_HistPrecios.RootTable.Columns("haconcepto")
             .Caption = "Concepto"
-            .Width = 180
+            .Width = 220
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .Visible = True
         End With
-
         With JG_HistPrecios.RootTable.Columns("haPCosto")
             .Caption = "P. Costo"
             .Width = 100
@@ -1571,6 +1569,7 @@ Public Class F1_Productos
             .Caption = "Usuario"
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .Visible = True
+            .TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
         End With
 
         'Habilitar Filtradores
@@ -2273,5 +2272,7 @@ Public Class F1_Productos
 
     End Sub
 
-
+    Private Sub JG_HistPrecios_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JG_HistPrecios.EditingCell
+        e.Cancel = True
+    End Sub
 End Class
