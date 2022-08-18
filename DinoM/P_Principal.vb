@@ -1173,6 +1173,11 @@ Public Class P_Principal
         frm.Show()
     End Sub
 
+    Private Sub btConfHistPrecios_Click(sender As Object, e As EventArgs) Handles btConfHistPrecios.Click
+        Dim frm As New Pr_HistorialProductos
+        frm.Show()
+    End Sub
+
 
 
     'Private Sub btnCredPagoCliente_Click(sender As Object, e As EventArgs) Handles btnCredPagoCliente.Click

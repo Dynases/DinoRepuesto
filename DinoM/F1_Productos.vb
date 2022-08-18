@@ -1529,29 +1529,29 @@ Public Class F1_Productos
             .Visible = True
         End With
         With JG_HistPrecios.RootTable.Columns("haPCosto")
-            .Caption = "P. Costo"
+            .Caption = "P. Costo ($us)"
             .Width = 100
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .FormatString = "0.00"
         End With
         With JG_HistPrecios.RootTable.Columns("haPVentaFact")
-            .Caption = "P. VentaFact."
-            .Width = 100
+            .Caption = "P. VentaFact. Bs."
+            .Width = 130
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .FormatString = "0.00"
         End With
         With JG_HistPrecios.RootTable.Columns("haPVentaPublico")
-            .Caption = "P. Venta Público"
-            .Width = 100
+            .Caption = "P. Venta Público Bs."
+            .Width = 150
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .FormatString = "0.00"
         End With
         With JG_HistPrecios.RootTable.Columns("haPMecanico")
-            .Caption = "P. Mecánico"
-            .Width = 100
+            .Caption = "P. Mecánico Bs."
+            .Width = 130
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .FormatString = "0.00"

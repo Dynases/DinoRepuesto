@@ -744,6 +744,30 @@ Public Class AccesoLogica
 
         Return _Tabla
     End Function
+    Public Shared Function L_prHistorialPreciosProductos(fechaI As String, fechaF As String, _codProd As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 23))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _listParam.Add(New Datos.DParametro("@yfnumi", _codProd))
+        _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prObtenerProductos() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 24))
+        _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+
+        Return _Tabla
+    End Function
 #End Region
 
 #Region "TY004 CLIENTES"
