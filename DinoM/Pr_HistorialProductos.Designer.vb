@@ -24,10 +24,12 @@ Partial Class Pr_HistorialProductos
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Pr_HistorialProductos))
-        Dim cbProducto_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim tbAlmacen_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.cbProducto = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
+        Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
+        Me.btnBuscar = New DevComponents.DotNetBar.ButtonX()
+        Me.tbproducto = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.tbCodigo = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.CheckTodosProducto = New DevComponents.DotNetBar.Controls.CheckBoxX()
         Me.CheckUnaProducto = New DevComponents.DotNetBar.Controls.CheckBoxX()
         Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
@@ -56,7 +58,6 @@ Partial Class Pr_HistorialProductos
         Me.PanelIzq.SuspendLayout()
         CType(Me.MPicture, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
-        CType(Me.cbProducto, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbAlmacen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFechaF, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFechaI, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -206,7 +207,10 @@ Partial Class Pr_HistorialProductos
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox2.Controls.Add(Me.cbProducto)
+        Me.GroupBox2.Controls.Add(Me.LabelX2)
+        Me.GroupBox2.Controls.Add(Me.btnBuscar)
+        Me.GroupBox2.Controls.Add(Me.tbproducto)
+        Me.GroupBox2.Controls.Add(Me.tbCodigo)
         Me.GroupBox2.Controls.Add(Me.CheckTodosProducto)
         Me.GroupBox2.Controls.Add(Me.CheckUnaProducto)
         Me.GroupBox2.Controls.Add(Me.LabelX5)
@@ -228,21 +232,72 @@ Partial Class Pr_HistorialProductos
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Datos"
         '
-        'cbProducto
+        'LabelX2
         '
-        Me.cbProducto.BackColor = System.Drawing.Color.Gainsboro
-        cbProducto_DesignTimeLayout.LayoutString = resources.GetString("cbProducto_DesignTimeLayout.LayoutString")
-        Me.cbProducto.DesignTimeLayout = cbProducto_DesignTimeLayout
-        Me.cbProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbProducto.Location = New System.Drawing.Point(3, 112)
-        Me.cbProducto.Name = "cbProducto"
-        Me.cbProducto.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
-        Me.cbProducto.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.cbProducto.SelectedIndex = -1
-        Me.cbProducto.SelectedItem = Nothing
-        Me.cbProducto.Size = New System.Drawing.Size(240, 22)
-        Me.cbProducto.TabIndex = 261
-        Me.cbProducto.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        Me.LabelX2.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX2.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX2.Location = New System.Drawing.Point(2, 99)
+        Me.LabelX2.Name = "LabelX2"
+        Me.LabelX2.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX2.Size = New System.Drawing.Size(38, 23)
+        Me.LabelX2.TabIndex = 381
+        Me.LabelX2.Text = "Item:"
+        '
+        'btnBuscar
+        '
+        Me.btnBuscar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnBuscar.ColorTable = DevComponents.DotNetBar.eButtonColor.Magenta
+        Me.btnBuscar.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnBuscar.Image = Global.DinoM.My.Resources.Resources.search
+        Me.btnBuscar.ImageFixedSize = New System.Drawing.Size(25, 25)
+        Me.btnBuscar.Location = New System.Drawing.Point(152, 94)
+        Me.btnBuscar.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnBuscar.Name = "btnBuscar"
+        Me.btnBuscar.Size = New System.Drawing.Size(90, 31)
+        Me.btnBuscar.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btnBuscar.TabIndex = 380
+        Me.btnBuscar.Text = "Buscar"
+        '
+        'tbproducto
+        '
+        Me.tbproducto.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.tbproducto.Border.Class = "TextBoxBorder"
+        Me.tbproducto.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbproducto.DisabledBackColor = System.Drawing.Color.White
+        Me.tbproducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbproducto.ForeColor = System.Drawing.Color.Black
+        Me.tbproducto.Location = New System.Drawing.Point(66, 129)
+        Me.tbproducto.MaxLength = 500
+        Me.tbproducto.Multiline = True
+        Me.tbproducto.Name = "tbproducto"
+        Me.tbproducto.PreventEnterBeep = True
+        Me.tbproducto.Size = New System.Drawing.Size(290, 63)
+        Me.tbproducto.TabIndex = 379
+        '
+        'tbCodigo
+        '
+        Me.tbCodigo.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.tbCodigo.Border.Class = "TextBoxBorder"
+        Me.tbCodigo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbCodigo.DisabledBackColor = System.Drawing.Color.White
+        Me.tbCodigo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbCodigo.ForeColor = System.Drawing.Color.Black
+        Me.tbCodigo.Location = New System.Drawing.Point(66, 100)
+        Me.tbCodigo.Name = "tbCodigo"
+        Me.tbCodigo.PreventEnterBeep = True
+        Me.tbCodigo.Size = New System.Drawing.Size(80, 21)
+        Me.tbCodigo.TabIndex = 378
         '
         'CheckTodosProducto
         '
@@ -250,7 +305,7 @@ Partial Class Pr_HistorialProductos
         '
         '
         Me.CheckTodosProducto.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.CheckTodosProducto.Location = New System.Drawing.Point(299, 112)
+        Me.CheckTodosProducto.Location = New System.Drawing.Point(296, 98)
         Me.CheckTodosProducto.Name = "CheckTodosProducto"
         Me.CheckTodosProducto.Size = New System.Drawing.Size(55, 23)
         Me.CheckTodosProducto.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -263,7 +318,7 @@ Partial Class Pr_HistorialProductos
         '
         '
         Me.CheckUnaProducto.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.CheckUnaProducto.Location = New System.Drawing.Point(249, 112)
+        Me.CheckUnaProducto.Location = New System.Drawing.Point(246, 98)
         Me.CheckUnaProducto.Name = "CheckUnaProducto"
         Me.CheckUnaProducto.Size = New System.Drawing.Size(44, 23)
         Me.CheckUnaProducto.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -279,7 +334,7 @@ Partial Class Pr_HistorialProductos
         Me.LabelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX5.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX5.Location = New System.Drawing.Point(4, 83)
+        Me.LabelX5.Location = New System.Drawing.Point(0, 129)
         Me.LabelX5.Name = "LabelX5"
         Me.LabelX5.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX5.Size = New System.Drawing.Size(74, 23)
@@ -292,7 +347,7 @@ Partial Class Pr_HistorialProductos
         tbAlmacen_DesignTimeLayout.LayoutString = resources.GetString("tbAlmacen_DesignTimeLayout.LayoutString")
         Me.tbAlmacen.DesignTimeLayout = tbAlmacen_DesignTimeLayout
         Me.tbAlmacen.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAlmacen.Location = New System.Drawing.Point(71, 194)
+        Me.tbAlmacen.Location = New System.Drawing.Point(71, 258)
         Me.tbAlmacen.Name = "tbAlmacen"
         Me.tbAlmacen.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.tbAlmacen.Office2007CustomColor = System.Drawing.Color.DodgerBlue
@@ -309,7 +364,7 @@ Partial Class Pr_HistorialProductos
         '
         '
         Me.CheckTodosAlmacen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.CheckTodosAlmacen.Location = New System.Drawing.Point(293, 196)
+        Me.CheckTodosAlmacen.Location = New System.Drawing.Point(293, 260)
         Me.CheckTodosAlmacen.Name = "CheckTodosAlmacen"
         Me.CheckTodosAlmacen.Size = New System.Drawing.Size(55, 23)
         Me.CheckTodosAlmacen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -323,7 +378,7 @@ Partial Class Pr_HistorialProductos
         '
         '
         Me.CheckUnaALmacen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.CheckUnaALmacen.Location = New System.Drawing.Point(243, 196)
+        Me.CheckUnaALmacen.Location = New System.Drawing.Point(243, 260)
         Me.CheckUnaALmacen.Name = "CheckUnaALmacen"
         Me.CheckUnaALmacen.Size = New System.Drawing.Size(44, 23)
         Me.CheckUnaALmacen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -340,7 +395,7 @@ Partial Class Pr_HistorialProductos
         Me.tbCodAlmacen.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbCodAlmacen.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbCodAlmacen.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbCodAlmacen.Location = New System.Drawing.Point(41, 194)
+        Me.tbCodAlmacen.Location = New System.Drawing.Point(41, 258)
         Me.tbCodAlmacen.Name = "tbCodAlmacen"
         Me.tbCodAlmacen.PreventEnterBeep = True
         Me.tbCodAlmacen.Size = New System.Drawing.Size(22, 22)
@@ -357,7 +412,7 @@ Partial Class Pr_HistorialProductos
         Me.LabelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX3.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX3.Location = New System.Drawing.Point(6, 170)
+        Me.LabelX3.Location = New System.Drawing.Point(6, 234)
         Me.LabelX3.Name = "LabelX3"
         Me.LabelX3.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX3.Size = New System.Drawing.Size(74, 23)
@@ -521,7 +576,6 @@ Partial Class Pr_HistorialProductos
         CType(Me.MPicture, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        CType(Me.cbProducto, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbAlmacen, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbFechaF, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbFechaI, System.ComponentModel.ISupportInitialize).EndInit()
@@ -539,8 +593,11 @@ Partial Class Pr_HistorialProductos
     Friend WithEvents LabelX3 As DevComponents.DotNetBar.LabelX
     Friend WithEvents tbAlmacen As Janus.Windows.GridEX.EditControls.MultiColumnCombo
     Friend WithEvents Timer1 As Timer
-    Friend WithEvents cbProducto As Janus.Windows.GridEX.EditControls.MultiColumnCombo
     Friend WithEvents CheckTodosProducto As DevComponents.DotNetBar.Controls.CheckBoxX
     Friend WithEvents CheckUnaProducto As DevComponents.DotNetBar.Controls.CheckBoxX
     Friend WithEvents LabelX5 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents btnBuscar As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents tbproducto As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents tbCodigo As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents LabelX2 As DevComponents.DotNetBar.LabelX
 End Class

@@ -1515,7 +1515,7 @@ Partial Class F0_Venta2
         Me.swTipoVenta.Location = New System.Drawing.Point(1128, 10)
         Me.swTipoVenta.Name = "swTipoVenta"
         Me.swTipoVenta.OffBackColor = System.Drawing.Color.LawnGreen
-        Me.swTipoVenta.OffText = "CREDITO"
+        Me.swTipoVenta.OffText = "CRÉDITO"
         Me.swTipoVenta.OnBackColor = System.Drawing.Color.Gold
         Me.swTipoVenta.OnText = "CONTADO"
         Me.swTipoVenta.Size = New System.Drawing.Size(135, 22)

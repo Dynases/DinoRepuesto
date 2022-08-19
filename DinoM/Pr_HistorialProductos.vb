@@ -7,6 +7,8 @@ Public Class Pr_HistorialProductos
 
     Public _nameButton As String
     Public _tab As SuperTabItem
+    Dim dtProductoGoblal As DataTable
+    Dim Lote As Boolean = False
 
     Public Sub _prIniciarTodo()
         tbFechaI.Value = Now.Date
@@ -16,7 +18,9 @@ Public Class Pr_HistorialProductos
         Me.Text = "REPORTE VENTAS VS COSTOS"
         MReportViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
         _IniciarComponentes()
-        _prCargarComboLibreriaProducto(cbProducto)
+
+        _prValidarLote()
+        tbproducto.Enabled = False
     End Sub
     Public Sub _IniciarComponentes()
         tbAlmacen.ReadOnly = True
@@ -25,27 +29,25 @@ Public Class Pr_HistorialProductos
         CheckTodosProducto.Checked = True
 
     End Sub
-    Private Sub _prCargarComboLibreriaProducto(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
-        Dim dt As New DataTable
-        dt = L_prObtenerProductos()
-        With mCombo
-            .DropDownList.Columns.Clear()
-            .DropDownList.Columns.Add("idProducto").Width = 60
-            .DropDownList.Columns("idProducto").Caption = "ITEM"
-            .DropDownList.Columns.Add("Descripcion").Width = 500
-            .DropDownList.Columns("Descripcion").Caption = "PRODUCTO"
-            .ValueMember = "idProducto"
-            .DisplayMember = "Descripcion"
-            .DataSource = dt
-            .Refresh()
-        End With
+    Public Sub _prValidarLote()
+        Dim dt As DataTable = L_fnPorcUtilidad()
+        If (dt.Rows.Count > 0) Then
+            Dim lot As Integer = dt.Rows(0).Item("VerLote")
+            If (lot = 1) Then
+                Lote = True
+            Else
+                Lote = False
+            End If
+
+        End If
     End Sub
+
     Public Sub _prInterpretarDatos(ByRef _dt As DataTable)
         Dim fechaDesde As DateTime = tbFechaI.Value.ToString("dd/MM/yyyy")
         Dim fechaHasta As DateTime = tbFechaF.Value.ToString("dd/MM/yyyy")
         Dim idproducto As Integer = 0
 
-        If cbProducto.SelectedIndex <> -1 Then idproducto = cbProducto.Value
+        If tbCodigo.Text <> String.Empty Then idproducto = tbCodigo.Text
 
         _dt = L_prHistorialPreciosProductos(fechaDesde, fechaHasta, idproducto)
 
@@ -154,24 +156,68 @@ Public Class Pr_HistorialProductos
     Private Sub CheckTodosProducto_CheckValueChanged(sender As Object, e As EventArgs) Handles CheckTodosProducto.CheckValueChanged
         If (CheckTodosProducto.Checked) Then
             CheckUnaProducto.CheckValue = False
-            cbProducto.Enabled = True
-            cbProducto.BackColor = Color.Gainsboro
-            cbProducto.ReadOnly = True
-            cbProducto.SelectedIndex = -1
-
+            tbCodigo.Clear()
+            tbproducto.Clear()
+            tbCodigo.BackColor = Color.Gainsboro
+            tbproducto.BackColor = Color.Gainsboro
+            tbCodigo.Enabled = False
+            btnBuscar.Enabled = False
         End If
     End Sub
 
     Private Sub CheckUnaProducto_CheckValueChanged(sender As Object, e As EventArgs) Handles CheckUnaProducto.CheckValueChanged
         If (CheckUnaProducto.Checked) Then
             CheckTodosProducto.CheckValue = False
-            cbProducto.Enabled = True
-            cbProducto.BackColor = Color.White
-            cbProducto.Focus()
-            cbProducto.ReadOnly = False
-            If (CType(cbProducto.DataSource, DataTable).Rows.Count > 0) Then
-                cbProducto.SelectedIndex = 0
+            tbCodigo.ReadOnly = True
+            tbCodigo.BackColor = Color.White
+            tbproducto.BackColor = Color.White
+            btnBuscar.Enabled = True
+
+        End If
+    End Sub
+
+    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
+        Try
+            _prCargarProductos()
+        Catch ex As Exception
+            tbCodigo.Clear()
+            ToastNotification.Show(Me, "DEBE ELEGIR UN PRODUCTO..!!!",
+                                       My.Resources.INFORMATION, 2000,
+                                       eToastGlowColor.Blue,
+                                       eToastPosition.BottomLeft)
+        End Try
+
+    End Sub
+    Private Sub _prCargarProductos()
+        Dim dtname As DataTable = L_fnNameLabel()
+        'Obtiene la lista de productos
+        If dtProductoGoblal Is Nothing Then
+            If (Lote = True) Then
+                dtProductoGoblal = L_prMovimientoListarProductosConLote(1)
+                ' actualizarSaldoSinLote(dtProductoGoblal)
+            Else
+                dtProductoGoblal = L_prMovimientoListarProductos(1)
             End If
         End If
+        Dim dtMovimiento As DataTable = dtProductoGoblal.Copy
+        dtMovimiento.Rows.Clear()
+        'Intancia vista 
+        Dim frm As F0_DetalleMovimiento
+        frm = New F0_DetalleMovimiento(dtProductoGoblal, dtMovimiento, dtname)
+
+        'Envia valores de configuracion
+        frm.lbConcepto.Text = ""
+        frm.detalleSeleccionHabilitado = False
+        frm.GroupPanel1.Visible = False
+        frm.btnAgregar.Visible = False
+        frm.ShowDialog()
+        dtMovimiento.Rows.Clear()
+        'Devuelve valores de seleccion
+        'dtProductoGoblal.Columns.Item("Stock").
+        dtProductoGoblal.Columns.Remove("ListaAlmacen")
+
+        tbCodigo.Text = frm.pedidoId.ToString()
+        tbproducto.Text = frm.producto.ToString()
+
     End Sub
 End Class
