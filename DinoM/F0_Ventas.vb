@@ -3151,20 +3151,42 @@ salirIf:
     End Sub
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
 
-        If (gb_FacturaEmite) Then
-            If (P_fnValidarFacturaVigente()) Then
-                Dim img As Bitmap = New Bitmap(My.Resources.WARNING, 50, 50)
+        'If (gb_FacturaEmite) Then
+        '    If (P_fnValidarFacturaVigente()) Then
+        '        Dim img As Bitmap = New Bitmap(My.Resources.WARNING, 50, 50)
 
-                ToastNotification.Show(Me, "No se puede eliminar la venta con codigo ".ToUpper + tbCodigo.Text + ", su factura esta vigente.".ToUpper,
-                                          img, 2000,
-                                          eToastGlowColor.Green,
-                                          eToastPosition.TopCenter)
+        '        ToastNotification.Show(Me, "No se puede eliminar la venta con codigo ".ToUpper + tbCodigo.Text + ", su factura esta vigente.".ToUpper,
+        '                                  img, 2000,
+        '                                  eToastGlowColor.Green,
+        '                                  eToastPosition.TopCenter)
+        '        Exit Sub
+        '    End If
+        'End If
+
+        If (swTipoVenta.Value = False) Then
+            Dim res1 As Boolean = L_fnVerificarPagos(tbCodigo.Text)
+            If res1 Then
+                Dim img As Bitmap = New Bitmap(My.Resources.WARNING, 50, 50)
+                ToastNotification.Show(Me, "No se puede anular la venta con código ".ToUpper + tbCodigo.Text + ", porque tiene pagos realizados, por favor primero elimine los pagos correspondientes a esta venta".ToUpper,
+                                                  img, 5000,
+                                                  eToastGlowColor.Green,
+                                                  eToastPosition.TopCenter)
                 Exit Sub
             End If
         End If
 
-        Dim ef = New Efecto
+        Dim res2 As Boolean = L_fnVerificarCierreCaja(tbCodigo.Text, "V")
+        If res2 Then
+            Dim img As Bitmap = New Bitmap(My.Resources.WARNING, 50, 50)
 
+            ToastNotification.Show(Me, "No se puede anular la venta con código ".ToUpper + tbCodigo.Text + ", ya se hizo cierre de caja, por favor primero elimine cierre de caja".ToUpper,
+                                                  img, 5000,
+                                                  eToastGlowColor.Green,
+                                                  eToastPosition.TopCenter)
+            Exit Sub
+        End If
+
+        Dim ef = New Efecto
 
         ef.tipo = 2
         ef.Context = "¿esta seguro de eliminar el registro?".ToUpper

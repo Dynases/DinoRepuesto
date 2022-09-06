@@ -390,9 +390,7 @@ Public Class ModeloF1
         _PMUltimoRegistro()
     End Sub
 
-    Private Sub ModeloF1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-    End Sub
 
 #End Region
 End Class

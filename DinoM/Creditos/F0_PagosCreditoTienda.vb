@@ -1012,6 +1012,18 @@ Public Class F0_PagosCreditoTienda
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
             ToastNotification.Show(Me, "El Pago del Prestamo no puede ser Eliminada porque ya fue contabilizada".ToUpper, img, 4500, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
+
+        Dim res2 As Boolean = L_fnVerificarCierreCaja(tbnrodoc.Text, "P")
+        If res2 Then
+            Dim img As Bitmap = New Bitmap(My.Resources.WARNING, 50, 50)
+
+            ToastNotification.Show(Me, "No se puede eliminar el pago con código ".ToUpper + tbnrodoc.Text + ", ya se hizo cierre de caja, por favor primero elimine cierre de caja".ToUpper,
+                                                  img, 5000,
+                                                  eToastGlowColor.Green,
+                                                  eToastPosition.TopCenter)
+            Exit Sub
+        End If
+
         Dim ef = New Efecto
         ef.tipo = 2
         ef.Context = "¿esta seguro de eliminar el registro?".ToUpper

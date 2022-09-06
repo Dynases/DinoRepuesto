@@ -1178,6 +1178,21 @@ Public Class P_Principal
         frm.Show()
     End Sub
 
+    Private Sub btDevolucion_Click(sender As Object, e As EventArgs) Handles btDevolucion.Click
+
+        Dim frm As New F0_Devolucion
+        frm._nameButton = btDevolucion.Name
+        frm._modulo = FP_VENTAS
+        'Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
+        'frm._tab = tab3
+        'Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        'superTabControl3.SelectedTabIndex = superTabControl3.Tabs.Count - 1
+        'tab3.AttachedControl.Controls.Add(panel)
+        frm.Show()
+    End Sub
+
+
+
 
 
     'Private Sub btnCredPagoCliente_Click(sender As Object, e As EventArgs) Handles btnCredPagoCliente.Click

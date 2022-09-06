@@ -30,6 +30,9 @@ Partial Class F1_IngresosEgresos
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.btnBuscarDevolución = New DevComponents.DotNetBar.ButtonX()
+        Me.lbDevolucion = New DevComponents.DotNetBar.LabelX()
+        Me.tbIdDevolucion = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LabelX17 = New DevComponents.DotNetBar.LabelX()
         Me.cbSucursal = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         Me.lbNroCaja = New System.Windows.Forms.Label()
@@ -52,8 +55,12 @@ Partial Class F1_IngresosEgresos
         Me.swTipo = New DevComponents.DotNetBar.Controls.SwitchButton()
         Me.LabelX9 = New DevComponents.DotNetBar.LabelX()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.GroupPanel3 = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.grDevolucion = New Janus.Windows.GridEX.GridEX()
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabPrincipal.SuspendLayout()
+        Me.SuperTabControlPanelBuscador.SuspendLayout()
         Me.SuperTabControlPanelRegistro.SuspendLayout()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelInferior.SuspendLayout()
@@ -75,6 +82,9 @@ Partial Class F1_IngresosEgresos
         CType(Me.cbSucursal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbMonto, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbConcepto, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupPanel3.SuspendLayout()
+        Me.Panel10.SuspendLayout()
+        CType(Me.grDevolucion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SuperTabPrincipal
@@ -98,8 +108,8 @@ Partial Class F1_IngresosEgresos
         '
         'SuperTabControlPanelBuscador
         '
-        Me.SuperTabControlPanelBuscador.Location = New System.Drawing.Point(0, 0)
-        Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(1322, 709)
+        Me.SuperTabControlPanelBuscador.Controls.Add(Me.GroupPanel3)
+        Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(1322, 699)
         '
         'SuperTabControlPanelRegistro
         '
@@ -155,10 +165,6 @@ Partial Class F1_IngresosEgresos
         Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingTop = 3
         Me.BubbleBarUsuario.MouseOverTabColors.BorderColor = System.Drawing.SystemColors.Highlight
         Me.BubbleBarUsuario.SelectedTabColors.BorderColor = System.Drawing.Color.Black
-        '
-        'TxtNombreUsu
-        '
-        Me.TxtNombreUsu.Size = New System.Drawing.Size(200, 36)
         '
         'btnSalir
         '
@@ -230,10 +236,6 @@ Partial Class F1_IngresosEgresos
         'btnImprimir
         '
         Me.btnImprimir.Visible = False
-        '
-        'btnUltimo
-        '
-        Me.btnUltimo.Location = New System.Drawing.Point(129, 0)
         '
         'MPanelUserAct
         '
@@ -309,6 +311,9 @@ Partial Class F1_IngresosEgresos
         'Panel3
         '
         Me.Panel3.AutoScroll = True
+        Me.Panel3.Controls.Add(Me.btnBuscarDevolución)
+        Me.Panel3.Controls.Add(Me.lbDevolucion)
+        Me.Panel3.Controls.Add(Me.tbIdDevolucion)
         Me.Panel3.Controls.Add(Me.LabelX17)
         Me.Panel3.Controls.Add(Me.cbSucursal)
         Me.Panel3.Controls.Add(Me.lbNroCaja)
@@ -335,6 +340,53 @@ Partial Class F1_IngresosEgresos
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(1310, 191)
         Me.Panel3.TabIndex = 227
+        '
+        'btnBuscarDevolución
+        '
+        Me.btnBuscarDevolución.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnBuscarDevolución.BackColor = System.Drawing.Color.Transparent
+        Me.btnBuscarDevolución.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
+        Me.btnBuscarDevolución.Image = Global.DinoM.My.Resources.Resources.search
+        Me.btnBuscarDevolución.ImageFixedSize = New System.Drawing.Size(25, 23)
+        Me.btnBuscarDevolución.Location = New System.Drawing.Point(787, 152)
+        Me.btnBuscarDevolución.Name = "btnBuscarDevolución"
+        Me.btnBuscarDevolución.Size = New System.Drawing.Size(28, 23)
+        Me.btnBuscarDevolución.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btnBuscarDevolución.TabIndex = 389
+        '
+        'lbDevolucion
+        '
+        Me.lbDevolucion.AutoSize = True
+        Me.lbDevolucion.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbDevolucion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbDevolucion.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbDevolucion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbDevolucion.Location = New System.Drawing.Point(550, 155)
+        Me.lbDevolucion.Name = "lbDevolucion"
+        Me.lbDevolucion.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbDevolucion.Size = New System.Drawing.Size(93, 16)
+        Me.lbDevolucion.TabIndex = 388
+        Me.lbDevolucion.Text = "Id Devolución:"
+        '
+        'tbIdDevolucion
+        '
+        '
+        '
+        '
+        Me.tbIdDevolucion.Border.Class = "TextBoxBorder"
+        Me.tbIdDevolucion.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbIdDevolucion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbIdDevolucion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.tbIdDevolucion.Location = New System.Drawing.Point(708, 153)
+        Me.tbIdDevolucion.Name = "tbIdDevolucion"
+        Me.tbIdDevolucion.PreventEnterBeep = True
+        Me.tbIdDevolucion.ReadOnly = True
+        Me.tbIdDevolucion.Size = New System.Drawing.Size(63, 22)
+        Me.tbIdDevolucion.TabIndex = 387
+        Me.tbIdDevolucion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'LabelX17
         '
@@ -371,7 +423,7 @@ Partial Class F1_IngresosEgresos
         '
         Me.lbNroCaja.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.lbNroCaja.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.lbNroCaja.Location = New System.Drawing.Point(705, 158)
+        Me.lbNroCaja.Location = New System.Drawing.Point(934, 48)
         Me.lbNroCaja.Name = "lbNroCaja"
         Me.lbNroCaja.Size = New System.Drawing.Size(60, 17)
         Me.lbNroCaja.TabIndex = 384
@@ -389,7 +441,7 @@ Partial Class F1_IngresosEgresos
         Me.LabelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX6.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX6.Location = New System.Drawing.Point(550, 158)
+        Me.LabelX6.Location = New System.Drawing.Point(846, 48)
         Me.LabelX6.Name = "LabelX6"
         Me.LabelX6.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX6.Size = New System.Drawing.Size(65, 16)
@@ -671,6 +723,82 @@ Partial Class F1_IngresosEgresos
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 500
         '
+        'GroupPanel3
+        '
+        Me.GroupPanel3.CanvasColor = System.Drawing.SystemColors.Control
+        Me.GroupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
+        Me.GroupPanel3.Controls.Add(Me.Panel10)
+        Me.GroupPanel3.DisabledBackColor = System.Drawing.Color.Empty
+        Me.GroupPanel3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupPanel3.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupPanel3.Location = New System.Drawing.Point(0, 0)
+        Me.GroupPanel3.Name = "GroupPanel3"
+        Me.GroupPanel3.Size = New System.Drawing.Size(1322, 699)
+        '
+        '
+        '
+        Me.GroupPanel3.Style.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
+        Me.GroupPanel3.Style.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
+        Me.GroupPanel3.Style.BackColorGradientAngle = 90
+        Me.GroupPanel3.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.GroupPanel3.Style.BorderBottomWidth = 1
+        Me.GroupPanel3.Style.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
+        Me.GroupPanel3.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.GroupPanel3.Style.BorderLeftWidth = 1
+        Me.GroupPanel3.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.GroupPanel3.Style.BorderRightWidth = 1
+        Me.GroupPanel3.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.GroupPanel3.Style.BorderTopWidth = 1
+        Me.GroupPanel3.Style.CornerDiameter = 4
+        Me.GroupPanel3.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
+        Me.GroupPanel3.Style.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupPanel3.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
+        Me.GroupPanel3.Style.TextColor = System.Drawing.Color.White
+        Me.GroupPanel3.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
+        '
+        '
+        '
+        Me.GroupPanel3.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.GroupPanel3.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.GroupPanel3.TabIndex = 5
+        Me.GroupPanel3.Text = "BUSCADOR  DEVOLUCIONES"
+        '
+        'Panel10
+        '
+        Me.Panel10.BackColor = System.Drawing.Color.White
+        Me.Panel10.Controls.Add(Me.grDevolucion)
+        Me.Panel10.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel10.Location = New System.Drawing.Point(0, 0)
+        Me.Panel10.Name = "Panel10"
+        Me.Panel10.Size = New System.Drawing.Size(1316, 676)
+        Me.Panel10.TabIndex = 0
+        '
+        'grDevolucion
+        '
+        Me.grDevolucion.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.[False]
+        Me.grDevolucion.BackColor = System.Drawing.Color.GhostWhite
+        Me.grDevolucion.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grDevolucion.EnterKeyBehavior = Janus.Windows.GridEX.EnterKeyBehavior.None
+        Me.grDevolucion.FocusStyle = Janus.Windows.GridEX.FocusStyle.Solid
+        Me.grDevolucion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.grDevolucion.GroupRowVisualStyle = Janus.Windows.GridEX.GroupRowVisualStyle.UseRowStyle
+        Me.grDevolucion.HeaderFormatStyle.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.grDevolucion.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight
+        Me.grDevolucion.Location = New System.Drawing.Point(0, 0)
+        Me.grDevolucion.Name = "grDevolucion"
+        Me.grDevolucion.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.grDevolucion.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.grDevolucion.SelectedFormatStyle.BackColor = System.Drawing.Color.DodgerBlue
+        Me.grDevolucion.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.grDevolucion.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
+        Me.grDevolucion.SelectOnExpand = False
+        Me.grDevolucion.Size = New System.Drawing.Size(1316, 676)
+        Me.grDevolucion.TabIndex = 0
+        Me.grDevolucion.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
         'F1_IngresosEgresos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -682,6 +810,7 @@ Partial Class F1_IngresosEgresos
         Me.Controls.SetChildIndex(Me.SuperTabPrincipal, 0)
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SuperTabPrincipal.ResumeLayout(False)
+        Me.SuperTabControlPanelBuscador.ResumeLayout(False)
         Me.SuperTabControlPanelRegistro.ResumeLayout(False)
         Me.PanelSuperior.ResumeLayout(False)
         Me.PanelInferior.ResumeLayout(False)
@@ -706,6 +835,9 @@ Partial Class F1_IngresosEgresos
         CType(Me.cbSucursal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbMonto, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbConcepto, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupPanel3.ResumeLayout(False)
+        Me.Panel10.ResumeLayout(False)
+        CType(Me.grDevolucion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -736,4 +868,10 @@ Partial Class F1_IngresosEgresos
     Friend WithEvents LabelX6 As DevComponents.DotNetBar.LabelX
     Friend WithEvents LabelX17 As DevComponents.DotNetBar.LabelX
     Friend WithEvents cbSucursal As Janus.Windows.GridEX.EditControls.MultiColumnCombo
+    Friend WithEvents btnBuscarDevolución As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents lbDevolucion As DevComponents.DotNetBar.LabelX
+    Friend WithEvents tbIdDevolucion As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents GroupPanel3 As DevComponents.DotNetBar.Controls.GroupPanel
+    Friend WithEvents Panel10 As Panel
+    Friend WithEvents grDevolucion As Janus.Windows.GridEX.GridEX
 End Class

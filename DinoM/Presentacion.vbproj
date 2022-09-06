@@ -361,6 +361,12 @@
     <Compile Include="F0_Venta2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="F0_Devolucion.designer.vb">
+      <DependentUpon>F0_Devolucion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F0_Devolucion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="F0_Ventas.designer.vb">
       <DependentUpon>F0_Ventas.vb</DependentUpon>
     </Compile>
@@ -1064,6 +1070,9 @@
     <EmbeddedResource Include="F0_Venta2.resx">
       <DependentUpon>F0_Venta2.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="F0_Devolucion.resx">
+      <DependentUpon>F0_Devolucion.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F0_Ventas.resx">
       <DependentUpon>F0_Ventas.vb</DependentUpon>
     </EmbeddedResource>
@@ -1704,6 +1713,7 @@
     <None Include="Resources\trash.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\regreso.png" />
     <None Include="Resources\VENT_PAGOS.png" />
     <None Include="Resources\pie-chart1.png" />
     <None Include="Resources\pie-chart.png" />

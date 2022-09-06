@@ -1577,6 +1577,24 @@ Public Class AccesoLogica
 
         Return _Tabla
     End Function
+    Public Shared Function L_fnVerificarCierreCaja(numi As String, tipo As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 22))
+        _listParam.Add(New Datos.DParametro("@tanumi", numi))
+        _listParam.Add(New Datos.DParametro("@tipoTCC0013", tipo))
+        _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
     Public Shared Function L_fnGrabarVenta(ByRef _tanumi As String, _taidCorelativo As String, _tafdoc As String, _taven As Integer, _tatven As Integer, _tafvcr As String, _taclpr As Integer,
                                            _tamon As Integer, _taobs As String,
                                            _tadesc As Double, _taice As Double,
@@ -6098,7 +6116,7 @@ Public Class AccesoLogica
     End Function
     Public Shared Function L_prIngresoEgresoGrabar(ByRef _ienumi As String, _ieFecha As String, _ieTipo As String,
                                            _ieDescripcion As String, _ieConcepto As String, _ieMonto As Decimal,
-                                           _ieObs As String, _NroCaja As Integer, _Sucursal As Integer) As Boolean
+                                           _ieObs As String, _NroCaja As Integer, _Sucursal As Integer, _idDevolucion As String) As Boolean
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
@@ -6114,6 +6132,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@ieEstado", 1))
         _listParam.Add(New Datos.DParametro("@Nrocaja", _NroCaja))
         _listParam.Add(New Datos.DParametro("@Sucursal", _Sucursal))
+        _listParam.Add(New Datos.DParametro("@IdDevolucion", _idDevolucion))
         _listParam.Add(New Datos.DParametro("@ieuact", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TIE001", _listParam)
 
@@ -6156,7 +6175,7 @@ Public Class AccesoLogica
 
     Public Shared Function L_prIngresoEgresoModificar(ByRef _ienumi As String, _ieFecha As String, _ieTipo As String,
                                            _ieDescripcion As String, _ieConcepto As String, _ieMonto As Decimal,
-                                           _ieObs As String, _Sucursal As Integer) As Boolean
+                                           _ieObs As String, _Sucursal As Integer, _idDevolucion As String) As Boolean
         Dim _resultado As Boolean
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
@@ -6171,6 +6190,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@ieObs", _ieObs))
         _listParam.Add(New Datos.DParametro("@ieEstado", 2))
         _listParam.Add(New Datos.DParametro("@Sucursal", _Sucursal))
+        _listParam.Add(New Datos.DParametro("@IdDevolucion", _idDevolucion))
         _listParam.Add(New Datos.DParametro("@ieuact", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TIE001", _listParam)
 
@@ -6194,6 +6214,134 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@Sucursal", Sucursal))
         _listParam.Add(New Datos.DParametro("@ieuact", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TIE001", _listParam)
+
+        Return _Tabla
+    End Function
+#End Region
+
+#Region "TD002 DEVOLUCIONES"
+    Public Shared Function L_fnEliminarDevolucion(numi As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        If L_fnbValidarEliminacion(numi, "TD002", "dbnumi", mensaje) = True Then
+            Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
+
+            _listParam.Add(New Datos.DParametro("@tipo", -1))
+            _listParam.Add(New Datos.DParametro("@numi", numi))
+            _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+            _Tabla = D_ProcedimientoConParam("sp_Mam_TD002", _listParam)
+
+            If _Tabla.Rows.Count > 0 Then
+                _resultado = True
+            Else
+                _resultado = False
+            End If
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    Public Shared Function L_fnGrabarDevolucion(ByRef _numi As String, _idventa As String, _tafechadev As String, _tatven As Integer, _sucursal As Integer,
+                                                _taobs As String, _total As Double, detalle As DataTable) As Boolean
+        Dim _Tabla As DataTable
+        Dim _resultado As Boolean
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@tanumi", _idventa))
+        _listParam.Add(New Datos.DParametro("@fdev", _tafechadev))
+        _listParam.Add(New Datos.DParametro("@tven", _tatven))
+        _listParam.Add(New Datos.DParametro("@sucursal", _sucursal))
+        _listParam.Add(New Datos.DParametro("@obs", _taobs))
+        _listParam.Add(New Datos.DParametro("@total", _total))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@TD0021", "", detalle))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TD002", _listParam)
+
+
+        If _Tabla.Rows.Count > 0 Then
+            _numi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    Public Shared Function L_fnGeneraDevolucion(idsucursal As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@almacen", idsucursal))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TD002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnDetalleDev(iddev As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@numi", iddev))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TD002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnGeneralVentaDev(idsucursal As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@almacen", idsucursal))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TD002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnDetalleVentaDev(idventa As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@tanumi", idventa))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TD002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnVerificarCreditos(idventa As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _listParam.Add(New Datos.DParametro("@tanumi", idventa))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TD002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnGeneraDevolucionEgreso(idsucursal As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 8))
+        _listParam.Add(New Datos.DParametro("@almacen", idsucursal))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TD002", _listParam)
 
         Return _Tabla
     End Function

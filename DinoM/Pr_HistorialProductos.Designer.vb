@@ -78,7 +78,7 @@ Partial Class Pr_HistorialProductos
         Me.SuperTabPrincipal.ControlBox.MenuBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabPrincipal.ControlBox.MenuBox, Me.SuperTabPrincipal.ControlBox.CloseBox})
-        Me.SuperTabPrincipal.Size = New System.Drawing.Size(1354, 721)
+        Me.SuperTabPrincipal.Size = New System.Drawing.Size(1344, 711)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelBuscador, 0)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelRegistro, 0)
         '
@@ -90,7 +90,7 @@ Partial Class Pr_HistorialProductos
         'SuperTabControlPanelRegistro
         '
         Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(4)
-        Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(1322, 721)
+        Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(1312, 711)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelInferior, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelIzq, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelPrincipal, 0)
@@ -108,9 +108,9 @@ Partial Class Pr_HistorialProductos
         '
         'PanelInferior
         '
-        Me.PanelInferior.Location = New System.Drawing.Point(0, 685)
+        Me.PanelInferior.Location = New System.Drawing.Point(0, 675)
         Me.PanelInferior.Margin = New System.Windows.Forms.Padding(4)
-        Me.PanelInferior.Size = New System.Drawing.Size(1322, 36)
+        Me.PanelInferior.Size = New System.Drawing.Size(1312, 36)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Gold
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.Gold
@@ -152,23 +152,23 @@ Partial Class Pr_HistorialProductos
         'PanelPrincipal
         '
         Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(4)
-        Me.PanelPrincipal.Size = New System.Drawing.Size(959, 685)
+        Me.PanelPrincipal.Size = New System.Drawing.Size(949, 675)
         '
         'MPanelUserAct
         '
-        Me.MPanelUserAct.Location = New System.Drawing.Point(1122, 0)
+        Me.MPanelUserAct.Location = New System.Drawing.Point(1112, 0)
         Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(4)
         '
         'MReportViewer
         '
         Me.MReportViewer.Margin = New System.Windows.Forms.Padding(4)
-        Me.MReportViewer.Size = New System.Drawing.Size(959, 685)
+        Me.MReportViewer.Size = New System.Drawing.Size(949, 675)
         Me.MReportViewer.ToolPanelWidth = 200
         '
         'MGPFiltros
         '
         Me.MGPFiltros.Controls.Add(Me.GroupBox2)
-        Me.MGPFiltros.Size = New System.Drawing.Size(363, 613)
+        Me.MGPFiltros.Size = New System.Drawing.Size(363, 603)
         '
         '
         '
@@ -200,7 +200,7 @@ Partial Class Pr_HistorialProductos
         '
         'PanelIzq
         '
-        Me.PanelIzq.Size = New System.Drawing.Size(363, 685)
+        Me.PanelIzq.Size = New System.Drawing.Size(363, 675)
         Me.PanelIzq.Controls.SetChildIndex(Me.PanelSuperior, 0)
         Me.PanelIzq.Controls.SetChildIndex(Me.MGPFiltros, 0)
         '
@@ -227,7 +227,7 @@ Partial Class Pr_HistorialProductos
         Me.GroupBox2.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(357, 590)
+        Me.GroupBox2.Size = New System.Drawing.Size(357, 580)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Datos"
@@ -553,10 +553,11 @@ Partial Class Pr_HistorialProductos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1354, 721)
+        Me.ClientSize = New System.Drawing.Size(1344, 711)
         Me.Location = New System.Drawing.Point(0, 0)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Pr_HistorialProductos"
+        Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show
         Me.Text = "REPORTE HISTORIAL PRODUCTOS"
         Me.Controls.SetChildIndex(Me.SuperTabPrincipal, 0)
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).EndInit()

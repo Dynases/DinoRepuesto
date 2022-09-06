@@ -15,7 +15,7 @@ Public Class Pr_HistorialProductos
         tbFechaF.Value = Now.Date
         _PMIniciarTodo()
         'L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
-        Me.Text = "REPORTE VENTAS VS COSTOS"
+        Me.Text = "REPORTE HISTORIAL DE PRECIOS"
         MReportViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
         _IniciarComponentes()
 

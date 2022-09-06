@@ -121,6 +121,7 @@ Public Class F1_IngresosEgresos
         cbConcepto.ReadOnly = False
         tbMonto.IsInputReadOnly = False
         tbObservacion.ReadOnly = False
+        btnBuscarDevolución.Enabled = True
 
     End Sub
     Public Overrides Sub _PMOInhabilitar()
@@ -133,6 +134,7 @@ Public Class F1_IngresosEgresos
         tbMonto.IsInputReadOnly = True
         tbObservacion.ReadOnly = True
         cbSucursal.ReadOnly = True
+        btnBuscarDevolución.Enabled = False
 
     End Sub
     Public Overrides Sub _PMOHabilitarFocus()
@@ -152,6 +154,7 @@ Public Class F1_IngresosEgresos
         swTipo.Value = True
         dpFecha.Value = Now.Date
         tbDescripcion.Text = ""
+        tbIdDevolucion.Text = "0"
         'cbConcepto.SelectedIndex = 0
         tbMonto.Value = 0
         tbObservacion.Text = ""
@@ -188,6 +191,16 @@ Public Class F1_IngresosEgresos
             tbMonto.BackColor = Color.White
             MEP.SetError(tbMonto, "")
         End If
+        If (cbConcepto.Value = 2) Then 'Devolución
+            If (tbIdDevolucion.Text = "0") Then
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                MEP.SetError(tbIdDevolucion, "Por Favor debe seleccionar a que Id de Devolución pertenece !".ToUpper)
+                _ok = False
+            Else
+                tbIdDevolucion.BackColor = Color.White
+                MEP.SetError(tbIdDevolucion, "")
+            End If
+        End If
 
 
         MHighlighterFocus.UpdateHighlights()
@@ -214,6 +227,7 @@ Public Class F1_IngresosEgresos
         listEstCeldas.Add(New Modelo.Celda("ieuact", False))
         listEstCeldas.Add(New Modelo.Celda("NroCaja", False, "Nro. Caja", 100))
         listEstCeldas.Add(New Modelo.Celda("ieSucursal", False, "Sucursal", 100))
+        listEstCeldas.Add(New Modelo.Celda("ieIdDevolucion", False))
 
         Return listEstCeldas
 
@@ -239,6 +253,7 @@ Public Class F1_IngresosEgresos
             tbObservacion.Text = .GetValue("ieObs").ToString
             lbNroCaja.Text = .GetValue("NroCaja")
             cbSucursal.Value = .GetValue("ieSucursal")
+            tbIdDevolucion.Text = .GetValue("ieIdDevolucion")
 
             lbFecha.Text = CType(.GetValue("iefact"), Date).ToString("dd/MM/yyyy")
             lbHora.Text = .GetValue("iehact").ToString
@@ -259,10 +274,12 @@ Public Class F1_IngresosEgresos
     Public Overrides Function _PMOGrabarRegistro() As Boolean
 
         Dim tipo As Integer = IIf(swTipo.Value = True, 1, 0)
-        Dim res As Boolean = L_prIngresoEgresoGrabar(tbcodigo.Text, dpFecha.Value, tipo, tbDescripcion.Text, cbConcepto.Value, tbMonto.Value, tbObservacion.Text, gs_NroCaja, cbSucursal.Value)
+        Dim res As Boolean = L_prIngresoEgresoGrabar(tbcodigo.Text, dpFecha.Value, tipo, tbDescripcion.Text, cbConcepto.Value, tbMonto.Value, tbObservacion.Text,
+                                                     gs_NroCaja, cbSucursal.Value, tbIdDevolucion.Text)
         If res Then
             Modificado = False
             _PMOLimpiar()
+            SupTabItemBusqueda.Visible = False
             ToastNotification.Show(Me, "Codigo de Ingreso/Egreso".ToUpper + tbcodigo.Text + " Grabado con éxito.".ToUpper, My.Resources.GRABACION_EXITOSA, 5000, eToastGlowColor.Green, eToastPosition.TopCenter)
         End If
         Return res
@@ -272,15 +289,18 @@ Public Class F1_IngresosEgresos
         Dim res As Boolean
         Dim tipo As Integer = IIf(swTipo.Value = True, 1, 0)
         If (Modificado = False) Then
-            res = L_prIngresoEgresoModificar(tbcodigo.Text, dpFecha.Value, tipo, tbDescripcion.Text, cbConcepto.Value, tbMonto.Value, tbObservacion.Text, cbSucursal.Value)
+            res = L_prIngresoEgresoModificar(tbcodigo.Text, dpFecha.Value, tipo, tbDescripcion.Text, cbConcepto.Value, tbMonto.Value, tbObservacion.Text,
+                                             cbSucursal.Value, tbIdDevolucion.Text)
 
         Else
-            res = L_prIngresoEgresoModificar(tbcodigo.Text, dpFecha.Value, tipo, tbDescripcion.Text, cbConcepto.Value, tbMonto.Value, tbObservacion.Text, cbSucursal.Value)
+            res = L_prIngresoEgresoModificar(tbcodigo.Text, dpFecha.Value, tipo, tbDescripcion.Text, cbConcepto.Value, tbMonto.Value, tbObservacion.Text,
+                                             cbSucursal.Value, tbIdDevolucion.Text)
         End If
         If res Then
             Modificado = False
             _PMInhabilitar()
             _PMPrimerRegistro()
+            SupTabItemBusqueda.Visible = False
             ToastNotification.Show(Me, "Codigo de Ingreso/Egreso".ToUpper + tbcodigo.Text + " modificado con éxito.".ToUpper, My.Resources.GRABACION_EXITOSA, 5000, eToastGlowColor.Green, eToastPosition.TopCenter)
         End If
         Return res
@@ -364,6 +384,15 @@ Public Class F1_IngresosEgresos
         Else
             btConcepto.Visible = False
         End If
+        If cbConcepto.Value = 2 Then 'Devolución
+            lbDevolucion.Visible = True
+            tbIdDevolucion.Visible = True
+            btnBuscarDevolución.Visible = True
+        Else
+            lbDevolucion.Visible = False
+            tbIdDevolucion.Visible = False
+            btnBuscarDevolución.Visible = False
+        End If
     End Sub
 
     Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
@@ -379,6 +408,125 @@ Public Class F1_IngresosEgresos
         End If
 
     End Sub
+
+    Private Sub btnBuscarDevolución_Click(sender As Object, e As EventArgs) Handles btnBuscarDevolución.Click
+        SupTabItemBusqueda.Visible = True
+        SuperTabPrincipal.SelectedTabIndex = 1
+        _prCargarDevolucion()
+    End Sub
+
+
+    Private Sub _prCargarDevolucion()
+        Dim dt As New DataTable
+        dt = L_fnGeneraDevolucionEgreso(gi_userSuc)
+        grDevolucion.DataSource = dt
+        grDevolucion.RetrieveStructure()
+        grDevolucion.AlternatingColors = True
+
+        With grDevolucion.RootTable.Columns("dbnumi")
+            .Width = 100
+            .Caption = "ID DEVOLUCIÓN"
+            .Visible = True
+        End With
+        With grDevolucion.RootTable.Columns("dbtanumi")
+            .Width = 90
+            .Visible = True
+            .Caption = "ID VENTA"
+        End With
+        With grDevolucion.RootTable.Columns("dbfdev")
+            .Width = 90
+            .Visible = True
+            .Caption = "FECHA"
+        End With
+        With grDevolucion.RootTable.Columns("dbobs")
+            .Width = 200
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = True
+            .Caption = "OBSERVACION"
+        End With
+        With grDevolucion.RootTable.Columns("dbtotal")
+            .Width = 150
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .Caption = "TOTAL"
+            .FormatString = "0.00"
+        End With
+        With grDevolucion.RootTable.Columns("taalm")
+            .Width = 90
+            .Visible = False
+        End With
+        With grDevolucion.RootTable.Columns("tafdoc")
+            .Width = 160
+            .Visible = False
+        End With
+
+        With grDevolucion.RootTable.Columns("vendedor")
+            .Width = 250
+            .Visible = False
+            .Caption = "VENDEDOR".ToUpper
+        End With
+        With grDevolucion.RootTable.Columns("tatven")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
+        With grDevolucion.RootTable.Columns("tafvcr")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
+        With grDevolucion.RootTable.Columns("taclpr")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
+        With grDevolucion.RootTable.Columns("cliente")
+            .Width = 250
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = True
+            .Caption = "CLIENTE"
+        End With
+        With grDevolucion.RootTable.Columns("taCatPrecio")
+            .Width = 90
+            .Visible = False
+        End With
+
+        With grDevolucion.RootTable.Columns("dbfact")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
+        With grDevolucion.RootTable.Columns("dbhact")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
+        With grDevolucion.RootTable.Columns("dbuact")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
+
+        With grDevolucion
+            .DefaultFilterRowComparison = FilterConditionOperator.Contains
+            .FilterMode = FilterMode.Automatic
+            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+            .GroupByBoxVisible = False
+            'diseño de la grilla
+        End With
+
+        'If (dt.Rows.Count <= 0) Then
+        '    _prCargarDetalleVenta(-1)
+        'End If
+    End Sub
+
+    Private Sub grDevolucion_KeyDown(sender As Object, e As KeyEventArgs) Handles grDevolucion.KeyDown
+        If e.KeyData = Keys.Enter Then
+            SuperTabPrincipal.SelectedTabIndex = 0
+            tbIdDevolucion.Text = grDevolucion.GetValue("dbnumi")
+        End If
+    End Sub
+
 
 
 
