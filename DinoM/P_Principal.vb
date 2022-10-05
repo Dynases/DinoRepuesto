@@ -1191,6 +1191,13 @@ Public Class P_Principal
         frm.Show()
     End Sub
 
+    Private Sub btComProforma_Click(sender As Object, e As EventArgs) Handles btComProforma.Click
+        Dim frm As New F0_ProformaCompra
+        frm._nameButton = btComProforma.Name
+        frm._modulo = FP_COMPRAS
+        frm.Show()
+    End Sub
+
 
 
 

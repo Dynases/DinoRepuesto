@@ -289,6 +289,13 @@ Public Class F0_MCompras
                 End If
             Next
         End If
+        SwProforma.Value = False
+        tbProforma.Clear()
+        'If (SwProforma.Value = True) Then
+        '    btnBuscarProforma.Enabled = True
+        'Else
+        '    btnBuscarProforma.Enabled = False
+        'End If
     End Sub
     Public Sub _prMostrarRegistro(_N As Integer)
         '' grVentas.Row = _N
@@ -1056,11 +1063,18 @@ Public Class F0_MCompras
 
         End If
         If (cbSucursal.SelectedIndex < 0) Then
-
             Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
             ToastNotification.Show(Me, "Por Favor Seleccione una Sucursal".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
             tbProveedor.Focus()
             Return False
+        End If
+        If (SwProforma.Value = True) Then
+            If tbProforma.Text = String.Empty Then
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Por Favor Seleccione una Proforma".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                btnBuscarProforma.Focus()
+                Return False
+            End If
         End If
         If swEmision.Value = True Then
             If (tbNFactura.Text = String.Empty) Then
@@ -1129,14 +1143,12 @@ Public Class F0_MCompras
     Public Sub _GuardarNuevo()
         Try
             '' RecuperarDatosTFC001()  'Recupera datos para grabar en la BDDiconDino en la Tabla TFC001
-            Dim res As Boolean = L_fnGrabarCompra("", cbSucursal.Value, tbFechaVenta.Value.ToString("yyyy/MM/dd"),
-                                                  _CodProveedor, IIf(swTipoVenta.Value = True, 1, 0), IIf(swTipoVenta.Value = True,
-                                                  Now.Date.ToString("yyyy/MM/dd"), tbFechaVenc.Value.ToString("yyyy/MM/dd")),
-                                                  IIf(swMoneda.Value = True, 1, 0), tbObservacion.Text, tbMdesc.Value,
-                                                  tbtotal.Value, CType(grdetalle.DataSource, DataTable),
-                                                  _detalleCompras, IIf(swEmision.Value = True, 1, 0),
-                                                  tbNFactura.Text, IIf(swConsigna.Value = True, 1, 0),
-                                                  IIf(swRetencion.Value = True, 1, 0), IIf(swMoneda.Value = True, 1, tbTipoCambio.Value), 0)
+            Dim res As Boolean = L_fnGrabarCompra("", cbSucursal.Value, tbFechaVenta.Value.ToString("yyyy/MM/dd"), _CodProveedor, IIf(swTipoVenta.Value = True, 1, 0),
+                                                  IIf(swTipoVenta.Value = True, Now.Date.ToString("yyyy/MM/dd"), tbFechaVenc.Value.ToString("yyyy/MM/dd")),
+                                                  IIf(swMoneda.Value = True, 1, 0), tbObservacion.Text, tbMdesc.Value, tbtotal.Value,
+                                                  CType(grdetalle.DataSource, DataTable), _detalleCompras, IIf(swEmision.Value = True, 1, 0), tbNFactura.Text,
+                                                  IIf(swConsigna.Value = True, 1, 0), IIf(swRetencion.Value = True, 1, 0),
+                                                  IIf(swMoneda.Value = True, 1, tbTipoCambio.Value), 0, IIf(SwProforma.Value = True, tbProforma.Text, 0))
             If res Then
 
                 Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
@@ -1339,6 +1351,12 @@ Public Class F0_MCompras
     Private Sub F0_Ventas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _IniciarTodo()
         btnNuevo.PerformClick()
+        SwProforma.Value = False
+        If (SwProforma.Value = True) Then
+            btnBuscarProforma.Enabled = True
+        Else
+            btnBuscarProforma.Enabled = False
+        End If
     End Sub
     Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
         _Limpiar()
@@ -2145,7 +2163,135 @@ salirIf:
 
     End Sub
 
+    Private Sub btnBuscarProforma_Click(sender As Object, e As EventArgs) Handles btnBuscarProforma.Click
+        If (_fnAccesible()) Then
+            Dim dt As DataTable
 
+            dt = L_fnGeneralProformaCompra()
+
+            Dim listEstCeldas As New List(Of Modelo.Celda)
+            listEstCeldas.Add(New Modelo.Celda("pcnumi,", True, "NRO PROFORMA", 120))
+            listEstCeldas.Add(New Modelo.Celda("pcfdoc", True, "FECHA", 120, "dd/MM/yyyy"))
+            listEstCeldas.Add(New Modelo.Celda("pcty4prov", False, "", 50))
+            listEstCeldas.Add(New Modelo.Celda("ydcod", False, "", 50))
+            listEstCeldas.Add(New Modelo.Celda("proveedor", True, "PROVEEDOR".ToUpper, 150))
+            listEstCeldas.Add(New Modelo.Celda("yddctnum", False, "", 50))
+            listEstCeldas.Add(New Modelo.Celda("pcest", False, "", 50))
+            listEstCeldas.Add(New Modelo.Celda("pcobs", True, "OBSERVACION", 150))
+            listEstCeldas.Add(New Modelo.Celda("pcdesc", False, "DESCUENTO".ToUpper, 120, "0.00"))
+            listEstCeldas.Add(New Modelo.Celda("total", True, "TOTAL".ToUpper, 120, "0.00"))
+            listEstCeldas.Add(New Modelo.Celda("pcfact", False, "", 50))
+            listEstCeldas.Add(New Modelo.Celda("pchact", False, "", 50))
+            listEstCeldas.Add(New Modelo.Celda("pcuact", False, "", 50))
+
+            Dim ef = New Efecto
+            ef.tipo = 3
+            ef.dt = dt
+            ef.SeleclCol = 2
+            ef.listEstCeldas = listEstCeldas
+            ef.alto = 50
+            ef.ancho = 350
+            ef.Context = "Seleccione PROFORMA".ToUpper
+            ef.ShowDialog()
+            Dim bandera As Boolean = False
+            bandera = ef.band
+            If (bandera = True) Then
+                Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
+
+                tbProforma.Text = Row.Cells("pcnumi").Value
+                _CodProveedor = Row.Cells("pcty4prov").Value
+                tbCodProv.Text = Row.Cells("pcty4prov").Text + "-" + Row.Cells("ydcod").Text
+                tbProveedor.Text = Row.Cells("proveedor").Value
+                tbNitProv.Text = Row.Cells("yddctnum").Value
+                tbObservacion.Text = Row.Cells("pcobs").Value
+
+                tbSubtotalC.Value = Row.Cells("pcdesc").Value + Row.Cells("total").Value
+                tbMdesc.Value = Row.Cells("pcdesc").Value
+                tbtotal.Value = Row.Cells("total").Value
+
+                _prCargarProductoDeLaProforma(Row.Cells("pcnumi").Value)
+
+            End If
+
+        End If
+    End Sub
+
+    Sub _prCargarProductoDeLaProforma(numiProforma As Integer)
+        Dim dt As DataTable = L_fnDetalleProformaCompra(numiProforma)
+
+        If (dt.Rows.Count > 0) Then
+            CType(grdetalle.DataSource, DataTable).Rows.Clear()
+            For i As Integer = 0 To dt.Rows.Count - 1
+                Dim numiproducto As Integer = dt.Rows(i).Item("pdty5prod")
+                Dim nameproducto As String = dt.Rows(i).Item("producto")
+                Dim lote As String = ""
+                Dim FechaVenc As Date = Now.Date
+                Dim cant As Double = dt.Rows(i).Item("pdcmin")
+
+                _prAddDetalleVenta()
+                grdetalle.Row = grdetalle.RowCount - 1
+
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("cbty5prod") = numiproducto
+                grdetalle.SetValue("cbty5prod", numiproducto)
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("CodigoFabrica") = dt.Rows(i).Item("CodigoFabrica")
+                grdetalle.SetValue("CodigoFabrica", dt.Rows(i).Item("CodigoFabrica"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("CodigoMarca") = dt.Rows(i).Item("CodigoMarca")
+                grdetalle.SetValue("CodigoMarca", dt.Rows(i).Item("CodigoMarca"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("Medida") = dt.Rows(i).Item("Medida")
+                grdetalle.SetValue("Medida", dt.Rows(i).Item("Medida"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("Marca") = dt.Rows(i).Item("Marca")
+                grdetalle.SetValue("Marca", dt.Rows(i).Item("Marca"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("Procedencia") = dt.Rows(i).Item("Procedencia")
+                grdetalle.SetValue("Procedencia", dt.Rows(i).Item("Procedencia"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("producto") = nameproducto
+                grdetalle.SetValue("producto", nameproducto)
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("cbcmin") = cant
+                grdetalle.SetValue("cbcmin", cant)
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("cbumin") = dt.Rows(i).Item("pdumin")
+                grdetalle.SetValue("cbumin", dt.Rows(i).Item("pdumin"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("unidad") = dt.Rows(i).Item("unidad")
+                grdetalle.SetValue("unidad", dt.Rows(i).Item("unidad"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("cbpcost") = dt.Rows(i).Item("pdpcost")
+                grdetalle.SetValue("cbpcost", dt.Rows(i).Item("pdpcost"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("cblote") = dt.Rows(i).Item("pdlote")
+                grdetalle.SetValue("cblote", dt.Rows(i).Item("pdlote"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("cbfechavenc") = dt.Rows(i).Item("pdfechavenc")
+                grdetalle.SetValue("cbfechavenc", dt.Rows(i).Item("pdfechavenc"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("cbptot") = dt.Rows(i).Item("pdptot")
+                grdetalle.SetValue("cbptot", dt.Rows(i).Item("pdptot"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("cbutven") = dt.Rows(i).Item("pdutven")
+                grdetalle.SetValue("cbutven", dt.Rows(i).Item("pdutven"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("cbprven") = dt.Rows(i).Item("pdprven")
+                grdetalle.SetValue("cbprven", dt.Rows(i).Item("pdprven"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("cbpFacturado") = dt.Rows(i).Item("pdpFacturado")
+                grdetalle.SetValue("cbpFacturado", dt.Rows(i).Item("pdpFacturado"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("cbpPublico") = dt.Rows(i).Item("pdpPublico")
+                grdetalle.SetValue("cbpPublico", dt.Rows(i).Item("pdpPublico"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("cbpMecanico") = dt.Rows(i).Item("pdpMecanico")
+                grdetalle.SetValue("cbpMecanico", dt.Rows(i).Item("pdpMecanico"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("costo") = dt.Rows(i).Item("costo")
+                grdetalle.SetValue("costo", dt.Rows(i).Item("costo"))
+                CType(grdetalle.DataSource, DataTable).Rows(i).Item("venta") = dt.Rows(i).Item("venta")
+                grdetalle.SetValue("venta", dt.Rows(i).Item("venta"))
+
+
+            Next
+
+            'grdetalle.Select()
+            _prCalcularPrecioTotal()
+        End If
+    End Sub
+
+    Private Sub SwProforma_ValueChanged(sender As Object, e As EventArgs) Handles SwProforma.ValueChanged
+        If (_fnAccesible()) Then
+            If (SwProforma.Value = True) Then
+                btnBuscarProforma.Enabled = True
+            Else
+                btnBuscarProforma.Enabled = False
+                tbProforma.Clear()
+            End If
+        End If
+    End Sub
 
 #End Region
 

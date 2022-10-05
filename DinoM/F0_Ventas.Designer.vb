@@ -54,14 +54,14 @@ Partial Class F0_Ventas
         Me.LabelX15 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX14 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX7 = New DevComponents.DotNetBar.LabelX()
-        Me.lbCredito = New DevComponents.DotNetBar.LabelX()
-        Me.tbFechaVenc = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
         Me.lbTipoMoneda = New DevComponents.DotNetBar.LabelX()
         Me.swMoneda = New DevComponents.DotNetBar.Controls.SwitchButton()
         Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
         Me.swTipoVenta = New DevComponents.DotNetBar.Controls.SwitchButton()
         Me.tbFechaVenta = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
+        Me.lbCredito = New DevComponents.DotNetBar.LabelX()
+        Me.tbFechaVenc = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.tbObservacion = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LabelX10 = New DevComponents.DotNetBar.LabelX()
@@ -148,8 +148,8 @@ Partial Class F0_Ventas
         CType(Me.cbSucursal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanelFactura2.SuspendLayout()
         CType(Me.dtiFechaFactura, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tbFechaVenc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFechaVenta, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbFechaVenc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelDetalle.SuspendLayout()
         Me.GroupPanel4.SuspendLayout()
         Me.Panel5.SuspendLayout()
@@ -384,7 +384,7 @@ Partial Class F0_Ventas
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 596.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 589.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(983, 589)
         Me.TableLayoutPanel1.TabIndex = 1
         '
@@ -923,71 +923,6 @@ Partial Class F0_Ventas
         Me.LabelX7.TabIndex = 232
         Me.LabelX7.Text = "Nro de Autorización:"
         '
-        'lbCredito
-        '
-        Me.lbCredito.AutoSize = True
-        Me.lbCredito.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbCredito.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbCredito.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbCredito.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbCredito.Location = New System.Drawing.Point(483, 137)
-        Me.lbCredito.Name = "lbCredito"
-        Me.lbCredito.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbCredito.Size = New System.Drawing.Size(130, 16)
-        Me.lbCredito.TabIndex = 233
-        Me.lbCredito.Text = "Fecha Venc. Crédito:"
-        Me.lbCredito.Visible = False
-        '
-        'tbFechaVenc
-        '
-        '
-        '
-        '
-        Me.tbFechaVenc.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.tbFechaVenc.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbFechaVenc.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown
-        Me.tbFechaVenc.ButtonDropDown.Visible = True
-        Me.tbFechaVenc.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbFechaVenc.IsPopupCalendarOpen = False
-        Me.tbFechaVenc.Location = New System.Drawing.Point(637, 135)
-        '
-        '
-        '
-        '
-        '
-        '
-        Me.tbFechaVenc.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbFechaVenc.MonthCalendar.CalendarDimensions = New System.Drawing.Size(1, 1)
-        Me.tbFechaVenc.MonthCalendar.ClearButtonVisible = True
-        '
-        '
-        '
-        Me.tbFechaVenc.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2
-        Me.tbFechaVenc.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90
-        Me.tbFechaVenc.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground
-        Me.tbFechaVenc.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.tbFechaVenc.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder
-        Me.tbFechaVenc.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1
-        Me.tbFechaVenc.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbFechaVenc.MonthCalendar.DisplayMonth = New Date(2017, 2, 1, 0, 0, 0, 0)
-        Me.tbFechaVenc.MonthCalendar.FirstDayOfWeek = System.DayOfWeek.Monday
-        '
-        '
-        '
-        Me.tbFechaVenc.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
-        Me.tbFechaVenc.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90
-        Me.tbFechaVenc.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
-        Me.tbFechaVenc.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbFechaVenc.MonthCalendar.TodayButtonVisible = True
-        Me.tbFechaVenc.Name = "tbFechaVenc"
-        Me.tbFechaVenc.Size = New System.Drawing.Size(120, 22)
-        Me.tbFechaVenc.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.tbFechaVenc.TabIndex = 7
-        Me.tbFechaVenc.Visible = False
-        '
         'lbTipoMoneda
         '
         Me.lbTipoMoneda.BackColor = System.Drawing.Color.Transparent
@@ -1121,6 +1056,71 @@ Partial Class F0_Ventas
         Me.tbFechaVenta.Size = New System.Drawing.Size(120, 22)
         Me.tbFechaVenta.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.tbFechaVenta.TabIndex = 4
+        '
+        'lbCredito
+        '
+        Me.lbCredito.AutoSize = True
+        Me.lbCredito.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbCredito.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbCredito.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbCredito.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lbCredito.Location = New System.Drawing.Point(483, 137)
+        Me.lbCredito.Name = "lbCredito"
+        Me.lbCredito.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lbCredito.Size = New System.Drawing.Size(130, 16)
+        Me.lbCredito.TabIndex = 233
+        Me.lbCredito.Text = "Fecha Venc. Crédito:"
+        Me.lbCredito.Visible = False
+        '
+        'tbFechaVenc
+        '
+        '
+        '
+        '
+        Me.tbFechaVenc.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.tbFechaVenc.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbFechaVenc.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown
+        Me.tbFechaVenc.ButtonDropDown.Visible = True
+        Me.tbFechaVenc.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbFechaVenc.IsPopupCalendarOpen = False
+        Me.tbFechaVenc.Location = New System.Drawing.Point(637, 135)
+        '
+        '
+        '
+        '
+        '
+        '
+        Me.tbFechaVenc.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbFechaVenc.MonthCalendar.CalendarDimensions = New System.Drawing.Size(1, 1)
+        Me.tbFechaVenc.MonthCalendar.ClearButtonVisible = True
+        '
+        '
+        '
+        Me.tbFechaVenc.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2
+        Me.tbFechaVenc.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90
+        Me.tbFechaVenc.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground
+        Me.tbFechaVenc.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.tbFechaVenc.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder
+        Me.tbFechaVenc.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1
+        Me.tbFechaVenc.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbFechaVenc.MonthCalendar.DisplayMonth = New Date(2017, 2, 1, 0, 0, 0, 0)
+        Me.tbFechaVenc.MonthCalendar.FirstDayOfWeek = System.DayOfWeek.Monday
+        '
+        '
+        '
+        Me.tbFechaVenc.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.tbFechaVenc.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90
+        Me.tbFechaVenc.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.tbFechaVenc.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbFechaVenc.MonthCalendar.TodayButtonVisible = True
+        Me.tbFechaVenc.Name = "tbFechaVenc"
+        Me.tbFechaVenc.Size = New System.Drawing.Size(120, 22)
+        Me.tbFechaVenc.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.tbFechaVenc.TabIndex = 7
+        Me.tbFechaVenc.Visible = False
         '
         'LabelX1
         '
@@ -2140,8 +2140,8 @@ Partial Class F0_Ventas
         CType(Me.cbSucursal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupPanelFactura2.ResumeLayout(False)
         CType(Me.dtiFechaFactura, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tbFechaVenc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbFechaVenta, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbFechaVenc, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelDetalle.ResumeLayout(False)
         Me.GroupPanel4.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)

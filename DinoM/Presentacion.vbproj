@@ -247,6 +247,12 @@
     <Compile Include="F0_Compra.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utils\F0_DetalleProforma.Designer.vb">
+      <DependentUpon>F0_DetalleProforma.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\F0_DetalleProforma.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="F0_KardexPrecios.Designer.vb">
       <DependentUpon>F0_KardexPrecios.vb</DependentUpon>
     </Compile>
@@ -263,6 +269,12 @@
       <DependentUpon>F0_LibroVenta.vb</DependentUpon>
     </Compile>
     <Compile Include="F0_LibroVenta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F0_ProformaCompra.designer.vb">
+      <DependentUpon>F0_ProformaCompra.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F0_ProformaCompra.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="F0_MCompras.designer.vb">
@@ -1013,6 +1025,9 @@
     <EmbeddedResource Include="F0_Compra.resx">
       <DependentUpon>F0_Compra.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Utils\F0_DetalleProforma.resx">
+      <DependentUpon>F0_DetalleProforma.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F0_KardexPrecios.resx">
       <DependentUpon>F0_KardexPrecios.vb</DependentUpon>
     </EmbeddedResource>
@@ -1021,6 +1036,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="F0_LibroVenta.resx">
       <DependentUpon>F0_LibroVenta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F0_ProformaCompra.resx">
+      <DependentUpon>F0_ProformaCompra.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="F0_MCompras.resx">
       <DependentUpon>F0_MCompras.vb</DependentUpon>

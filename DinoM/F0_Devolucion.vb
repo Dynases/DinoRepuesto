@@ -1123,8 +1123,8 @@ Public Class F0_Devolucion
 
 
     Private Function P_fnValidarCierreCaja() As Boolean
-        Dim est As Integer = L_fnObtenerDatoTabla("TIE001", "ieIdCaja", "ieIdDevolucion=" + tbCodigo.Text.Trim)
-        If est > 0 Then
+        Dim est As String = L_fnObtenerDatoTabla("TIE001", "ieIdCaja", "ieIdDevolucion=" + tbCodigo.Text.Trim)
+        If est > "0" Then
             Return True
         Else
             Return False
@@ -1136,62 +1136,62 @@ Public Class F0_Devolucion
 
 
     Private Sub P_GenerarReporte(numi As String)
-        Dim dt As DataTable = L_fnVentaNotaDeVenta(numi)
-        If (gb_DetalleProducto) Then
-            ponerDescripcionProducto(dt)
-        End If
-        Dim total As Decimal = dt.Compute("SUM(Total)", "")
-        Dim totald As Double = (total / 6.96)
-        Dim fechaven As String = dt.Rows(0).Item("fechaventa")
-        If Not IsNothing(P_Global.Visualizador) Then
-            P_Global.Visualizador.Close()
-        End If
-        Dim ParteEntera As Long
-        Dim ParteDecimal As Decimal
-        Dim pDecimal() As String
-        ParteEntera = Int(total)
-        ParteDecimal = Math.Round(total - ParteEntera, 2)
-        pDecimal = Split(ParteDecimal.ToString, ".")
+        'Dim dt As DataTable = L_fnVentaNotaDeVenta(numi)
+        'If (gb_DetalleProducto) Then
+        '    ponerDescripcionProducto(dt)
+        'End If
+        'Dim total As Decimal = dt.Compute("SUM(Total)", "")
+        'Dim totald As Double = (total / 6.96)
+        'Dim fechaven As String = dt.Rows(0).Item("fechaventa")
+        'If Not IsNothing(P_Global.Visualizador) Then
+        '    P_Global.Visualizador.Close()
+        'End If
+        'Dim ParteEntera As Long
+        'Dim ParteDecimal As Decimal
+        'Dim pDecimal() As String
+        'ParteEntera = Int(total)
+        'ParteDecimal = Math.Round(total - ParteEntera, 2)
+        'pDecimal = Split(ParteDecimal.ToString, ".")
 
 
-        Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
-        IIf(pDecimal(1).ToString.Equals("0"), "00", pDecimal(1).ToString) + "/100 Bolivianos"
+        'Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
+        'IIf(pDecimal(1).ToString.Equals("0"), "00", pDecimal(1).ToString) + "/100 Bolivianos"
 
-        ParteEntera = Int(totald)
-        ParteDecimal = Math.Round(totald - ParteEntera, 2)
-        pDecimal = Split(ParteDecimal.ToString, ".")
+        'ParteEntera = Int(totald)
+        'ParteDecimal = Math.Round(totald - ParteEntera, 2)
+        'pDecimal = Split(ParteDecimal.ToString, ".")
 
-        Dim lid As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
-        IIf(pDecimal(1).ToString.Equals("0"), "00", pDecimal(1).ToString) + "/100 Dolares"
+        'Dim lid As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
+        'IIf(pDecimal(1).ToString.Equals("0"), "00", pDecimal(1).ToString) + "/100 Dolares"
 
-        Dim dt2 As DataTable = L_fnNameReporte()
+        'Dim dt2 As DataTable = L_fnNameReporte()
 
-        P_Global.Visualizador = New Visualizador
-        Dim _FechaAct As String
-        Dim _FechaPar As String
-        Dim _Fecha() As String
-        Dim _Meses() As String = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}
-        _FechaAct = fechaven
-        _Fecha = Split(_FechaAct, "-")
-        _FechaPar = "Cochabamba, " + _Fecha(0).Trim + " De " + _Meses(_Fecha(1) - 1).Trim + " Del " + _Fecha(2).Trim
+        'P_Global.Visualizador = New Visualizador
+        'Dim _FechaAct As String
+        'Dim _FechaPar As String
+        'Dim _Fecha() As String
+        'Dim _Meses() As String = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}
+        '_FechaAct = fechaven
+        '_Fecha = Split(_FechaAct, "-")
+        '_FechaPar = "Cochabamba, " + _Fecha(0).Trim + " De " + _Meses(_Fecha(1) - 1).Trim + " Del " + _Fecha(2).Trim
 
-        Dim objrep As New R_NotaVenta_7_5X100
-            '' GenerarNro(_dt)
-            ''objrep.SetDataSource(Dt1Kardex)
+        'Dim objrep As New R_NotaVenta_7_5X100
+        '    '' GenerarNro(_dt)
+        '    ''objrep.SetDataSource(Dt1Kardex)
 
-            objrep.SetDataSource(dt)
-            objrep.SetParameterValue("Literal1", li)
-            If swTipoVenta.Value = True Then
-                objrep.SetParameterValue("ENombre", "Nota de Entrega Nro. " + numi)
-            Else
-                objrep.SetParameterValue("ENombre", "Nota de Crédito Nro. " + numi)
-            End If
-            objrep.SetParameterValue("ECiudadPais", _FechaPar)
-            objrep.SetParameterValue("Sucursal", cbSucursal.Text)
-            objrep.SetParameterValue("Observacion", tbObservacion.Text)
-            P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
-            P_Global.Visualizador.ShowDialog() 'Comentar
-            P_Global.Visualizador.BringToFront() 'Comentar
+        '    objrep.SetDataSource(dt)
+        '    objrep.SetParameterValue("Literal1", li)
+        '    If swTipoVenta.Value = True Then
+        '        objrep.SetParameterValue("ENombre", "Nota de Entrega Nro. " + numi)
+        '    Else
+        '        objrep.SetParameterValue("ENombre", "Nota de Crédito Nro. " + numi)
+        '    End If
+        '    objrep.SetParameterValue("ECiudadPais", _FechaPar)
+        '    objrep.SetParameterValue("Sucursal", cbSucursal.Text)
+        '    objrep.SetParameterValue("Observacion", tbObservacion.Text)
+        '    P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
+        '    P_Global.Visualizador.ShowDialog() 'Comentar
+        '    P_Global.Visualizador.BringToFront() 'Comentar
 
 
 
@@ -1528,7 +1528,6 @@ Public Class F0_Devolucion
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
         If (Not _fnAccesible()) Then
             P_GenerarReporte(tbCodigo.Text)
-
         End If
     End Sub
 

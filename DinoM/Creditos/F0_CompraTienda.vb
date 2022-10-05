@@ -1148,7 +1148,7 @@ Public Class F0_CompraTienda
                                                   tbtotal.Value, CType(grdetalle.DataSource, DataTable),
                                                   _detalleCompras, IIf(swEmision.Value = True, 1, 0),
                                                   tbNFactura.Text, IIf(swConsigna.Value = True, 1, 0),
-                                                  IIf(swRetencion.Value = True, 1, 0), IIf(swMoneda.Value = True, 1, tbTipoCambio.Value), 1)
+                                                  IIf(swRetencion.Value = True, 1, 0), IIf(swMoneda.Value = True, 1, tbTipoCambio.Value), 1, 0)
             If res Then
 
                 Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
