@@ -393,7 +393,7 @@ Public Class F0_MovimientoNuevo
         If (cbConcepto.SelectedIndex >= 0) Then
             If (cbConcepto.Value = 6) Then
                 If (cbDepositoDestino.SelectedIndex < 0) Then
-                    MostrarMensaje("Por Favor Seleccione un Deposito Desitno")
+                    MostrarMensaje("Por Favor Seleccione un Deposito Destino")
                     cbDepositoDestino.Focus()
                     Return False
                 End If

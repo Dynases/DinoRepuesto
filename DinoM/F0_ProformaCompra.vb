@@ -1078,8 +1078,6 @@ salirIf:
                     ''Cálculo de los demás precios
                     pFacturado = grdetalle.GetValue("pdpFacturado")
 
-                    CType(grdetalle.DataSource, DataTable).Rows(pos).Item("pdpFacturado") = pFacturado
-                    grdetalle.SetValue("pdpFacturado", pFacturado)
                     CType(grdetalle.DataSource, DataTable).Rows(pos).Item("pdpPublico") = pFacturado - (pFacturado * 0.1)
                     grdetalle.SetValue("pdpPublico", pFacturado - (pFacturado * 0.1))
                     CType(grdetalle.DataSource, DataTable).Rows(pos).Item("pdpMecanico") = pFacturado - (pFacturado * 0.15)
@@ -1101,17 +1099,7 @@ salirIf:
             If (Not IsNumeric(grdetalle.GetValue("pdpPublico")) Or grdetalle.GetValue("pdpPublico").ToString = String.Empty) Then
                 CType(grdetalle.DataSource, DataTable).Rows(pos).Item("pdbpPublico") = 0
                 grdetalle.SetValue("pdpPublico", 0)
-            Else
-                If (grdetalle.GetValue("pdpPublico") > 0) Then
-                    Dim cPublico As Double
-                    cPublico = grdetalle.GetValue("pdpPublico")
-                    CType(grdetalle.DataSource, DataTable).Rows(pos).Item("pdpPublico") = cPublico
-                    grdetalle.SetValue("pdpPublico", cPublico)
 
-                Else
-                    CType(grdetalle.DataSource, DataTable).Rows(pos).Item("pdpPublico") = 0
-                    grdetalle.SetValue("pdpPublico", 0)
-                End If
             End If
         End If
         ''''''''''''''''''''''PRECIO MECÁNICO'''''''''''''''''''''''
@@ -1119,17 +1107,7 @@ salirIf:
             If (Not IsNumeric(grdetalle.GetValue("pdpMecanico")) Or grdetalle.GetValue("pdpMecanico").ToString = String.Empty) Then
                 CType(grdetalle.DataSource, DataTable).Rows(pos).Item("pdpMecanico") = 0
                 grdetalle.SetValue("pdpMecanico", 0)
-            Else
-                If (grdetalle.GetValue("pdpMecanico") > 0) Then
-                    Dim cMecanico As Double
-                    cMecanico = grdetalle.GetValue("pdpMecanico")
-                    CType(grdetalle.DataSource, DataTable).Rows(pos).Item("pdpMecanico") = cMecanico
-                    grdetalle.SetValue("pdpMecanico", cMecanico)
 
-                Else
-                    CType(grdetalle.DataSource, DataTable).Rows(pos).Item("pdpMecanico") = 0
-                    grdetalle.SetValue("pdpMecanico", 0)
-                End If
             End If
         End If
 

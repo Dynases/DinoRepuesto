@@ -45,6 +45,10 @@ Partial Class F0_MCompras
         Me.PanelContentSup = New System.Windows.Forms.Panel()
         Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.btnBuscarProforma = New DevComponents.DotNetBar.ButtonX()
+        Me.SwProforma = New DevComponents.DotNetBar.Controls.SwitchButton()
+        Me.LabelX18 = New DevComponents.DotNetBar.LabelX()
+        Me.tbProforma = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.btnAgregar = New DevComponents.DotNetBar.ButtonX()
         Me.lbTipoCambio = New DevComponents.DotNetBar.LabelX()
         Me.tbTipoCambio = New DevComponents.Editors.DoubleInput()
@@ -93,10 +97,7 @@ Partial Class F0_MCompras
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.grCompra = New Janus.Windows.GridEX.GridEX()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.SwProforma = New DevComponents.DotNetBar.Controls.SwitchButton()
-        Me.LabelX18 = New DevComponents.DotNetBar.LabelX()
-        Me.tbProforma = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.btnBuscarProforma = New DevComponents.DotNetBar.ButtonX()
+        Me.btnTraspaso = New DevComponents.DotNetBar.ButtonX()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelInferior.SuspendLayout()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -144,6 +145,7 @@ Partial Class F0_MCompras
         '
         'PanelSuperior
         '
+        Me.PanelSuperior.Controls.Add(Me.btnTraspaso)
         Me.PanelSuperior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelSuperior.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PanelSuperior.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
@@ -157,6 +159,11 @@ Partial Class F0_MCompras
         Me.PanelSuperior.StyleMouseOver.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PanelSuperior.StyleMouseOver.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PanelSuperior.StyleMouseOver.BackgroundImage = CType(resources.GetObject("PanelSuperior.StyleMouseOver.BackgroundImage"), System.Drawing.Image)
+        Me.PanelSuperior.Controls.SetChildIndex(Me.PanelToolBar1, 0)
+        Me.PanelSuperior.Controls.SetChildIndex(Me.PanelToolBar2, 0)
+        Me.PanelSuperior.Controls.SetChildIndex(Me.btnTraspaso, 0)
+        Me.PanelSuperior.Controls.SetChildIndex(Me.MRlAccion, 0)
+        Me.PanelSuperior.Controls.SetChildIndex(Me.PictureBox1, 0)
         '
         'PanelInferior
         '
@@ -250,6 +257,7 @@ Partial Class F0_MCompras
         '
         '
         Me.MRlAccion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.MRlAccion.Size = New System.Drawing.Size(814, 72)
         '
         'PanelContent
         '
@@ -289,6 +297,10 @@ Partial Class F0_MCompras
         Me.MSuperTabControl.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.BUSCADOR})
         Me.MSuperTabControl.Controls.SetChildIndex(Me.MSuperTabControlPanel1, 0)
         Me.MSuperTabControl.Controls.SetChildIndex(Me.SuperTabControlPanel2, 0)
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Location = New System.Drawing.Point(997, 0)
         '
         'PanelDetalle
         '
@@ -698,6 +710,70 @@ Partial Class F0_MCompras
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1311, 207)
         Me.Panel2.TabIndex = 234
+        '
+        'btnBuscarProforma
+        '
+        Me.btnBuscarProforma.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnBuscarProforma.BackColor = System.Drawing.Color.Transparent
+        Me.btnBuscarProforma.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
+        Me.btnBuscarProforma.Image = Global.DinoM.My.Resources.Resources.search
+        Me.btnBuscarProforma.ImageFixedSize = New System.Drawing.Size(22, 20)
+        Me.btnBuscarProforma.Location = New System.Drawing.Point(294, 28)
+        Me.btnBuscarProforma.Name = "btnBuscarProforma"
+        Me.btnBuscarProforma.Size = New System.Drawing.Size(25, 20)
+        Me.btnBuscarProforma.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btnBuscarProforma.TabIndex = 681
+        '
+        'SwProforma
+        '
+        '
+        '
+        '
+        Me.SwProforma.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.SwProforma.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SwProforma.Location = New System.Drawing.Point(130, 28)
+        Me.SwProforma.Name = "SwProforma"
+        Me.SwProforma.OffBackColor = System.Drawing.Color.LawnGreen
+        Me.SwProforma.OffText = "NO"
+        Me.SwProforma.OnBackColor = System.Drawing.Color.Gold
+        Me.SwProforma.OnText = "SI"
+        Me.SwProforma.Size = New System.Drawing.Size(62, 22)
+        Me.SwProforma.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.SwProforma.TabIndex = 680
+        '
+        'LabelX18
+        '
+        Me.LabelX18.AutoSize = True
+        Me.LabelX18.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX18.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX18.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX18.Location = New System.Drawing.Point(13, 32)
+        Me.LabelX18.Name = "LabelX18"
+        Me.LabelX18.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX18.Size = New System.Drawing.Size(67, 16)
+        Me.LabelX18.TabIndex = 679
+        Me.LabelX18.Text = "Proforma:"
+        '
+        'tbProforma
+        '
+        Me.tbProforma.BackColor = System.Drawing.Color.LightGray
+        '
+        '
+        '
+        Me.tbProforma.Border.Class = "TextBoxBorder"
+        Me.tbProforma.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbProforma.Enabled = False
+        Me.tbProforma.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbProforma.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.tbProforma.Location = New System.Drawing.Point(196, 28)
+        Me.tbProforma.Name = "tbProforma"
+        Me.tbProforma.PreventEnterBeep = True
+        Me.tbProforma.Size = New System.Drawing.Size(95, 22)
+        Me.tbProforma.TabIndex = 678
         '
         'btnAgregar
         '
@@ -1571,69 +1647,22 @@ Partial Class F0_MCompras
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 500
         '
-        'SwProforma
+        'btnTraspaso
         '
-        '
-        '
-        '
-        Me.SwProforma.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.SwProforma.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SwProforma.Location = New System.Drawing.Point(130, 28)
-        Me.SwProforma.Name = "SwProforma"
-        Me.SwProforma.OffBackColor = System.Drawing.Color.LawnGreen
-        Me.SwProforma.OffText = "NO"
-        Me.SwProforma.OnBackColor = System.Drawing.Color.Gold
-        Me.SwProforma.OnText = "SI"
-        Me.SwProforma.Size = New System.Drawing.Size(62, 22)
-        Me.SwProforma.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.SwProforma.TabIndex = 680
-        '
-        'LabelX18
-        '
-        Me.LabelX18.AutoSize = True
-        Me.LabelX18.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.LabelX18.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX18.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX18.Location = New System.Drawing.Point(13, 32)
-        Me.LabelX18.Name = "LabelX18"
-        Me.LabelX18.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX18.Size = New System.Drawing.Size(67, 16)
-        Me.LabelX18.TabIndex = 679
-        Me.LabelX18.Text = "Proforma:"
-        '
-        'tbProforma
-        '
-        Me.tbProforma.BackColor = System.Drawing.Color.LightGray
-        '
-        '
-        '
-        Me.tbProforma.Border.Class = "TextBoxBorder"
-        Me.tbProforma.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbProforma.Enabled = False
-        Me.tbProforma.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbProforma.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbProforma.Location = New System.Drawing.Point(196, 28)
-        Me.tbProforma.Name = "tbProforma"
-        Me.tbProforma.PreventEnterBeep = True
-        Me.tbProforma.Size = New System.Drawing.Size(95, 22)
-        Me.tbProforma.TabIndex = 678
-        '
-        'btnBuscarProforma
-        '
-        Me.btnBuscarProforma.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btnBuscarProforma.BackColor = System.Drawing.Color.Transparent
-        Me.btnBuscarProforma.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
-        Me.btnBuscarProforma.Image = Global.DinoM.My.Resources.Resources.search
-        Me.btnBuscarProforma.ImageFixedSize = New System.Drawing.Size(22, 20)
-        Me.btnBuscarProforma.Location = New System.Drawing.Point(294, 28)
-        Me.btnBuscarProforma.Name = "btnBuscarProforma"
-        Me.btnBuscarProforma.Size = New System.Drawing.Size(25, 20)
-        Me.btnBuscarProforma.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btnBuscarProforma.TabIndex = 681
+        Me.btnTraspaso.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnTraspaso.ColorTable = DevComponents.DotNetBar.eButtonColor.Orange
+        Me.btnTraspaso.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnTraspaso.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnTraspaso.Image = Global.DinoM.My.Resources.Resources.FormatFactoryunnamed
+        Me.btnTraspaso.ImageFixedSize = New System.Drawing.Size(48, 48)
+        Me.btnTraspaso.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btnTraspaso.Location = New System.Drawing.Point(1190, 0)
+        Me.btnTraspaso.Name = "btnTraspaso"
+        Me.btnTraspaso.Size = New System.Drawing.Size(80, 72)
+        Me.btnTraspaso.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btnTraspaso.TabIndex = 14
+        Me.btnTraspaso.Text = "TRASPASO"
+        Me.btnTraspaso.TextColor = System.Drawing.Color.White
         '
         'F0_MCompras
         '
@@ -1766,4 +1795,5 @@ Partial Class F0_MCompras
     Friend WithEvents LabelX18 As DevComponents.DotNetBar.LabelX
     Friend WithEvents tbProforma As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents btnBuscarProforma As DevComponents.DotNetBar.ButtonX
+    Protected WithEvents btnTraspaso As DevComponents.DotNetBar.ButtonX
 End Class

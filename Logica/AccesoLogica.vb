@@ -3530,6 +3530,32 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("sp_Mam_Movimiento", _listParam)
         Return _Tabla
     End Function
+
+    Public Shared Function l_MovimientoGuardarTraspaso(ByRef _id As String, Fecha As String, ConceptoId As Integer, Observacion As String, _detalle As DataTable,
+                                                       _sucOri As Integer, _sucDest As Integer, idcompra As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 8))
+        _listParam.Add(New Datos.DParametro("@id", _id))
+        _listParam.Add(New Datos.DParametro("@Fecha", Fecha))
+        _listParam.Add(New Datos.DParametro("@ConceptoId", ConceptoId))
+        _listParam.Add(New Datos.DParametro("@Observacion", Observacion))
+        _listParam.Add(New Datos.DParametro("@Estado", 1))
+        _listParam.Add(New Datos.DParametro("@AlmacenId", _sucOri))
+        _listParam.Add(New Datos.DParametro("@AlmacenDestino", _sucDest))
+        _listParam.Add(New Datos.DParametro("@IdCompra", idcompra))
+        _listParam.Add(New Datos.DParametro("@TC0011", "", _detalle))
+        _listParam.Add(New Datos.DParametro("@UsuarioReg", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Movimiento", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            _id = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
 #End Region
 
 #Region "TI002 MOVIMIENTOS "
@@ -6444,6 +6470,17 @@ Public Class AccesoLogica
 
         _listParam.Add(New Datos.DParametro("@tipo", 4))
         _listParam.Add(New Datos.DParametro("@pcnumi", _numi))
+        _listParam.Add(New Datos.DParametro("@pcuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TP002", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnGeneralProformaNoUtilizada() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
         _listParam.Add(New Datos.DParametro("@pcuact", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TP002", _listParam)
 

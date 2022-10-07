@@ -247,6 +247,12 @@
     <Compile Include="F0_Compra.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="F1_Traspaso.Designer.vb">
+      <DependentUpon>F1_Traspaso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F1_Traspaso.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utils\F0_DetalleProforma.Designer.vb">
       <DependentUpon>F0_DetalleProforma.vb</DependentUpon>
     </Compile>
@@ -1024,6 +1030,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="F0_Compra.resx">
       <DependentUpon>F0_Compra.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F1_Traspaso.resx">
+      <DependentUpon>F1_Traspaso.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utils\F0_DetalleProforma.resx">
       <DependentUpon>F0_DetalleProforma.vb</DependentUpon>

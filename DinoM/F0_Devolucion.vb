@@ -114,6 +114,7 @@ Public Class F0_Devolucion
         'tbFechaVenc.IsInputReadOnly = True
         tbFechaVenc.Enabled = False
         tbFechaDev.IsInputReadOnly = False
+        tbFechaDev.Enabled = False
         swTipoVenta.IsReadOnly = True
         btnBuscarVenta.Enabled = False
 
@@ -138,7 +139,7 @@ Public Class F0_Devolucion
         tbObservacion.ReadOnly = False
         'tbFechaVenta.IsInputReadOnly = False
         'tbFechaVenc.IsInputReadOnly = False
-        tbFechaDev.IsInputReadOnly = True
+        'tbFechaDev.IsInputReadOnly = True
         btnBuscarVenta.Enabled = True
 
         'swTipoVenta.IsReadOnly = False

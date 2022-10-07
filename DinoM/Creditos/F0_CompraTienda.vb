@@ -697,11 +697,6 @@ Public Class F0_CompraTienda
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
             .Visible = False
         End With
-        '     a.canumi ,a.caalm ,a.cafdoc ,a.caty4prov ,proveedor .yddesc as proveedor ,a.catven ,a.cafvcr ,
-        'a.camon ,IIF(camon=1,'Boliviano','Dolar') as moneda,a.caest ,a.caobs ,
-        'a.cadesc ,a.cafact ,a.cahact ,a.cauact,(Sum(b.cbptot)-a.cadesc ) as total
-
-
 
         With grCompra.RootTable.Columns("camon")
             .Width = 50
@@ -778,6 +773,16 @@ Public Class F0_CompraTienda
             .Caption = "Retención"
         End With
         With grCompra.RootTable.Columns("catipocambio")
+            .Width = 100
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = False
+        End With
+        With grCompra.RootTable.Columns("caProforma")
+            .Width = 100
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = False
+        End With
+        With grCompra.RootTable.Columns("caMovimiento")
             .Width = 100
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = False
@@ -1676,8 +1681,6 @@ salirIf:
                         ''Cálculo de los demás precios
                         pFacturado = grdetalle.GetValue("cbpFacturado")
 
-                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpFacturado") = pFacturado
-                        grdetalle.SetValue("cbpFacturado", pFacturado)
                         CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpPublico") = pFacturado - (pFacturado * 0.1)
                         grdetalle.SetValue("cbpPublico", pFacturado - (pFacturado * 0.1))
                         CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = pFacturado - (pFacturado * 0.15)
@@ -1699,17 +1702,7 @@ salirIf:
                 If (Not IsNumeric(grdetalle.GetValue("cbpPublico")) Or grdetalle.GetValue("cbpPublico").ToString = String.Empty) Then
                     CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpPublico") = 0
                     grdetalle.SetValue("cbpPublico", 0)
-                Else
-                    If (grdetalle.GetValue("cbpPublico") > 0) Then
-                        Dim cPublico As Double
-                        cPublico = grdetalle.GetValue("cbpPublico")
-                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpPublico") = cPublico
-                        grdetalle.SetValue("cbpPublico", cPublico)
 
-                    Else
-                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpPublico") = 0
-                        grdetalle.SetValue("cbpPublico", 0)
-                    End If
                 End If
             End If
             ''''''''''''''''''''''PRECIO MECÁNICO'''''''''''''''''''''''
@@ -1717,17 +1710,7 @@ salirIf:
                 If (Not IsNumeric(grdetalle.GetValue("cbpMecanico")) Or grdetalle.GetValue("cbpMecanico").ToString = String.Empty) Then
                     CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = 0
                     grdetalle.SetValue("cbpMecanico", 0)
-                Else
-                    If (grdetalle.GetValue("cbpMecanico") > 0) Then
-                        Dim cMecanico As Double
-                        cMecanico = grdetalle.GetValue("cbpMecanico")
-                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = cMecanico
-                        grdetalle.SetValue("cbpMecanico", cMecanico)
 
-                    Else
-                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = 0
-                        grdetalle.SetValue("cbpMecanico", 0)
-                    End If
                 End If
             End If
 

@@ -106,6 +106,7 @@ Public Class F0_MCompras
         tbFechaVenc.IsInputReadOnly = True
         tbFechaVenc.Enabled = False
         cbSucursal.ReadOnly = True
+        SwProforma.IsReadOnly = True
 
         swTipoVenta.IsReadOnly = True
 
@@ -149,6 +150,7 @@ Public Class F0_MCompras
         tbFechaVenta.IsInputReadOnly = False
         tbFechaVenc.IsInputReadOnly = False
         tbFechaVenc.Enabled = True
+        SwProforma.IsReadOnly = False
 
         'If (tbCodigo.Text.Length > 0) Then
         '    cbSucursal.ReadOnly = True
@@ -290,6 +292,7 @@ Public Class F0_MCompras
             Next
         End If
         SwProforma.Value = False
+        btnBuscarProforma.Enabled = False
         tbProforma.Clear()
         'If (SwProforma.Value = True) Then
         '    btnBuscarProforma.Enabled = True
@@ -318,6 +321,30 @@ Public Class F0_MCompras
             swRetencion.Value = .GetValue("caretenc")
             swMoneda.Value = .GetValue("camon")
             tbTipoCambio.Value = .GetValue("catipocambio")
+            tbProforma.Text = .GetValue("caProforma").ToString
+
+            If .GetValue("caProforma") > 0 Then
+                SwProforma.Value = 1
+            Else
+                SwProforma.Value = 0
+                'btnTraspaso.Enabled = False
+            End If
+
+            If .GetValue("caMovimiento") = 0 And SwProforma.Value = True Then
+                btnTraspaso.Enabled = True
+                btnModificar.Enabled = False
+                btnEliminar.Enabled = True
+
+            ElseIf .GetValue("caMovimiento") > 0 And SwProforma.Value = True Then
+                btnTraspaso.Enabled = False
+                btnModificar.Enabled = False
+                btnEliminar.Enabled = False
+
+            ElseIf .GetValue("caMovimiento") = 0 And SwProforma.Value = False Then
+                btnTraspaso.Enabled = False
+                btnModificar.Enabled = True
+                btnEliminar.Enabled = True
+            End If
 
             'If (swTipoVenta.Value = False) Then
 
@@ -756,8 +783,8 @@ Public Class F0_MCompras
         With grCompra.RootTable.Columns("canumemis")
             .Width = 120
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = False
-            .Caption = "Nro. Emision"
+            .Visible = True
+            .Caption = "NRO. DOCUMENTO"
         End With
         With grCompra.RootTable.Columns("caconsigna")
             .Width = 120
@@ -772,6 +799,16 @@ Public Class F0_MCompras
             .Caption = "Retención"
         End With
         With grCompra.RootTable.Columns("catipocambio")
+            .Width = 100
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = False
+        End With
+        With grCompra.RootTable.Columns("caProforma")
+            .Width = 100
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = False
+        End With
+        With grCompra.RootTable.Columns("caMovimiento")
             .Width = 100
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = False
@@ -979,7 +1016,7 @@ Public Class F0_MCompras
             _fnObtenerFilaDetalle(pos, lin)
             Dim cant As Double = grdetalle.GetValue("cbcmin")
             Dim uni As Double = grdetalle.GetValue("cbpcost")
-            Dim pFacturado As Double
+            'Dim pFacturado As Double
 
             If (pos >= 0) Then
                 Dim TotalUnitario As Double = cant * uni
@@ -1665,7 +1702,7 @@ salirIf:
                 If (Not IsNumeric(grdetalle.GetValue("cbpFacturado")) Or grdetalle.GetValue("cbpFacturado").ToString = String.Empty) Then
 
                     CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpFacturado") = 0
-                    grdetalle.SetValue("cbpFacturado", 0)
+                    grdetalle.SetValue("cbpFacturado", 0.00)
                     CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpPublico") = 0
                     grdetalle.SetValue("cbpPublico", 0)
                     CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = 0
@@ -1678,8 +1715,6 @@ salirIf:
                         ''Cálculo de los demás precios
                         pFacturado = grdetalle.GetValue("cbpFacturado")
 
-                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpFacturado") = pFacturado
-                        grdetalle.SetValue("cbpFacturado", pFacturado)
                         CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpPublico") = pFacturado - (pFacturado * 0.1)
                         grdetalle.SetValue("cbpPublico", pFacturado - (pFacturado * 0.1))
                         CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = pFacturado - (pFacturado * 0.15)
@@ -1701,17 +1736,6 @@ salirIf:
                 If (Not IsNumeric(grdetalle.GetValue("cbpPublico")) Or grdetalle.GetValue("cbpPublico").ToString = String.Empty) Then
                     CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpPublico") = 0
                     grdetalle.SetValue("cbpPublico", 0)
-                Else
-                    If (grdetalle.GetValue("cbpPublico") > 0) Then
-                        Dim cPublico As Double
-                        cPublico = grdetalle.GetValue("cbpPublico")
-                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpPublico") = cPublico
-                        grdetalle.SetValue("cbpPublico", cPublico)
-
-                    Else
-                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpPublico") = 0
-                        grdetalle.SetValue("cbpPublico", 0)
-                    End If
                 End If
             End If
             ''''''''''''''''''''''PRECIO MECÁNICO'''''''''''''''''''''''
@@ -1719,17 +1743,7 @@ salirIf:
                 If (Not IsNumeric(grdetalle.GetValue("cbpMecanico")) Or grdetalle.GetValue("cbpMecanico").ToString = String.Empty) Then
                     CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = 0
                     grdetalle.SetValue("cbpMecanico", 0)
-                Else
-                    If (grdetalle.GetValue("cbpMecanico") > 0) Then
-                        Dim cMecanico As Double
-                        cMecanico = grdetalle.GetValue("cbpMecanico")
-                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = cMecanico
-                        grdetalle.SetValue("cbpMecanico", cMecanico)
 
-                    Else
-                        CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbpMecanico") = 0
-                        grdetalle.SetValue("cbpMecanico", 0)
-                    End If
                 End If
             End If
 
@@ -2167,7 +2181,7 @@ salirIf:
         If (_fnAccesible()) Then
             Dim dt As DataTable
 
-            dt = L_fnGeneralProformaCompra()
+            dt = L_fnGeneralProformaNoUtilizada()
 
             Dim listEstCeldas As New List(Of Modelo.Celda)
             listEstCeldas.Add(New Modelo.Celda("pcnumi,", True, "NRO PROFORMA", 120))
@@ -2292,6 +2306,39 @@ salirIf:
             End If
         End If
     End Sub
+
+    Private Sub btnTraspaso_Click(sender As Object, e As EventArgs) Handles btnTraspaso.Click
+        Dim frm As New F1_Traspaso
+
+        With frm.cbSucOrigen
+            .DropDownList.Columns.Clear()
+            .DropDownList.Columns.Add("aanumi").Width = 60
+            .DropDownList.Columns("aanumi").Caption = "COD"
+            .DropDownList.Columns.Add("aabdes").Width = 500
+            .DropDownList.Columns("aabdes").Caption = "SUCURSAL"
+            .ValueMember = "aanumi"
+            .DisplayMember = "aabdes"
+            .DataSource = cbSucursal.DataSource
+            .Refresh()
+        End With
+        frm.cbSucOrigen.Value = cbSucursal.Value
+        frm.dt = CType(grdetalle.DataSource, DataTable).Copy
+        frm.IdCompra = tbCodigo.Text
+        frm.ShowDialog()
+
+        Dim bandera As Boolean = False
+        bandera = frm.banderaTraspaso
+        If (bandera = True) Then
+
+            ToastNotification.Show(Me, "Traspaso realizado con éxito.".ToUpper, My.Resources.GRABACION_EXITOSA, 4000, eToastGlowColor.Green, eToastPosition.TopCenter)
+        Else
+            ToastNotification.Show(Me, "El Traspaso no se pudo realizar", My.Resources.WARNING, 4000, eToastGlowColor.Red, eToastPosition.TopCenter)
+
+        End If
+
+    End Sub
+
+
 
 #End Region
 
