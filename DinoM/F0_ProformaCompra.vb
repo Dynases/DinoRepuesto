@@ -1285,7 +1285,12 @@ salirIf:
     End Sub
 
     Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
-
+        Dim dt As DataTable = L_fnVerificarSiExisteEnCompra(tbCodigo.Text)
+        If dt.Rows.Count > 0 Then
+            Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+            ToastNotification.Show(Me, "Esta Proforma no se puede modificar porque ya fue utilizada en Compra".ToUpper, img, 3500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            Exit Sub
+        End If
         If (grProforma.RowCount > 0) Then
             _prhabilitar()
             btnNuevo.Enabled = False

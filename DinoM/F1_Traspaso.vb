@@ -47,7 +47,7 @@ Public Class F1_Traspaso
 
         Dim resultado As Boolean = False
 
-        resultado = l_MovimientoGuardarTraspaso("", Now.Date.ToString("yyyy/MM/dd"), 6, "TRASPASO AUTOMÁTICO ENLAZADO A PROFORMA", dt, cbSucOrigen.Value, cbSucDestino.Value,
+        resultado = l_MovimientoGuardarTraspaso("", Now.Date.ToString("yyyy/MM/dd"), 6, "TRASPASO AUTOMÁTICO ENLAZADO A COMPRA NRO.: " + IdCompra, dt, cbSucOrigen.Value, cbSucDestino.Value,
                                                 IdCompra)
         If resultado Then
             'MostrarMensajeOk("Traspaso realizado con éxito.".ToUpper)
