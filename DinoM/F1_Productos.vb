@@ -2259,10 +2259,12 @@ Public Class F1_Productos
     End Sub
 
     Private Sub JGrM_Buscador_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGrM_Buscador.EditingCell
-        e.Cancel = e.Column.Index <> JGrM_Buscador.RootTable.Columns("yfcprod").Index And
-           e.Column.Index <> JGrM_Buscador.RootTable.Columns("yfCodigoMarca").Index And
-           e.Column.Index <> JGrM_Buscador.RootTable.Columns("yfcdprod2").Index And
-           e.Column.Index <> JGrM_Buscador.RootTable.Columns("yfdetprod").Index
+        'e.Cancel = e.Column.Index <> JGrM_Buscador.RootTable.Columns("yfcprod").Index And
+        '   e.Column.Index <> JGrM_Buscador.RootTable.Columns("yfCodigoMarca").Index And
+        '   e.Column.Index <> JGrM_Buscador.RootTable.Columns("yfcdprod2").Index And
+        '   e.Column.Index <> JGrM_Buscador.RootTable.Columns("yfdetprod").Index
+        e.Cancel = True
+
     End Sub
 
     Private Sub btnAgregar_Click_1(sender As Object, e As EventArgs) Handles btnAgregar.Click

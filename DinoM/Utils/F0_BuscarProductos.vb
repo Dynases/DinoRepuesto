@@ -428,14 +428,14 @@ Public Class F0_BuscarProductos
     End Sub
 
     Private Sub grProductos_EditingCell(sender As Object, e As EditingCellEventArgs) Handles grProductos.EditingCell
-        If (e.Column.Index = CelIndex(grProductos, "CodigoFabrica") Or
-            e.Column.Index = CelIndex(grProductos, "Marca") Or
-            e.Column.Index = CelIndex(grProductos, "Medida") Or
-            e.Column.Index = CelIndex(grProductos, "yfcdprod1")) Then
-            e.Cancel = False
-        Else
-            e.Cancel = True
-        End If
-
+        'If (e.Column.Index = CelIndex(grProductos, "CodigoFabrica") Or
+        '    e.Column.Index = CelIndex(grProductos, "Marca") Or
+        '    e.Column.Index = CelIndex(grProductos, "Medida") Or
+        '    e.Column.Index = CelIndex(grProductos, "yfcdprod1")) Then
+        '    e.Cancel = False
+        'Else
+        '    e.Cancel = True
+        'End If
+        e.Cancel = True
     End Sub
 End Class
