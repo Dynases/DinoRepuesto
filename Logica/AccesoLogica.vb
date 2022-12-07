@@ -1400,6 +1400,144 @@ Public Class AccesoLogica
     End Function
 #End Region
 
+#Region "TP003 Proforma Venta Nueva"
+    Public Shared Function L_fnEliminarProformaVenta(numi As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        If L_fnbValidarEliminacion(numi, "TP003", "penumi", mensaje) = True Then
+            Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
+
+            _listParam.Add(New Datos.DParametro("@tipo", -1))
+            _listParam.Add(New Datos.DParametro("@penumi", numi))
+            _listParam.Add(New Datos.DParametro("@peuact", L_Usuario))
+            _Tabla = D_ProcedimientoConParam("sp_Mam_TP003", _listParam)
+
+            If _Tabla.Rows.Count > 0 Then
+                _resultado = True
+            Else
+                _resultado = False
+            End If
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnGrabarProformaVenta(ByRef _tanumi As String, _taidCorelativo As String, _tafdoc As String, _taven As Integer,
+                                                   _tatven As Integer, _tafvcr As String, _taclpr As Integer, _tamon As Integer, _taobs As String,
+                                                   _tadesc As Double, _taice As Double, _tatotal As Double, detalle As DataTable, _almacen As Integer,
+                                                   CatPrecio As Integer) As Boolean
+        Dim _Tabla As DataTable
+        Dim _resultado As Boolean
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@penumi", _tanumi))
+        _listParam.Add(New Datos.DParametro("@peidCore", _taidCorelativo))
+        _listParam.Add(New Datos.DParametro("@pealm", _almacen))
+        _listParam.Add(New Datos.DParametro("@pefdoc", _tafdoc))
+        _listParam.Add(New Datos.DParametro("@peven", _taven))
+        _listParam.Add(New Datos.DParametro("@petven", _tatven))
+        _listParam.Add(New Datos.DParametro("@pefvcr", _tafvcr))
+        _listParam.Add(New Datos.DParametro("@peclpr", _taclpr))
+        _listParam.Add(New Datos.DParametro("@pemon", _tamon))
+        _listParam.Add(New Datos.DParametro("@peest", 1))
+        _listParam.Add(New Datos.DParametro("@peobs", _taobs))
+        _listParam.Add(New Datos.DParametro("@pedesc", _tadesc))
+        _listParam.Add(New Datos.DParametro("@peice", _taice))
+        _listParam.Add(New Datos.DParametro("@petotal", _tatotal))
+        _listParam.Add(New Datos.DParametro("@peuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@CategoriaPrecio", CatPrecio))
+        _listParam.Add(New Datos.DParametro("@TV0011", "", detalle))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TP003", _listParam)
+
+
+        If _Tabla.Rows.Count > 0 Then
+            _tanumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnModificarProformaVenta(_tanumi As String, _tafdoc As String, _taven As Integer, _tatven As Integer,
+                                                      _tafvcr As String, _taclpr As Integer, _tamon As Integer, _taobs As String,
+                                                      _tadesc As Double, _taice As Double, _tatotal As Double, detalle As DataTable,
+                                                      _almacen As Integer, CatPrecio As Integer) As Boolean
+        Dim _Tabla As DataTable
+        Dim _resultado As Boolean
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@penumi", _tanumi))
+        _listParam.Add(New Datos.DParametro("@pealm", _almacen))
+        _listParam.Add(New Datos.DParametro("@pefdoc", _tafdoc))
+        _listParam.Add(New Datos.DParametro("@peven", _taven))
+        _listParam.Add(New Datos.DParametro("@petven", _tatven))
+        _listParam.Add(New Datos.DParametro("@pefvcr", _tafvcr))
+        _listParam.Add(New Datos.DParametro("@peclpr", _taclpr))
+        _listParam.Add(New Datos.DParametro("@pemon", _tamon))
+        _listParam.Add(New Datos.DParametro("@peest", 1))
+        _listParam.Add(New Datos.DParametro("@peobs", _taobs))
+        _listParam.Add(New Datos.DParametro("@pedesc", _tadesc))
+        _listParam.Add(New Datos.DParametro("@peice", _taice))
+        _listParam.Add(New Datos.DParametro("@petotal", _tatotal))
+        _listParam.Add(New Datos.DParametro("@peuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@CategoriaPrecio", CatPrecio))
+        _listParam.Add(New Datos.DParametro("@TV0011", "", detalle))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TP003", _listParam)
+
+
+        If _Tabla.Rows.Count > 0 Then
+            _tanumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    Public Shared Function L_fnGeneralProformaVenta(idsucursal As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@almacen", idsucursal))
+        _listParam.Add(New Datos.DParametro("@peuact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TP003", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnDetalleProformaVenta(_numi As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@penumi", _numi))
+        _listParam.Add(New Datos.DParametro("@peuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TP003", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnProformaNueva(_numi As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@penumi", _numi))
+        _listParam.Add(New Datos.DParametro("@peuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TP003", _listParam)
+
+        Return _Tabla
+    End Function
+#End Region
 
 #Region "TV001 Ventas"
     Public Shared Function L_fnGeneralVenta(idsucursal As Integer) As DataTable

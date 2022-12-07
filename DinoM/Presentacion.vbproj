@@ -247,11 +247,23 @@
     <Compile Include="F0_Compra.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="F0_ProformaVenta.designer.vb">
+      <DependentUpon>F0_ProformaVenta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F0_ProformaVenta.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="F1_Traspaso.Designer.vb">
       <DependentUpon>F1_Traspaso.vb</DependentUpon>
     </Compile>
     <Compile Include="F1_Traspaso.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporte\R_Proforma_7_5X100.vb">
+      <DependentUpon>R_Proforma_7_5X100.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Utils\F0_DetalleProforma.Designer.vb">
       <DependentUpon>F0_DetalleProforma.vb</DependentUpon>
@@ -1031,8 +1043,15 @@
     <EmbeddedResource Include="F0_Compra.resx">
       <DependentUpon>F0_Compra.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="F0_ProformaVenta.resx">
+      <DependentUpon>F0_ProformaVenta.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F1_Traspaso.resx">
       <DependentUpon>F1_Traspaso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\R_Proforma_7_5X100.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_Proforma_7_5X100.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Utils\F0_DetalleProforma.resx">
       <DependentUpon>F0_DetalleProforma.vb</DependentUpon>
