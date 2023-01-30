@@ -222,6 +222,14 @@ Public Class F0_MovimientoNuevo
         If (tMovimiento.Rows.Count <= 0) Then
             cargarDetalle(-1)
         End If
+        With grmovimiento
+            .DefaultFilterRowComparison = FilterConditionOperator.Contains
+            .FilterMode = FilterMode.Automatic
+            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+            .GroupByBoxVisible = False
+            'diseño de la grilla
+            .VisualStyle = VisualStyle.Office2007
+        End With
     End Sub
     Private Sub cargarDetalle(movimientoId As String)
         Try

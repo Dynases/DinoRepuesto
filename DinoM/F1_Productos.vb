@@ -2277,4 +2277,9 @@ Public Class F1_Productos
     Private Sub JG_HistPrecios_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JG_HistPrecios.EditingCell
         e.Cancel = True
     End Sub
+
+    Private Sub btnImprimiEtiqueta_Click(sender As Object, e As EventArgs) Handles btnImprimiEtiqueta.Click
+        Dim frm As New ReporteEtiqueta
+        frm.Show()
+    End Sub
 End Class

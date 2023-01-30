@@ -211,6 +211,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CustomersRow.vb" />
+    <Compile Include="Etiqueta.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Etiqueta.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="F0_AnularFactura.Designer.vb">
       <DependentUpon>F0_AnularFactura.vb</DependentUpon>
     </Compile>
@@ -257,6 +263,12 @@
       <DependentUpon>F1_Traspaso.vb</DependentUpon>
     </Compile>
     <Compile Include="F1_Traspaso.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteEtiqueta.Designer.vb">
+      <DependentUpon>ReporteEtiqueta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteEtiqueta.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reporte\R_Proforma_7_5X100.vb">
@@ -1025,6 +1037,10 @@
     <EmbeddedResource Include="Creditos\R_KardexEstadoCuentaTienda.resx">
       <DependentUpon>R_KardexEstadoCuentaTienda.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Etiqueta.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Etiqueta.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="F0_AnularFactura.resx">
       <DependentUpon>F0_AnularFactura.vb</DependentUpon>
     </EmbeddedResource>
@@ -1048,6 +1064,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="F1_Traspaso.resx">
       <DependentUpon>F1_Traspaso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteEtiqueta.resx">
+      <DependentUpon>ReporteEtiqueta.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\R_Proforma_7_5X100.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -189,6 +189,8 @@ Public Class Pr_HistorialProductos
 
     End Sub
     Private Sub _prCargarProductos()
+        tbCodigo.Clear()
+        tbproducto.Clear()
         Dim dtname As DataTable = L_fnNameLabel()
         'Obtiene la lista de productos
         If dtProductoGoblal Is Nothing Then
@@ -214,7 +216,7 @@ Public Class Pr_HistorialProductos
         dtMovimiento.Rows.Clear()
         'Devuelve valores de seleccion
         'dtProductoGoblal.Columns.Item("Stock").
-        dtProductoGoblal.Columns.Remove("ListaAlmacen")
+        'dtProductoGoblal.Columns.Remove("ListaAlmacen")
 
         tbCodigo.Text = frm.pedidoId.ToString()
         tbproducto.Text = frm.producto.ToString()

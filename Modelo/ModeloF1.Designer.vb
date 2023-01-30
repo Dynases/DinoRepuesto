@@ -29,6 +29,8 @@ Partial Class ModeloF1
         Dim SuperTabLinearGradientColorTable1 As DevComponents.DotNetBar.Rendering.SuperTabLinearGradientColorTable = New DevComponents.DotNetBar.Rendering.SuperTabLinearGradientColorTable()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ModeloF1))
         Me.SuperTabPrincipal = New DevComponents.DotNetBar.SuperTabControl()
+        Me.SuperTabControlPanelBuscador = New DevComponents.DotNetBar.SuperTabControlPanel()
+        Me.SupTabItemBusqueda = New DevComponents.DotNetBar.SuperTabItem()
         Me.SuperTabControlPanelRegistro = New DevComponents.DotNetBar.SuperTabControlPanel()
         Me.PanelPrincipal = New System.Windows.Forms.Panel()
         Me.GroupPanelBuscador = New DevComponents.DotNetBar.Controls.GroupPanel()
@@ -65,8 +67,6 @@ Partial Class ModeloF1
         Me.btnModificar = New DevComponents.DotNetBar.ButtonX()
         Me.btnNuevo = New DevComponents.DotNetBar.ButtonX()
         Me.SupTabItemRegistro = New DevComponents.DotNetBar.SuperTabItem()
-        Me.SuperTabControlPanelBuscador = New DevComponents.DotNetBar.SuperTabControlPanel()
-        Me.SupTabItemBusqueda = New DevComponents.DotNetBar.SuperTabItem()
         Me.MEP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.MHighlighterFocus = New DevComponents.DotNetBar.Validator.Highlighter()
         Me.MFlyoutUsuario = New DevComponents.DotNetBar.Controls.Flyout(Me.components)
@@ -104,8 +104,8 @@ Partial Class ModeloF1
         Me.SuperTabPrincipal.ControlBox.MenuBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabPrincipal.ControlBox.MenuBox, Me.SuperTabPrincipal.ControlBox.CloseBox})
-        Me.SuperTabPrincipal.Controls.Add(Me.SuperTabControlPanelBuscador)
         Me.SuperTabPrincipal.Controls.Add(Me.SuperTabControlPanelRegistro)
+        Me.SuperTabPrincipal.Controls.Add(Me.SuperTabControlPanelBuscador)
         Me.SuperTabPrincipal.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SuperTabPrincipal.HorizontalText = False
         Me.SuperTabPrincipal.Location = New System.Drawing.Point(0, 0)
@@ -123,6 +123,22 @@ Partial Class ModeloF1
         Me.SuperTabPrincipal.TabStripColor = SuperTabColorTable1
         Me.SuperTabPrincipal.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.OfficeMobile2014
         Me.SuperTabPrincipal.Text = "SuperTabControl1"
+        '
+        'SuperTabControlPanelBuscador
+        '
+        Me.SuperTabControlPanelBuscador.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SuperTabControlPanelBuscador.Location = New System.Drawing.Point(0, 0)
+        Me.SuperTabControlPanelBuscador.Name = "SuperTabControlPanelBuscador"
+        Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(1318, 609)
+        Me.SuperTabControlPanelBuscador.TabIndex = 0
+        Me.SuperTabControlPanelBuscador.TabItem = Me.SupTabItemBusqueda
+        '
+        'SupTabItemBusqueda
+        '
+        Me.SupTabItemBusqueda.AttachedControl = Me.SuperTabControlPanelBuscador
+        Me.SupTabItemBusqueda.GlobalItem = False
+        Me.SupTabItemBusqueda.Name = "SupTabItemBusqueda"
+        Me.SupTabItemBusqueda.Text = "BUSQUEDA"
         '
         'SuperTabControlPanelRegistro
         '
@@ -658,22 +674,6 @@ Partial Class ModeloF1
         Me.SupTabItemRegistro.GlobalItem = False
         Me.SupTabItemRegistro.Name = "SupTabItemRegistro"
         Me.SupTabItemRegistro.Text = "REGISTRO"
-        '
-        'SuperTabControlPanelBuscador
-        '
-        Me.SuperTabControlPanelBuscador.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SuperTabControlPanelBuscador.Location = New System.Drawing.Point(0, 0)
-        Me.SuperTabControlPanelBuscador.Name = "SuperTabControlPanelBuscador"
-        Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(1318, 609)
-        Me.SuperTabControlPanelBuscador.TabIndex = 0
-        Me.SuperTabControlPanelBuscador.TabItem = Me.SupTabItemBusqueda
-        '
-        'SupTabItemBusqueda
-        '
-        Me.SupTabItemBusqueda.AttachedControl = Me.SuperTabControlPanelBuscador
-        Me.SupTabItemBusqueda.GlobalItem = False
-        Me.SupTabItemBusqueda.Name = "SupTabItemBusqueda"
-        Me.SupTabItemBusqueda.Text = "BUSQUEDA"
         '
         'MEP
         '
